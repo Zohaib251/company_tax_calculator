@@ -3,65 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax Data Collection - Full Formula Implementation</title>
+    <title>Tax Calculation Assistant</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="header-content">
-                <h1><i class="fas fa-file-excel"></i> Tax Data Collection System</h1>
-                <p class="excel-ref">Based on: tAX COMPANY.xlsx</p>
-                <p class="instructions">
-                    <strong>Formula System:</strong> All Column A formulas (a=a'+b', c=a-b, etc.) are implemented as backend calculations.
-                </p>
+            <div class="header-main">
+                <h1><i class="fas fa-file-invoice-dollar"></i> Tax Calculation Assistant</h1>
+                <p class="subtitle">Step-by-step tax data collection with automated calculations</p>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="step-info">
+                    <span id="currentSection">Revenue</span>
+                    <span class="step-count">Step <span id="currentStep">1</span> of <span id="totalSteps">10</span></span>
+                </div>
             </div>
         </header>
 
         <!-- Main Content -->
         <main>
-            <!-- Data Input Section -->
-            <section class="input-section">
-                <h2><i class="fas fa-edit"></i> Input Data</h2>
-                <div id="inputContainer" class="input-container">
-                    <!-- Dynamic inputs will be inserted here -->
-                </div>
+            <!-- Question Section -->
+            <section class="question-section" id="questionSection">
+                <!-- Questions will be loaded here dynamically -->
             </section>
 
-            <!-- Calculated Results Section -->
-            <section class="results-section">
-                <h2><i class="fas fa-calculator"></i> Calculated Results (Backend)</h2>
-                <div class="results-grid" id="resultsContainer">
-                    <!-- Calculated values will be shown here -->
-                </div>
-            </section>
-
-            <!-- Excel Formulas Section -->
-            <section class="formulas-section">
-                <h2><i class="fas fa-code"></i> Excel Formulas Implemented</h2>
-                <div id="formulasContainer" class="formulas-container">
-                    <!-- All formulas will be listed here -->
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <h3><i class="fas fa-calculator"></i> Calculated Results</h3>
+                <div class="results-grid" id="resultsGrid">
+                    <!-- Results will be shown here -->
                 </div>
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- Action Buttons -->
         <footer>
-            <button id="calculateBtn" class="btn calculate-btn">
-                <i class="fas fa-calculator"></i> Calculate All Formulas
-            </button>
-            <button id="resetBtn" class="btn reset-btn">
-                <i class="fas fa-redo"></i> Reset All
-            </button>
-            <p class="disclaimer">
-                All calculations follow Excel formulas exactly. Formula-like text in Column A defines calculation logic.
-            </p>
+            <div class="action-buttons">
+                <button id="prevBtn" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button id="nextBtn" class="btn btn-primary">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="testBtn" class="btn btn-test">
+                    <i class="fas fa-vial"></i> Load Test Data
+                </button>
+                <button id="resetBtn" class="btn btn-danger">
+                    <i class="fas fa-redo"></i> Reset All
+                </button>
+                <button id="submitBtn" class="btn btn-success">
+                    <i class="fas fa-check"></i> Submit & Calculate Tax
+                </button>
+            </div>
+            
+            <div class="info-box">
+                <p><i class="fas fa-info-circle"></i> All calculations follow Excel formulas from your tax template.</p>
+            </div>
         </footer>
     </div>
 
-    <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- Scripts -->
     <script src="formula-engine.js"></script>
     <script src="app.js"></script>
 </body>
