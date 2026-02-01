@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Data Collection - Full Formula Implementation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-file-excel"></i> Tax Data Collection System</h1>
+                <p class="excel-ref">Based on: tAX COMPANY.xlsx</p>
+                <p class="instructions">
+                    <strong>Formula System:</strong> All Column A formulas (a=a'+b', c=a-b, etc.) are implemented as backend calculations.
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Data Input Section -->
+            <section class="input-section">
+                <h2><i class="fas fa-edit"></i> Input Data</h2>
+                <div id="inputContainer" class="input-container">
+                    <!-- Dynamic inputs will be inserted here -->
+                </div>
+            </section>
+
+            <!-- Calculated Results Section -->
+            <section class="results-section">
+                <h2><i class="fas fa-calculator"></i> Calculated Results (Backend)</h2>
+                <div class="results-grid" id="resultsContainer">
+                    <!-- Calculated values will be shown here -->
+                </div>
+            </section>
+
+            <!-- Excel Formulas Section -->
+            <section class="formulas-section">
+                <h2><i class="fas fa-code"></i> Excel Formulas Implemented</h2>
+                <div id="formulasContainer" class="formulas-container">
+                    <!-- All formulas will be listed here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <button id="calculateBtn" class="btn calculate-btn">
+                <i class="fas fa-calculator"></i> Calculate All Formulas
+            </button>
+            <button id="resetBtn" class="btn reset-btn">
+                <i class="fas fa-redo"></i> Reset All
+            </button>
+            <p class="disclaimer">
+                All calculations follow Excel formulas exactly. Formula-like text in Column A defines calculation logic.
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="formula-engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
