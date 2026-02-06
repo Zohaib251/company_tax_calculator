@@ -204,14 +204,15 @@ class TaxEngine {
         // 13. TAX DEPRECIATION CALCULATIONS
         // C118 = SUM(C119:C121) - Total Tax Depreciation
         this.data['C118'] = this.sumRange('C', 119, 121);
-        // E118 = SUM(E119:E121) - Total Taxable Tax Depreciation
-        this.data['E118'] = this.sumRange('E', 119, 121);
+      
         
         // Apply proportional exemption to tax depreciation items (rows 119-121)
         for (let i = 119; i <= 121; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
             this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
+          // E118 = SUM(E119:E121) - Total Taxable Tax Depreciation
+        this.data['E118'] = this.sumRange('E', 119, 121);
         
         // 14. BUSINESS INCOME CALCULATION
         // C123 = +C116-C118 - Business Income Amount
