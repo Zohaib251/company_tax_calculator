@@ -318,7 +318,7 @@ class TaxEngine {
       this.data["E149"] + this.data["E150"] + this.data["E151"];
 
     // ========== TAX CHARGEABLE CALCULATION ==========
-    // E134 = (MAX(E137,E140,E141)+E138+E139)+E142+E143+E144+E145+E146-E148
+    // E136 = (MAX(E137,E140,E141)+E138+E139)+E142+E143+E144+E145+E146-E148
     // Note: In the MAX function, we use E137 (Final/Reduced Tax), E140 (Alternate Tax), E141 (Minimum Tax)
     const maxTax = Math.max(
       this.getValue("E137"), // Final/Reduced Tax @ 2.5%
@@ -353,7 +353,7 @@ this.data['E156'] = totalTaxPaid > this.getValue('E136')
 
 // E157 = REFUNDABLE INCOME TAX = IF(E156>0,0,(SUM(D152:D154)+D155)-E136)
 // If admitted tax > 0, then no refund. Otherwise, refund = tax paid - tax chargeable
-this.data['E157'] = this.getValue('E156') > 0 
+this.data['E158'] = this.getValue('E156') > 0 
     ? 0 
     : (totalTaxPaid - this.getValue('E136'));
 
@@ -456,7 +456,7 @@ this.data['E158'] = 0;
       minimumTax: this.getValue("E141"), // E141 = +E3*0.0125
       taxChargeable: this.getValue("E136"), // E136 = tax chargeable
       admittedTax: this.getValue("E156"), // E156 = admitted tax calculation
-      refundableTax: this.getValue("E157"), // E157 = refundable tax calculation (NEW)
+      refundableTax: this.getValue("E158"), // E158 = refundable tax calculation (NEW)
       totalTaxCredits: this.getValue("E148"), // Total tax credits
       ratio: this.getValue("D7"), // Export ratio for reference
       psebRegistered: this.psebRegistered, // Current PSEB registration status
