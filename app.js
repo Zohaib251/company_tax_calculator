@@ -549,8 +549,14 @@ const tableStructure = [
         formula: 'IF(((SUM(D152:D154)+D155)>E136),0,(E136-(SUM(D152:D154)+D155)))'
     },
     
-    // Row 157: DEMANDED INCOME TAX (Don't use - leave empty)
-    { type: 'empty', displayRow: 157 },
+    // Row 157: REFUNDABLE INCOME TAX (NEW)
+{ 
+    type: 'tax-result',
+    displayRow: 157,
+    description: 'REFUNDABLE INCOME TAX',
+    reference: '',
+    formula: 'IF(E156>0,0,(SUM(D152:D154)+D155)-E136)'
+},
     
     // Row 158: REFUNDABLE INCOME TAX (Don't use - leave empty)
     { type: 'empty', displayRow: 158 }
