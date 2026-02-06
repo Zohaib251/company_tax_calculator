@@ -744,6 +744,81 @@ function createTableRow(item, index) {
     
     return row;
 }
+// Add this function to app.js (before the event handlers)
+function validateInput(input) {
+    const value = input.value;
+    
+    // If empty, allow it (user might be deleting)
+    if (value === '' || value === '-') {
+        return true;
+    }
+    
+    // Remove commas for validation
+    const cleanValue = value.replace(/,/g, '');
+    
+    // Check if it's a valid number
+    const numValue = parseFloat(cleanValue);
+    
+    if (isNaN(numValue)) {
+        // Not a number - revert to previous value
+        input.value = input.dataset.lastValid || '0';
+        return false;
+    }
+    
+    // Check if negative
+    if (numValue < 0) {
+        // Negative value - show error and revert
+        input.style.borderColor = '#ff4d4f';
+        input.style.backgroundColor = '#fff2f0';
+        
+        setTimeout(() => {
+            input.style.borderColor = '';
+            input.style.backgroundColor = '';
+            input.value = input.dataset.lastValid || '0';
+        }, 1000);
+        
+        return false;
+    }
+    
+    // Valid positive number or zero
+    input.dataset.lastValid = formatNumber(numValue);
+    return true;
+}
+
+// Update the handleInputChange function in app.js:
+function handleInputChange(event) {
+    const input = event.target;
+    
+    // Validate input first
+    if (!validateInput(input)) {
+        return; // Stop if invalid
+    }
+    
+    const column = input.dataset.column;
+    const calcRow = input.dataset.calcRow;
+    const value = input.value.replace(/,/g, '');
+    
+    taxEngine.setValue(`${column}${calcRow}`, value);
+    updateDisplay();
+}
+
+// Update the formatInputValue function in app.js:
+function formatInputValue(event) {
+    const input = event.target;
+    const value = input.value.replace(/,/g, '');
+    const numValue = parseFloat(value);
+    
+    if (!isNaN(numValue) && numValue >= 0) {
+        input.value = formatNumber(numValue);
+        input.dataset.lastValid = input.value;
+    } else if (value === '' || value === '-') {
+        // Empty or minus sign - set to 0
+        input.value = '0';
+        input.dataset.lastValid = '0';
+        taxEngine.setValue(`${input.dataset.column}${input.dataset.calcRow}`, 0);
+        updateDisplay();
+    }
+}
 
 // Render the complete table
 function renderTable() {
