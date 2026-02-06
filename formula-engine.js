@@ -295,25 +295,38 @@ class TaxEngine {
 
     // ========== TAX CREDITS CALCULATIONS ==========
 
-    // E149 = MIN((E136/E135*C149),(0.2*E135)) - Charitable Donations Credit
-    const e136 = this.getValue("E136");
-    const e135 = this.getValue("E135");
-    const c149 = this.getValue("C149");
-    if (e135 > 0) {
-      const credit1 = (e136 / e135) * c149; // Proportional credit based on tax rate
-      const credit2 = 0.2 * e135; // Maximum credit of 20% of taxable income
-      this.data["E149"] = Math.min(credit1, credit2); // Take the lower of the two
-    } else {
-      this.data["E149"] = 0; // No credit if no taxable income
+    // Make sure E136 (Tax Chargeable) and E135 (Taxable Income) are calculated first
+    // These should already be calculated in previous sections
+
+    // 1. E149 = MIN((E136/E135*C149),(0.2*E135)) - Charitable Donations Credit
+    const taxChargeable = this.getValue("E136"); // E136 = Tax Chargeable
+    const taxableIncome = this.getValue("E135"); // E135 = Taxable Income
+    const charitableDonations = this.getValue("C149"); // C149 = Charitable Donations input
+
+    let charitableCredit = 0;
+    if (charitableDonations > 0 && taxableIncome > 0 && taxChargeable > 0) {
+      // Calculate both options
+      const option1 = (taxChargeable / taxableIncome) * charitableDonations;
+      const option2 = 0.2 * taxableIncome; // 20% of taxable income
+
+      // Take the minimum of the two
+      charitableCredit = Math.min(option1, option2);
+
+      // Ensure not negative
+      if (charitableCredit < 0) {
+        charitableCredit = 0;
+      }
     }
+    this.data["E149"] = charitableCredit;
 
-    // E150 = +C150 (Other Credits - put zero by default)
-    this.data["E150"] = this.getValue("C150");
+    // 2. E150 = +C150 - Other Credits (direct from input)
+    const otherCredits = this.getValue("C150"); // Direct value from C150
+    this.data["E150"] = Math.max(0, otherCredits); // Ensure not negative
 
-    // E151 = Tax Credit u/s 103 - set to 0 as per "not used"
+    // 3. E151 = Tax Credit u/s 103 (always 0 as per "not used")
     this.data["E151"] = 0;
 
-    // E148 = SUM(E149:E151) - Total Tax Credits
+    // 4. E148 = SUM(E149:E151) - Total Tax Credits
     this.data["E148"] =
       this.data["E149"] + this.data["E150"] + this.data["E151"];
 
@@ -337,28 +350,28 @@ class TaxEngine {
 
     this.data["E136"] = Math.max(0, withDifferences - this.getValue("E148"));
 
-   // In the calculateAll() method, after the ADMITTED INCOME TAX calculation:
+    // In the calculateAll() method, after the ADMITTED INCOME TAX calculation:
 
-// ========== TAX PAYMENTS AND BALANCES ==========
+    // ========== TAX PAYMENTS AND BALANCES ==========
 
-// Sum D152:D154 for withholding and advance taxes
-const sumD152toD154 = this.getValue('D152') + this.getValue('D153') + this.getValue('D154');
-const totalTaxPaid = sumD152toD154 + this.getValue('D155');
+    // Sum D152:D154 for withholding and advance taxes
+    const sumD152toD154 = this.getValue("D152") + this.getValue("D153") + this.getValue("D154");
+    const totalTaxPaid = sumD152toD154 + this.getValue("D155");
 
-// E156 = IF(((SUM(D152:D154)+D155)>E136),0,(E136-(SUM(D152:D154)+D155)))
-// This is ADMITTED INCOME TAX - compared against Normal Income Tax (E136)
-this.data['E156'] = totalTaxPaid > this.getValue('E136')
+    // E156 = IF(((SUM(D152:D154)+D155)>E136),0,(E136-(SUM(D152:D154)+D155)))
+    // This is ADMITTED INCOME TAX - compared against Normal Income Tax (E136)
+    this.data["E156"] = totalTaxPaid > this.getValue("E136")
+        ? 0
+        : this.getValue("E136") - totalTaxPaid;
+
+    // E157 = REFUNDABLE INCOME TAX = IF(E156>0,0,(SUM(D152:D154)+D155)-E136)
+    // If admitted tax > 0, then no refund. Otherwise, refund = tax paid - tax chargeable
+    this.data["E157"] = this.getValue("E156") > 0 
     ? 0
-    : (this.getValue('E136') - totalTaxPaid);
+    : totalTaxPaid - this.getValue("E136");
 
-// E157 = REFUNDABLE INCOME TAX = IF(E156>0,0,(SUM(D152:D154)+D155)-E136)
-// If admitted tax > 0, then no refund. Otherwise, refund = tax paid - tax chargeable
-this.data['E157'] = this.getValue('E156') > 0 
-    ? 0 
-    : (totalTaxPaid - this.getValue('E136'));
-
-// Note: E158 remains empty as per "(Don't use this including formula)"
-this.data['E158'] = 0;
+    // Note: E158 remains empty as per "(Don't use this including formula)"
+    this.data["E158"] = 0;
   }
 
   // Load test data with values from the Excel sample

@@ -20,7 +20,7 @@ function initializeRowMapping() {
         84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101,
         102, 103, 104, 105, 106, 107, 109, 110, 111, 112, 113, 114, 116, 118, 119,
         120, 121, 123, 124, 125, 126, 127, 128, 129, 131, 132, 133, 135, 136, 137,
-        138, 140, 141, 142, 146, 149, 150, 152, 153, 154, 155, 156, 157
+        138, 140, 141, 142, 146,148 , 149, 150, 152, 153, 154, 155, 156, 157
     ];
     
     // Map display rows to calculation rows (they are the same in this case)
@@ -482,7 +482,7 @@ const tableStructure = [
     
     // Row 148: TAX CREDIT HEADER
     { 
-        type: 'tax-header',
+        type: 'tax-result',
         displayRow: 148,
         description: 'TAX CREDIT -',
         reference: 'Y'
@@ -500,7 +500,7 @@ const tableStructure = [
     { 
         type: 'tax-input-zero',
         displayRow: 150,
-        description: 'Tax Credit for Certain Persons (Coal Mining Projects, Startups, IT/IT enabled Services) u/s 65F(Put the value by default zero here)',
+        description: 'Tax Credit for Certain Persons (Coal Mining Projects, Startups, IT/IT enabled Services) u/s 65F',
         reference: '',
         value: 0
     },
