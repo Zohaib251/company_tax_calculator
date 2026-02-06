@@ -20,7 +20,7 @@ function initializeRowMapping() {
         84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101,
         102, 103, 104, 105, 106, 107, 109, 110, 111, 112, 113, 114, 116, 118, 119,
         120, 121, 123, 124, 125, 126, 127, 128, 129, 131, 132, 133, 135, 136, 137,
-        138, 140, 141, 142, 146, 149, 150, 152, 153, 154, 155, 156, 158
+        138, 140, 141, 142, 146, 149, 150, 152, 153, 154, 155, 156, 157
     ];
     
     // Map display rows to calculation rows (they are the same in this case)
@@ -550,16 +550,16 @@ const tableStructure = [
     },
     
     // Row 157: DEMANDED INCOME TAX (Don't use - leave empty)
-    { type: 'empty', displayRow: 157 },
     
-  // Row 157: REFUNDABLE INCOME TAX
-{ 
-    type: 'tax-result',
-    displayRow: 158,
-    description: 'REFUNDABLE INCOME TAX',
-    reference: '',
-    formula: 'IF(E156>0,0,(SUM(D152:D154)+D155)-E136)'
-},
+    // Row 157: REFUNDABLE INCOME TAX
+    { 
+        type: 'tax-result',
+        displayRow: 157,
+        description: 'REFUNDABLE INCOME TAX',
+        reference: '',
+        formula: 'IF(E156>0,0,(SUM(D152:D154)+D155)-E136)'
+    },
+    { type: 'empty', displayRow: 158 },
 ];
 
 // Format number with commas
