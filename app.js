@@ -744,83 +744,25 @@ function createTableRow(item, index) {
     
     return row;
 }
-// Add this function to app.js (before the event handlers)
-function validateInput(input) {
-    const value = input.value;
-    
-    // If empty, allow it (user might be deleting)
-    if (value === '' || value === '-') {
-        return true;
-    }
-    
-    // Remove commas for validation
-    const cleanValue = value.replace(/,/g, '');
-    
-    // Check if it's a valid number
-    const numValue = parseFloat(cleanValue);
-    
-    if (isNaN(numValue)) {
-        // Not a number - revert to previous value
-        input.value = input.dataset.lastValid || '0';
-        return false;
-    }
-    
-    // Check if negative
-    if (numValue < 0) {
-        // Negative value - show error and revert
-        input.style.borderColor = '#ff4d4f';
-        input.style.backgroundColor = '#fff2f0';
-        
-        setTimeout(() => {
-            input.style.borderColor = '';
-            input.style.backgroundColor = '';
-            input.value = input.dataset.lastValid || '0';
-        }, 1000);
-        
-        return false;
-    }
-    
-    // Valid positive number or zero
-    input.dataset.lastValid = formatNumber(numValue);
-    return true;
-}
-
-// Update the handleInputChange function in app.js:
-function handleInputChange(event) {
+// app.js - Add this function for input validation
+function validateInput(event) {
     const input = event.target;
+    let value = input.value.replace(/,/g, '');
     
-    // Validate input first
-    if (!validateInput(input)) {
-        return; // Stop if invalid
-    }
+    // Remove any negative signs
+    value = value.replace(/-/g, '');
     
-    const column = input.dataset.column;
-    const calcRow = input.dataset.calcRow;
-    const value = input.value.replace(/,/g, '');
-    
-    taxEngine.setValue(`${column}${calcRow}`, value);
-    updateDisplay();
-}
-
-// Update the formatInputValue function in app.js:
-function formatInputValue(event) {
-    const input = event.target;
-    const value = input.value.replace(/,/g, '');
+    // Parse as float and ensure it's not negative
     const numValue = parseFloat(value);
-    
-    if (!isNaN(numValue) && numValue >= 0) {
-        input.value = formatNumber(numValue);
-        input.dataset.lastValid = input.value;
-    } else if (value === '' || value === '-') {
-        // Empty or minus sign - set to 0
+    if (!isNaN(numValue) && numValue < 0) {
         input.value = '0';
-        input.dataset.lastValid = '0';
-        taxEngine.setValue(`${input.dataset.column}${input.dataset.calcRow}`, 0);
-        updateDisplay();
+    } else if (value === '' || value === '-') {
+        input.value = '';
+    } else {
+        input.value = value;
     }
 }
-
-// Render the complete table
+// Update the event listeners in renderTable() function:
 function renderTable() {
     const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = '';
@@ -832,6 +774,7 @@ function renderTable() {
     
     // Add event listeners
     document.querySelectorAll('#tableBody input').forEach(input => {
+        input.addEventListener('input', validateInput);  // Add validation on input
         input.addEventListener('input', handleInputChange);
         input.addEventListener('blur', formatInputValue);
     });
@@ -852,14 +795,20 @@ function formatInputValue(event) {
     }
 }
 
-// Handle input changes
 function handleInputChange(event) {
     const input = event.target;
     const column = input.dataset.column;
     const calcRow = input.dataset.calcRow;
     const value = input.value.replace(/,/g, '');
     
-    taxEngine.setValue(`${column}${calcRow}`, value);
+    // If empty string, set to 0
+    if (value === '') {
+        taxEngine.setValue(`${column}${calcRow}`, 0);
+    } else {
+        const numValue = parseFloat(value);
+        // Ensure value is not negative
+        taxEngine.setValue(`${column}${calcRow}`, Math.max(0, numValue));
+    }
     updateDisplay();
 }
 

@@ -1,4 +1,4 @@
-// tax-engine.js - FIXED TAX CALCULATIONS WITH NEGATIVE-TO-ZERO RULE AND INPUT VALIDATION
+// tax-engine.js - FIXED TAX CALCULATIONS
 // This class implements the complete tax calculation engine that replicates Excel formulas
 // It handles all revenue, expense, exemption, and tax calculations with exact Excel logic
 
@@ -51,35 +51,19 @@ class TaxEngine {
             this.data[cell] = value; // Store the string value ("Yes" or "No")
             this.psebRegistered = (value === 'Yes'); // Update PSEB registration status
         } else {
-            // VALIDATION: Only allow positive numbers or zero, no negative values
-            const numericValue = parseFloat(value);
-            
-            if (isNaN(numericValue)) {
-                // If input is empty or not a number, set to 0
-                this.data[cell] = 0;
-            } else if (numericValue < 0) {
-                // If input is negative, set to 0 (prevent negative inputs)
-                this.data[cell] = 0;
-            } else {
-                // If input is positive or zero, use the value
-                this.data[cell] = numericValue;
-            }
+            const numericValue = parseFloat(value) || 0; // Convert to number, default to 0 if invalid
+            this.data[cell] = numericValue; // Store the numeric value
         }
         this.calculateAll(); // Recalculate all dependent formulas when any value changes
     }
     
-    // Helper function to convert negative values to zero (for calculations only)
-    nonNegative(value) {
-        return Math.max(0, value);
-    }
-    
-    // Helper function to sum a range of cells in a specific column with negative-to-zero rule
+    // Helper function to sum a range of cells in a specific column
     sumRange(column, start, end) {
         let sum = 0;
         for (let i = start; i <= end; i++) {
             sum += this.getValue(`${column}${i}`); // Sum values from start to end inclusive
         }
-        return this.nonNegative(sum); // Apply negative-to-zero rule for calculation results
+        return sum;
     }
 
     // Main calculation function - executes all formulas in proper dependency order
@@ -92,23 +76,23 @@ class TaxEngine {
         } else {
             this.data['D7'] = 0; // Default to 0 if no revenue
         }
-        this.data['E7'] = this.nonNegative(this.getValue('C7') - this.getValue('D7')); // E7 = +C7-D7 (Domestic ratio)
+        this.data['E7'] = this.getValue('C7') - this.getValue('D7'); // E7 = +C7-D7 (Domestic ratio)
         
         // 2. REVENUE SECTION CALCULATIONS
         // C3 = SUM(C4:C5) - Gross Revenue = Domestic Sales + Export Sales
-        this.data['C3'] = this.nonNegative(this.getValue('C4') + this.getValue('C5'));
+        this.data['C3'] = this.getValue('C4') + this.getValue('C5');
         // D3 = SUM(D4:D5) - Total Exempt Revenue
-        this.data['D3'] = this.nonNegative(this.getValue('D4') + this.getValue('D5'));
+        this.data['D3'] = this.getValue('D4') + this.getValue('D5');
         // E3 = SUM(E4:E5) - Total Taxable Revenue
-        this.data['E3'] = this.nonNegative(this.getValue('E4') + this.getValue('E5'));
+        this.data['E3'] = this.getValue('E4') + this.getValue('E5');
         
         // Row 4: Domestic Sales
         this.data['D4'] = 0; // D4 = 0 (Domestic sales have no exemption)
-        this.data['E4'] = this.nonNegative(this.getValue('C4') - this.getValue('D4')); // E4 = +C4-D4 (Taxable domestic sales)
+        this.data['E4'] = this.getValue('C4') - this.getValue('D4'); // E4 = +C4-D4 (Taxable domestic sales)
         
         // Row 5: Export Sales with PSEB registration logic
         this.data['D5'] = this.psebRegistered ? this.getValue('C5') : 0; // D5 = IF(D6="Yes",C5,0)
-        this.data['E5'] = this.nonNegative(this.getValue('C5') - this.getValue('D5')); // E5 = +C5-D5 (Taxable export sales)
+        this.data['E5'] = this.getValue('C5') - this.getValue('D5'); // E5 = +C5-D5 (Taxable export sales)
         
         // 3. SELLING EXPENSES CALCULATIONS
         // C8 = SUM(C9:C11) - Total Selling Expenses
@@ -120,21 +104,21 @@ class TaxEngine {
         
         // Row 9: Domestic Commission
         this.data['D9'] = 0; // D9 = 0 (Domestic commission not exempt)
-        this.data['E9'] = this.nonNegative(this.getValue('C9') - this.getValue('D9')); // E9 = +C9-D9
+        this.data['E9'] = this.getValue('C9') - this.getValue('D9'); // E9 = +C9-D9
         
         // Row 10: Foreign Commission
         this.data['D10'] = this.getValue('C10'); // D10 = +C10 (100% exempt)
-        this.data['E10'] = this.nonNegative(this.getValue('C10') - this.getValue('D10')); // E10 = +C10-D10
+        this.data['E10'] = this.getValue('C10') - this.getValue('D10'); // E10 = +C10-D10
         
         // Row 11: Rebate/Duty Drawbacks with proportional exemption
         this.data['D11'] = this.getValue('C11') * this.getValue('D7'); // D11 = +C11*D7
-        this.data['E11'] = this.nonNegative(this.getValue('C11') - this.getValue('D11')); // E11 = +C11-D11
+        this.data['E11'] = this.getValue('C11') - this.getValue('D11'); // E11 = +C11-D11
         
         // 4. NET REVENUE CALCULATION
         // C13 = C3-C8 - Net Revenue Amount
-        this.data['C13'] = this.nonNegative(this.getValue('C3') - this.getValue('C8'));
+        this.data['C13'] = this.getValue('C3') - this.getValue('C8');
         // E13 = +E3-E8 - Net Taxable Revenue
-        this.data['E13'] = this.nonNegative(this.getValue('E3') - this.getValue('E8'));
+        this.data['E13'] = this.getValue('E3') - this.getValue('E8');
         
         // 5. COST OF SALES CALCULATIONS
         // C15 = SUM(C17:C25) - Total Cost of Sales
@@ -147,14 +131,14 @@ class TaxEngine {
         // Apply proportional exemption to direct expenses (rows 17-25)
         for (let i = 17; i <= 25; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 6. GROSS PROFIT CALCULATION
         // C26 = +C13-C15 - Gross Profit Amount
-        this.data['C26'] = this.nonNegative(this.getValue('C13') - this.getValue('C15'));
+        this.data['C26'] = this.getValue('C13') - this.getValue('C15');
         // E26 = +E13-E15 - Taxable Gross Profit
-        this.data['E26'] = this.nonNegative(this.getValue('E13') - this.getValue('E15'));
+        this.data['E26'] = this.getValue('E13') - this.getValue('E15');
         
         // 7. INDIRECT EXPENSES CALCULATIONS
         // C28 = SUM(C29:C54) - Total Indirect Expenses
@@ -165,7 +149,7 @@ class TaxEngine {
         // Apply proportional exemption to indirect expenses (rows 29-54)
         for (let i = 29; i <= 54; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 8. OTHER REVENUES CALCULATIONS
@@ -177,14 +161,14 @@ class TaxEngine {
         // Apply proportional exemption to other revenues (rows 57-65)
         for (let i = 57; i <= 65; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 9. ACCOUNTING PROFIT CALCULATION
         // C66 = +C26-C28+C56 - Accounting Profit Amount
-        this.data['C66'] = this.nonNegative(this.getValue('C26') - this.getValue('C28') + this.getValue('C56'));
+        this.data['C66'] = this.getValue('C26') - this.getValue('C28') + this.getValue('C56');
         // E66 = +E26-E28+E56 - Taxable Accounting Profit
-        this.data['E66'] = this.nonNegative(this.getValue('E26') - this.getValue('E28') + this.getValue('E56'));
+        this.data['E66'] = this.getValue('E26') - this.getValue('E28') + this.getValue('E56');
         
         // 10. INADMISSIBLE DEDUCTIONS CALCULATIONS
         // C68 = SUM(C69:C107) - Total Inadmissible Deductions
@@ -195,7 +179,7 @@ class TaxEngine {
         // Apply proportional exemption to inadmissible deductions (rows 69-107)
         for (let i = 69; i <= 107; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 11. ADMISSIBLE DEDUCTIONS CALCULATIONS
@@ -207,14 +191,14 @@ class TaxEngine {
         // Apply proportional exemption to admissible deductions (rows 110-114)
         for (let i = 110; i <= 114; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 12. INCOME BEFORE DEPRECIATION CALCULATION
         // C116 = +C66+C68-C109 - Income Before Depreciation Amount
-        this.data['C116'] = this.nonNegative(this.getValue('C66') + this.getValue('C68') - this.getValue('C109'));
+        this.data['C116'] = this.getValue('C66') + this.getValue('C68') - this.getValue('C109');
         // E116 = +E66+E68-E109 - Taxable Income Before Depreciation
-        this.data['E116'] = this.nonNegative(this.getValue('E66') + this.getValue('E68') - this.getValue('E109'));
+        this.data['E116'] = this.getValue('E66') + this.getValue('E68') - this.getValue('E109');
         
         // 13. TAX DEPRECIATION CALCULATIONS
         // C118 = SUM(C119:C121) - Total Tax Depreciation
@@ -225,14 +209,14 @@ class TaxEngine {
         // Apply proportional exemption to tax depreciation items (rows 119-121)
         for (let i = 119; i <= 121; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
-            this.data[`E${i}`] = this.nonNegative(this.getValue(`C${i}`) - this.getValue(`D${i}`)); // E{i} = +C{i}-D{i}
+            this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
         
         // 14. BUSINESS INCOME CALCULATION
         // C123 = +C116-C118 - Business Income Amount
-        this.data['C123'] = this.nonNegative(this.getValue('C116') - this.getValue('C118'));
+        this.data['C123'] = this.getValue('C116') - this.getValue('C118');
         // E123 = +E116-E118 - Taxable Business Income
-        this.data['E123'] = this.nonNegative(this.getValue('E116') - this.getValue('E118'));
+        this.data['E123'] = this.getValue('E116') - this.getValue('E118');
         
         // 15. TOTAL INCOME CALCULATION (sum of rows 123-128)
         // C129 = SUM(C123:C128) - Total Income Amount
@@ -242,32 +226,33 @@ class TaxEngine {
         
         // 16. DEDUCTIBLE ALLOWANCES CALCULATIONS
         // C131 = SUM(C132:C133) - Total Deductible Allowances
-        this.data['C131'] = this.nonNegative(this.getValue('C132') + this.getValue('C133'));
+        this.data['C131'] = this.getValue('C132') + this.getValue('C133');
         // E131 = SUM(E132:E133) - Total Taxable Deductible Allowances
-        this.data['E131'] = this.nonNegative(this.getValue('E132') + this.getValue('E133'));
+        this.data['E131'] = this.getValue('E132') + this.getValue('E133');
         
         // Rows 132-133: Special handling for allowances
         // E132 = C132-D132 - Taxable Workers Welfare Fund
-        this.data['E132'] = this.nonNegative(this.getValue('C132') - this.getValue('D132'));
+        this.data['E132'] = this.getValue('C132') - this.getValue('D132');
         // E133 = C133-D133 - Taxable Workers Profit Participation Fund
-        this.data['E133'] = this.nonNegative(this.getValue('C133') - this.getValue('D133'));
+        this.data['E133'] = this.getValue('C133') - this.getValue('D133');
         
         // 17. TAXABLE INCOME CALCULATION
         // C135 = +C129-C131 - Taxable Income Amount
-        this.data['C135'] = this.nonNegative(this.getValue('C129') - this.getValue('C131'));
+        this.data['C135'] = this.getValue('C129') - this.getValue('C131');
         // E135 = +E129-E131 - Final Taxable Income
-        this.data['E135'] = this.nonNegative(this.getValue('E129') - this.getValue('E131'));
+        this.data['E135'] = this.getValue('E129') - this.getValue('E131');
         
         // ========== TAX CALCULATIONS SECTION ==========
         // IMPORTANT: Based on Excel structure, display rows are:
         // Row 137 (Display): NORMAL INCOME TAX @ 29% = +E135*0.29
         // Row 138 (Display): FINAL/FIXED/MINIMUM/AVERAGE/RELEVANT/REDUCED INCOME TAX = +D5*0.025
         
-        // E137 = +E135*0.29 (Normal Income Tax @ 29%) - This is calculation row 136
-        this.data['E137'] = this.nonNegative(this.getValue('E135') * 0.29);
+        // E137 = +E135*0.29 (Normal Income Tax @ 29%) - Set negative to 0
+        const normalTaxCalc = this.getValue('E135') * 0.29;
+        this.data['E137'] = normalTaxCalc < 0 ? 0 : normalTaxCalc;
         
         // E138 = +D5*0.025 (Final/Fixed/Reduced Income Tax @ 2.5%) - This is calculation row 137
-        this.data['E138'] = this.nonNegative(this.getValue('D5') * 0.025);
+        this.data['E138'] = this.getValue('D5') * 0.025;
         
         // E139 = WWF (Worker's Welfare Fund) - set to 0 as per "not used"
         this.data['E139'] = 0;
@@ -275,26 +260,26 @@ class TaxEngine {
         // E139 = Tax on High Earners - set to 0 as per "not used"
         this.data['E139'] = 0;
         
-        // E140 = +C66*0.17 (Alternate Corporate Tax @ 17%)
-        this.data['E140'] = this.nonNegative(this.getValue('C66') * 0.17);
+        // E140 = +C66*0.17 (Alternate Corporate Tax @ 17%) - Set negative to 0
+        const alternateTaxCalc = this.getValue('C66') * 0.17;
+        this.data['E140'] = alternateTaxCalc < 0 ? 0 : alternateTaxCalc;
         
-        // E141 = +E3*0.0125 (Minimum Tax @ 1.25%)
-        this.data['E141'] = this.nonNegative(this.getValue('E3') * 0.0125);
+        // E141 = +E3*0.0125 (Minimum Tax @ 1.25%) - Set negative to 0
+        const minimumTaxCalc = this.getValue('E3') * 0.0125;
+        this.data['E141'] = minimumTaxCalc < 0 ? 0 : minimumTaxCalc;
         
         // E142 = IF((E141>E137),(E141-E137),0) - Difference of Minimum Tax (put zero by default)
-        const diffMinTax = this.getValue('E141') > this.getValue('E137') 
+        this.data['E142'] = this.getValue('E141') > this.getValue('E137') 
             ? (this.getValue('E141') - this.getValue('E137'))
             : 0;
-        this.data['E142'] = this.nonNegative(diffMinTax);
         
         // E143 = Tax on Deemed Income - set to 0 as per "not used"
         this.data['E143'] = 0;
         
         // E144 = IF(E140>E137,(E140-E137),0) - Difference of Alternate Tax (put zero by default)
-        const diffAltTax = this.getValue('E140') > this.getValue('E137')
+        this.data['E144'] = this.getValue('E140') > this.getValue('E137')
             ? (this.getValue('E140') - this.getValue('E137'))
             : 0;
-        this.data['E144'] = this.nonNegative(diffAltTax);
         
         // E145 = Difference of Minimum Tax Chargeable - set to 0
         this.data['E145'] = 0;
@@ -311,19 +296,19 @@ class TaxEngine {
         if (e135 > 0) {
             const credit1 = (e136 / e135) * c149; // Proportional credit based on tax rate
             const credit2 = 0.2 * e135; // Maximum credit of 20% of taxable income
-            this.data['E149'] = this.nonNegative(Math.min(credit1, credit2)); // Take the lower of the two
+            this.data['E149'] = Math.min(credit1, credit2); // Take the lower of the two
         } else {
             this.data['E149'] = 0; // No credit if no taxable income
         }
         
         // E150 = +C150 (Other Credits - put zero by default)
-        this.data['E150'] = this.nonNegative(this.getValue('C150'));
+        this.data['E150'] = this.getValue('C150');
         
         // E151 = Tax Credit u/s 103 - set to 0 as per "not used"
         this.data['E151'] = 0;
         
         // E148 = SUM(E149:E151) - Total Tax Credits
-        this.data['E148'] = this.nonNegative(this.data['E149'] + this.data['E150'] + this.data['E151']);
+        this.data['E148'] = this.data['E149'] + this.data['E150'] + this.data['E151'];
         
         // ========== TAX CHARGEABLE CALCULATION ==========
         // E134 = (MAX(E137,E140,E141)+E138+E139)+E142+E143+E144+E145+E146-E148
@@ -342,8 +327,7 @@ class TaxEngine {
                               this.getValue('E145') + 
                               this.getValue('E146');
         
-        const taxChargeable = withDifferences - this.getValue('E148');
-        this.data['E136'] = this.nonNegative(taxChargeable);
+        this.data['E136'] = Math.max(0, withDifferences - this.getValue('E148'));
         
         // ========== TAX PAYMENTS AND BALANCES ==========
         
@@ -353,10 +337,9 @@ class TaxEngine {
         
         // E156 = IF(((SUM(D152:D154)+D155)>E136),0,(E136-(SUM(D152:D154)+D155)))
         // This is ADMITTED INCOME TAX - compared against Normal Income Tax (E136)
-        const admittedTax = totalTaxPaid > this.getValue('E136')
+        this.data['E156'] = totalTaxPaid > this.getValue('E136')
             ? 0
             : (this.getValue('E136') - totalTaxPaid);
-        this.data['E156'] = this.nonNegative(admittedTax);
         
         // Note: REFUNDABLE INCOME TAX is not calculated as per "(Don't use this including formula)"
         this.data['E157'] = 0;
