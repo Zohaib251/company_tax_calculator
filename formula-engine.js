@@ -185,14 +185,15 @@ class TaxEngine {
         // 11. ADMISSIBLE DEDUCTIONS CALCULATIONS
         // C109 = SUM(C110:C114) - Total Admissible Deductions
         this.data['C109'] = this.sumRange('C', 110, 114);
-        // E109 = SUM(E110:E114) - Total Taxable Admissible Deductions
-        this.data['E109'] = this.sumRange('E', 110, 114);
+        
         
         // Apply proportional exemption to admissible deductions (rows 110-114)
         for (let i = 110; i <= 114; i++) {
             this.data[`D${i}`] = this.getValue(`C${i}`) * this.getValue('D7'); // D{i} = +C{i}*$D$7
             this.data[`E${i}`] = this.getValue(`C${i}`) - this.getValue(`D${i}`); // E{i} = +C{i}-D{i}
         }
+        // E109 = SUM(E110:E114) - Total Taxable Admissible Deductions
+        this.data['E109'] = this.sumRange('E', 110, 114);
         
         // 12. INCOME BEFORE DEPRECIATION CALCULATION
         // C116 = +C66+C68-C109 - Income Before Depreciation Amount
