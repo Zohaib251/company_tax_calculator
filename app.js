@@ -1,5 +1,4 @@
-// app.js - COMPLETE REWRITE FOR NEW EXCEL STRUCTURE (31 inadmissible rows)
-// WITH NON-EDITABLE CALCULATED FIELDS
+// app.js - SIMPLIFIED 2-COLUMN STRUCTURE WITH HIDDEN CALCULATION COLUMNS
 
 // Initialize tax engine
 const taxEngine = new TaxEngine();
@@ -37,20 +36,16 @@ function initializeRowMapping() {
     });
 }
 
-// EXACT TABLE STRUCTURE MATCHING NEW EXCEL
+// SIMPLIFIED TABLE STRUCTURE - 2 columns for input section, 3 columns for tax results
 const tableStructure = [
     // Row 1: Empty
     { type: 'empty', displayRow: 1 },
     
-    // Row 2: Header
+    // Row 2: Header - SIMPLIFIED TO 2 COLUMNS
     { 
         type: 'header',
         displayRow: 2,
         description: 'Description',
-        reference: '',
-        totalLabel: 'TOTAL AMOUNTS',
-        exemptLabel: 'AMOUNT EXEMPT FROM TAX/ SUBJECT TO FIXED/ FINAL TAX',
-        taxLabel: 'AMOUNT SUBJECT TO NORMAL TAX'
     },
     
     // Row 3: GROSS REVENUE
@@ -58,7 +53,6 @@ const tableStructure = [
         type: 'total',
         displayRow: 3,
         description: 'GROSS REVENUE ( EXCLUDING SALES TAX & FEDERAL EXCISE DUTY)',
-        reference: "a=a'+b'",
         formula: 'C4+C5'
     },
     
@@ -67,7 +61,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 4,
         description: 'GROSS DOMESTIC SALES/ SERVICES FEE',
-        reference: "a'"
     },
     
     // Row 5: EXPORT SALES
@@ -75,7 +68,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 5,
         description: 'GROSS EXPORT SALES/ SERVICES FEE',
-        reference: "b'"
     },
     
     // Row 6: PSEB Registration (Dropdown)
@@ -83,7 +75,6 @@ const tableStructure = [
         type: 'pseb-dropdown',
         displayRow: 6,
         description: 'Is Company registered with PSEB',
-        reference: ''
     },
     
     // Row 7: RATIO
@@ -91,7 +82,6 @@ const tableStructure = [
         type: 'ratio',
         displayRow: 7,
         description: 'Ratio',
-        reference: '',
         class: 'ratio-row'
     },
     
@@ -100,7 +90,6 @@ const tableStructure = [
         type: 'total',
         displayRow: 8,
         description: 'SELLING EXPENSES(FREIGHT OUTWARD, BROKERAGE, COMMISSION, DISCOUNT etc.)',
-        reference: "b=e'+d'+f'",
         formula: 'C9+C10+C11'
     },
     
@@ -109,7 +98,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 9,
         description: 'DOMESTIC COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.',
-        reference: "e'"
     },
     
     // Row 10: FOREIGN COMMISSION
@@ -117,7 +105,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 10,
         description: 'FOREIGN COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.',
-        reference: "d'"
     },
     
     // Row 11: REBATE/DUTY DRAWBACKS
@@ -125,7 +112,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 11,
         description: 'REBATE/ DUTY DRAWBACKS',
-        reference: "f'"
     },
     
     // Row 12: Empty
@@ -136,7 +122,6 @@ const tableStructure = [
         type: 'subtotal',
         displayRow: 13,
         description: 'NET REVENUE (EXCLUDING SALES TAX, FEDERAL EXCISE, BROKERAGE, COMMISSION, DISCOUNT, FREIGHT OUTWARD)',
-        reference: 'c=a-b',
         formula: 'C3-C8'
     },
     
@@ -148,7 +133,6 @@ const tableStructure = [
         type: 'total',
         displayRow: 15,
         description: 'COST OF SALES/ SERVICES',
-        reference: 'd',
         formula: 'C17+C18+C19+C20+C21+C22+C23+C24+C25'
     },
     
@@ -157,26 +141,24 @@ const tableStructure = [
         type: 'section',
         displayRow: 16,
         description: 'DIRECT EXPENSES',
-        reference: ''
     },
     
     // Rows 17-25: Direct Expenses Items
-    { type: 'input', displayRow: 17, description: 'SALARIES/ WAGES', reference: '' },
-    { type: 'input', displayRow: 18, description: 'POWER', reference: '' },
-    { type: 'input', displayRow: 19, description: 'GAS', reference: '' },
-    { type: 'input', displayRow: 20, description: 'REPAIR/ MAINTENANCE', reference: '' },
-    { type: 'input', displayRow: 21, description: 'INSURANCE', reference: '' },
-    { type: 'input', displayRow: 22, description: 'ROYALTY', reference: '' },
-    { type: 'input', displayRow: 23, description: 'OTHER DIRECT EXPENSES', reference: '' },
-    { type: 'input', displayRow: 24, description: 'ACCOUNTING AMORTISATION', reference: '' },
-    { type: 'input', displayRow: 25, description: 'ACCOUNTING DEPRECIATION', reference: '' },
+    { type: 'input', displayRow: 17, description: 'SALARIES/ WAGES' },
+    { type: 'input', displayRow: 18, description: 'POWER' },
+    { type: 'input', displayRow: 19, description: 'GAS' },
+    { type: 'input', displayRow: 20, description: 'REPAIR/ MAINTENANCE' },
+    { type: 'input', displayRow: 21, description: 'INSURANCE' },
+    { type: 'input', displayRow: 22, description: 'ROYALTY' },
+    { type: 'input', displayRow: 23, description: 'OTHER DIRECT EXPENSES' },
+    { type: 'input', displayRow: 24, description: 'ACCOUNTING AMORTISATION' },
+    { type: 'input', displayRow: 25, description: 'ACCOUNTING DEPRECIATION' },
     
     // Row 26: GROSS PROFIT
     { 
         type: 'subtotal',
         displayRow: 26,
         description: 'GROSS PROFIT/ (LOSS)',
-        reference: 'e=c-d',
         formula: 'C13-C15'
     },
     
@@ -188,37 +170,36 @@ const tableStructure = [
         type: 'total',
         displayRow: 28,
         description: 'MANAGEMENT, ADMINISTRATIVE, SELLING & FINANCIAL EXPENSES',
-        reference: 'f',
         formula: 'C29:C54'
     },
     
     // Rows 29-54: Indirect Expenses Items (26 items)
-    { type: 'input', displayRow: 29, description: 'RENT', reference: '' },
-    { type: 'input', displayRow: 30, description: 'RATES / TAXES / CESS', reference: '' },
-    { type: 'input', displayRow: 31, description: 'SALARIES / WAGES / PERQUISITES / BENEFITS', reference: '' },
-    { type: 'input', displayRow: 32, description: 'TRAVELING / CONVEYANCE / VEHICLES RUNNING / MAINTENANCE', reference: '' },
-    { type: 'input', displayRow: 33, description: 'ELECTRICITY / WATER / GAS', reference: '' },
-    { type: 'input', displayRow: 34, description: 'COMMUNICATION', reference: '' },
-    { type: 'input', displayRow: 35, description: 'REPAIR / MAINTENANCE', reference: '' },
-    { type: 'input', displayRow: 36, description: 'STATIONERY / PRINTING / PHOTOCOPIES / OFFICE SUPPLIES', reference: '' },
-    { type: 'input', displayRow: 37, description: 'ADVERTISEMENT / PUBLICITY / PROMOTION', reference: '' },
-    { type: 'input', displayRow: 38, description: 'INSURANCE', reference: '' },
-    { type: 'input', displayRow: 39, description: 'PROFESSIONAL CHARGES', reference: '' },
-    { type: 'input', displayRow: 40, description: 'PROFIT ON DEBT (FINANCIAL CHARGES / MARKUP / INTEREST)', reference: '' },
-    { type: 'input', displayRow: 41, description: 'DONATION / CHARITY', reference: '' },
-    { type: 'input', displayRow: 42, description: 'BROKERAGE / COMMISSION', reference: '' },
-    { type: 'input', displayRow: 43, description: 'OTHER INDIRECT EXPENSES', reference: '' },
-    { type: 'input', displayRow: 44, description: 'DIRECTORS FEE', reference: '' },
-    { type: 'input', displayRow: 45, description: 'WORKERS PROFIT PARTICIPATION FUND', reference: '' },
-    { type: 'input', displayRow: 46, description: 'PROVISION FOR DOUBTFUL / BAD DEBTS', reference: '' },
-    { type: 'input', displayRow: 47, description: 'PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS', reference: '' },
-    { type: 'input', displayRow: 48, description: 'PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT', reference: '' },
-    { type: 'input', displayRow: 49, description: 'IRRECOVERABLE DEBTS WRITTEN OFF', reference: '' },
-    { type: 'input', displayRow: 50, description: 'OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS WRITTEN OFF', reference: '' },
-    { type: 'input', displayRow: 51, description: 'ACCOUNTING (LOSS) ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'input', displayRow: 52, description: 'ACCOUNTING (LOSS) ON SALE OF ASSETS', reference: '' },
-    { type: 'input', displayRow: 53, description: 'ACCOUNTING AMORTIZATION', reference: '' },
-    { type: 'input', displayRow: 54, description: 'ACCOUNTING DEPRECIATION', reference: '' },
+    { type: 'input', displayRow: 29, description: 'RENT' },
+    { type: 'input', displayRow: 30, description: 'RATES / TAXES / CESS' },
+    { type: 'input', displayRow: 31, description: 'SALARIES / WAGES / PERQUISITES / BENEFITS' },
+    { type: 'input', displayRow: 32, description: 'TRAVELING / CONVEYANCE / VEHICLES RUNNING / MAINTENANCE' },
+    { type: 'input', displayRow: 33, description: 'ELECTRICITY / WATER / GAS' },
+    { type: 'input', displayRow: 34, description: 'COMMUNICATION' },
+    { type: 'input', displayRow: 35, description: 'REPAIR / MAINTENANCE' },
+    { type: 'input', displayRow: 36, description: 'STATIONERY / PRINTING / PHOTOCOPIES / OFFICE SUPPLIES' },
+    { type: 'input', displayRow: 37, description: 'ADVERTISEMENT / PUBLICITY / PROMOTION' },
+    { type: 'input', displayRow: 38, description: 'INSURANCE' },
+    { type: 'input', displayRow: 39, description: 'PROFESSIONAL CHARGES' },
+    { type: 'input', displayRow: 40, description: 'PROFIT ON DEBT (FINANCIAL CHARGES / MARKUP / INTEREST)' },
+    { type: 'input', displayRow: 41, description: 'DONATION / CHARITY' },
+    { type: 'input', displayRow: 42, description: 'BROKERAGE / COMMISSION' },
+    { type: 'input', displayRow: 43, description: 'OTHER INDIRECT EXPENSES' },
+    { type: 'input', displayRow: 44, description: 'DIRECTORS FEE' },
+    { type: 'input', displayRow: 45, description: 'WORKERS PROFIT PARTICIPATION FUND' },
+    { type: 'input', displayRow: 46, description: 'PROVISION FOR DOUBTFUL / BAD DEBTS' },
+    { type: 'input', displayRow: 47, description: 'PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS' },
+    { type: 'input', displayRow: 48, description: 'PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT' },
+    { type: 'input', displayRow: 49, description: 'IRRECOVERABLE DEBTS WRITTEN OFF' },
+    { type: 'input', displayRow: 50, description: 'OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS WRITTEN OFF' },
+    { type: 'input', displayRow: 51, description: 'ACCOUNTING (LOSS) ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 52, description: 'ACCOUNTING (LOSS) ON SALE OF ASSETS' },
+    { type: 'input', displayRow: 53, description: 'ACCOUNTING AMORTIZATION' },
+    { type: 'input', displayRow: 54, description: 'ACCOUNTING DEPRECIATION' },
     
     // Row 55: Empty
     { type: 'empty', displayRow: 55 },
@@ -228,27 +209,25 @@ const tableStructure = [
         type: 'total',
         displayRow: 56,
         description: 'ADD: OTHER REVENUES',
-        reference: 'g',
         formula: 'C57:C65'
     },
     
     // Rows 57-65: Other Revenues (9 items)
-    { type: 'input', displayRow: 57, description: 'OTHER REVENUES', reference: '' },
-    { type: 'input', displayRow: 58, description: 'FEE FOR TECHNICAL / PROFESSIONAL SERVICES', reference: '' },
-    { type: 'input', displayRow: 59, description: 'FEE FOR OTHER SERVICES', reference: '' },
-    { type: 'input', displayRow: 60, description: 'PROFIT ON DEBT', reference: '' },
-    { type: 'input', displayRow: 61, description: 'ROYALTY', reference: '' },
-    { type: 'input', displayRow: 62, description: 'LICENSE / FRANCHISE FEE', reference: '' },
-    { type: 'input', displayRow: 63, description: 'ACCOUNTING GAIN ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'input', displayRow: 64, description: 'ACCOUNTING GAIN ON SALE OF ASSETS', reference: '' },
-    { type: 'input', displayRow: 65, description: 'OTHERS', reference: '' },
+    { type: 'input', displayRow: 57, description: 'OTHER REVENUES' },
+    { type: 'input', displayRow: 58, description: 'FEE FOR TECHNICAL / PROFESSIONAL SERVICES' },
+    { type: 'input', displayRow: 59, description: 'FEE FOR OTHER SERVICES' },
+    { type: 'input', displayRow: 60, description: 'PROFIT ON DEBT' },
+    { type: 'input', displayRow: 61, description: 'ROYALTY' },
+    { type: 'input', displayRow: 62, description: 'LICENSE / FRANCHISE FEE' },
+    { type: 'input', displayRow: 63, description: 'ACCOUNTING GAIN ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 64, description: 'ACCOUNTING GAIN ON SALE OF ASSETS' },
+    { type: 'input', displayRow: 65, description: 'OTHERS' },
     
     // Row 66: ACCOUNTING PROFIT
     { 
         type: 'total',
         displayRow: 66,
         description: 'ACCOUNTING PROFIT/ (LOSS)',
-        reference: 'h=e-f+g',
         formula: 'C26-C28+C56'
     },
     
@@ -260,44 +239,43 @@ const tableStructure = [
         type: 'total',
         displayRow: 68,
         description: 'INADMISSIBLE DEDUCTIONS',
-        reference: 'i',
         formula: 'C69:C99'
     },
     
     // Rows 69-93: Inadmissible Deductions (input fields)
-    { type: 'input', displayRow: 69, description: 'ADD BACKS U/S 29(2) PROVISION FOR DOUBTFUL DEBTS (Excess of actual bad debts over amount written off in accounts )', reference: '' },
-    { type: 'input', displayRow: 70, description: 'ADD BACKS PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS', reference: '' },
-    { type: 'input', displayRow: 71, description: 'ADD BACKS PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT', reference: '' },
-    { type: 'input', displayRow: 72, description: 'ADD BACKS U/S 21(I) PROVISION FOR RESERVES / FUNDS / AMOUNT CARRIED TO RESERVES / FUNDS OR CAPITALIZED', reference: '' },
-    { type: 'input', displayRow: 73, description: 'ADD BACKS U/S 21(A) CESS / RATE / TAX LEVIED ON PROFITS / GAINS', reference: '' },
-    { type: 'input', displayRow: 74, description: 'ADD BACKS U/S 21(B) AMOUNT OF TAX DEDUCTED AT SOURCE', reference: '' },
-    { type: 'input', displayRow: 75, description: 'ADD BACKS U/S 21(C) PAYMENTS LIABLE TO DEDUCTION OF TAX AT SOURCE BUT TAX NOT DEDUCTED / PAID', reference: '' },
-    { type: 'input', displayRow: 76, description: 'ADD BACKS U/S 21(D) ENTERTAINMENT EXPENDITURE ABOVE PRESCRIBED LIMIT', reference: '' },
-    { type: 'input', displayRow: 77, description: 'ADD BACKS U/S 21(E) CONTRIBUTIONS TO UNRECOGNIZED / UNAPPROVED FUNDS', reference: '' },
-    { type: 'input', displayRow: 78, description: 'ADD BACKS U/S 21(F) CONTRIBUTIONS TO FUNDS NOT UNDER EFFECTIVE ARRANGEMENT FOR DEDUCTION OF TAX AT SOURCE', reference: '' },
-    { type: 'input', displayRow: 79, description: 'ADD BACKS U/S 21(G) FINE / PENALTY FOR VIOLATION OF ANY LAW / RULE / REGULATION', reference: '' },
-    { type: 'input', displayRow: 80, description: 'ADD BACKS U/S 21(H) PERSONAL EXPENDITURE', reference: '' },
-    { type: 'input', displayRow: 81, description: 'ADD BACKS U/S 21(J) PROFIT ON DEBT / BROKERAGE / COMMISSION / SALARY / REMUNERATION PAID BY AN AOP TO ITS MEMBER', reference: '' },
-    { type: 'input', displayRow: 82, description: 'ADD BACKS U/S 21(L) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE', reference: '' },
-    { type: 'input', displayRow: 83, description: 'ADD BACKS U/S 21(L)(A) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH DIGITAL MODE', reference: '' },
-    { type: 'input', displayRow: 84, description: 'ADD BACKS U/S 21(M) SALARY EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE', reference: '' },
-    { type: 'input', displayRow: 85, description: 'ADD BACKS U/S 21(N) CAPITAL EXPENDITURE', reference: '' },
-    { type: 'input', displayRow: 86, description: 'ADD BACKS U/S 67(1) EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME', reference: '' },
-    { type: 'input', displayRow: 87, description: 'ADD BACKS U/S 28(1)(B) LEASE RENTAL NOT ADMISSIBLE', reference: '' },
-    { type: 'input', displayRow: 88, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'input', displayRow: 89, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS', reference: '' },
-    { type: 'input', displayRow: 90, description: 'ADD BACKS U/S 21(P) UTILITY BILLS EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE', reference: '' },
-    { type: 'input', displayRow: 91, description: 'DEDUCTION ON PROFIT ON DEBIT INADMISSIBLE U/S 106A', reference: '' },
-    { type: 'input', displayRow: 92, description: 'ADD BACKS PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST', reference: '' },
-    { type: 'input', displayRow: 93, description: 'OTHER INADMISSIBLE DEDUCTIONS', reference: '' },
+    { type: 'input', displayRow: 69, description: 'ADD BACKS U/S 29(2) PROVISION FOR DOUBTFUL DEBTS (Excess of actual bad debts over amount written off in accounts )' },
+    { type: 'input', displayRow: 70, description: 'ADD BACKS PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS' },
+    { type: 'input', displayRow: 71, description: 'ADD BACKS PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT' },
+    { type: 'input', displayRow: 72, description: 'ADD BACKS U/S 21(I) PROVISION FOR RESERVES / FUNDS / AMOUNT CARRIED TO RESERVES / FUNDS OR CAPITALIZED' },
+    { type: 'input', displayRow: 73, description: 'ADD BACKS U/S 21(A) CESS / RATE / TAX LEVIED ON PROFITS / GAINS' },
+    { type: 'input', displayRow: 74, description: 'ADD BACKS U/S 21(B) AMOUNT OF TAX DEDUCTED AT SOURCE' },
+    { type: 'input', displayRow: 75, description: 'ADD BACKS U/S 21(C) PAYMENTS LIABLE TO DEDUCTION OF TAX AT SOURCE BUT TAX NOT DEDUCTED / PAID' },
+    { type: 'input', displayRow: 76, description: 'ADD BACKS U/S 21(D) ENTERTAINMENT EXPENDITURE ABOVE PRESCRIBED LIMIT' },
+    { type: 'input', displayRow: 77, description: 'ADD BACKS U/S 21(E) CONTRIBUTIONS TO UNRECOGNIZED / UNAPPROVED FUNDS' },
+    { type: 'input', displayRow: 78, description: 'ADD BACKS U/S 21(F) CONTRIBUTIONS TO FUNDS NOT UNDER EFFECTIVE ARRANGEMENT FOR DEDUCTION OF TAX AT SOURCE' },
+    { type: 'input', displayRow: 79, description: 'ADD BACKS U/S 21(G) FINE / PENALTY FOR VIOLATION OF ANY LAW / RULE / REGULATION' },
+    { type: 'input', displayRow: 80, description: 'ADD BACKS U/S 21(H) PERSONAL EXPENDITURE' },
+    { type: 'input', displayRow: 81, description: 'ADD BACKS U/S 21(J) PROFIT ON DEBT / BROKERAGE / COMMISSION / SALARY / REMUNERATION PAID BY AN AOP TO ITS MEMBER' },
+    { type: 'input', displayRow: 82, description: 'ADD BACKS U/S 21(L) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 83, description: 'ADD BACKS U/S 21(L)(A) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH DIGITAL MODE' },
+    { type: 'input', displayRow: 84, description: 'ADD BACKS U/S 21(M) SALARY EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 85, description: 'ADD BACKS U/S 21(N) CAPITAL EXPENDITURE' },
+    { type: 'input', displayRow: 86, description: 'ADD BACKS U/S 67(1) EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME' },
+    { type: 'input', displayRow: 87, description: 'ADD BACKS U/S 28(1)(B) LEASE RENTAL NOT ADMISSIBLE' },
+    { type: 'input', displayRow: 88, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 89, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS' },
+    { type: 'input', displayRow: 90, description: 'ADD BACKS U/S 21(P) UTILITY BILLS EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 91, description: 'DEDUCTION ON PROFIT ON DEBIT INADMISSIBLE U/S 106A' },
+    { type: 'input', displayRow: 92, description: 'ADD BACKS PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST' },
+    { type: 'input', displayRow: 93, description: 'OTHER INADMISSIBLE DEDUCTIONS' },
     
     // Rows 94-99: Inadmissible Deductions with SPECIAL FORMULAS (NON-EDITABLE)
-    { type: 'calculated-special', displayRow: 94, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'calculated-special', displayRow: 95, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF ASSETS', reference: '' },
-    { type: 'calculated-special', displayRow: 96, description: 'ADD BACKS ACCOUNTING AMORTIZATION', reference: '' },
-    { type: 'calculated-special', displayRow: 97, description: 'ADD BACKS ACCOUNTING DEPRECIATION', reference: '' },
-    { type: 'calculated-special', displayRow: 98, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'calculated-special', displayRow: 99, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS', reference: '' },
+    { type: 'calculated-special', displayRow: 94, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF INTANGIBLES' },
+    { type: 'calculated-special', displayRow: 95, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF ASSETS' },
+    { type: 'calculated-special', displayRow: 96, description: 'ADD BACKS ACCOUNTING AMORTIZATION' },
+    { type: 'calculated-special', displayRow: 97, description: 'ADD BACKS ACCOUNTING DEPRECIATION' },
+    { type: 'calculated-special', displayRow: 98, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES' },
+    { type: 'calculated-special', displayRow: 99, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS' },
     
     // Row 100: Empty
     { type: 'empty', displayRow: 100 },
@@ -307,16 +285,15 @@ const tableStructure = [
         type: 'total',
         displayRow: 101,
         description: 'ADMISSIBLE DEDUCTIONS OTHER THAN TAX DEPRECIATION/ INITIAL ALLOANCE/ AMORTISATION FOR CURRENT OR PREVIOUS YEARS',
-        reference: 'J',
         formula: 'C102:C106'
     },
     
     // Rows 102-106: Admissible Deductions (5 items)
-    { type: 'input', displayRow: 102, description: 'ACCOUNTING GAIN ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'input', displayRow: 103, description: 'ACCOUNTING GAIN ON SALE OF ASSETS', reference: '' },
-    { type: 'input', displayRow: 104, description: 'OTHER ADMISSIBLE DEDUCTIONS', reference: '' },
-    { type: 'input', displayRow: 105, description: 'TAX (LOSS) ON SALE OF INTANGIBLES', reference: '' },
-    { type: 'input', displayRow: 106, description: 'TAX (LOSS) ON SALE OF ASSETS', reference: '' },
+    { type: 'input', displayRow: 102, description: 'ACCOUNTING GAIN ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 103, description: 'ACCOUNTING GAIN ON SALE OF ASSETS' },
+    { type: 'input', displayRow: 104, description: 'OTHER ADMISSIBLE DEDUCTIONS' },
+    { type: 'input', displayRow: 105, description: 'TAX (LOSS) ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 106, description: 'TAX (LOSS) ON SALE OF ASSETS' },
     
     // Row 107: Empty
     { type: 'empty', displayRow: 107 },
@@ -326,7 +303,6 @@ const tableStructure = [
         type: 'subtotal',
         displayRow: 108,
         description: 'INCOME / (LOSS) FROM BUSINESS BEFORE ADJUSTMENT OF ADMISSIBLE DEPRECIATION / INITIAL ALLOWANCE / AMORTIZATION FOR CURRENT / PREVIOUS YEARS',
-        reference: 'k=h+i-j',
         formula: 'C66+C68-C101'
     },
     
@@ -338,14 +314,13 @@ const tableStructure = [
         type: 'total',
         displayRow: 110,
         description: 'TAX DEPRECIATION/ INITIAL ALLOWANCE/ AMORTISATION FOR CURRENT OR PREVIOUS YEARS',
-        reference: 'l',
         formula: 'C111:C113'
     },
     
     // Rows 111-113: Tax Depreciation Items (3 items)
-    { type: 'input', displayRow: 111, description: 'TAX AMORTIZATION FOR CURRENT YEAR', reference: '' },
-    { type: 'input', displayRow: 112, description: 'TAX DEPRECIATION / INITIAL ALLOWANCE FOR CURRENT YEAR', reference: '' },
-    { type: 'input', displayRow: 113, description: 'PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST', reference: '' },
+    { type: 'input', displayRow: 111, description: 'TAX AMORTIZATION FOR CURRENT YEAR' },
+    { type: 'input', displayRow: 112, description: 'TAX DEPRECIATION / INITIAL ALLOWANCE FOR CURRENT YEAR' },
+    { type: 'input', displayRow: 113, description: 'PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST' },
     
     // Row 114: Empty
     { type: 'empty', displayRow: 114 },
@@ -355,23 +330,21 @@ const tableStructure = [
         type: 'calculated',
         displayRow: 115,
         description: 'INCOME/ LOSS FROM BUSINESS',
-        reference: 'M=k-l',
         formula: 'C108-C110'
     },
     
-    // Additional income types (Rows 116-120) - NON-EDITABLE
-    { type: 'calculated', displayRow: 116, description: 'INCOME/ LOSS FROM PROPERTY', reference: 'n' },
-    { type: 'calculated', displayRow: 117, description: 'INCOME/ LOSS FROM CAPITAL ASSETS', reference: 'o' },
-    { type: 'calculated', displayRow: 118, description: 'INCOME/ LOSS FROM OTHER SOURCES', reference: 'p' },
-    { type: 'calculated', displayRow: 119, description: 'FOREIGN INCOME', reference: 'q' },
-    { type: 'calculated', displayRow: 120, description: 'AGRICULTURAL INCOME', reference: 'r' },
+    // Additional income types (Rows 116-120) - COMMENTED OUT
+    /* { type: 'calculated', displayRow: 116, description: 'INCOME/ LOSS FROM PROPERTY' },
+    { type: 'calculated', displayRow: 117, description: 'INCOME/ LOSS FROM CAPITAL ASSETS' },
+    { type: 'calculated', displayRow: 118, description: 'INCOME/ LOSS FROM OTHER SOURCES' },
+    { type: 'calculated', displayRow: 119, description: 'FOREIGN INCOME' },
+    { type: 'calculated', displayRow: 120, description: 'AGRICULTURAL INCOME' }, */
     
     // Row 121: TOTAL INCOME
     { 
         type: 'total',
         displayRow: 121,
         description: 'TOTAL INCOME',
-        reference: 'S=m+n+o+p+q+r',
         formula: 'C115:C120'
     },
     
@@ -383,7 +356,6 @@ const tableStructure = [
         type: 'total',
         displayRow: 123,
         description: 'DEDUCTIBLE ALLOWANCES',
-        reference: 't',
         formula: 'C124:C124'
     },
     
@@ -392,7 +364,6 @@ const tableStructure = [
         type: 'input',
         displayRow: 124,
         description: 'WORKERS WELFARE FUND U/S 60A',
-        reference: ''
     },
     
     // Row 125: Empty
@@ -403,210 +374,189 @@ const tableStructure = [
         type: 'total',
         displayRow: 126,
         description: 'TAXABLE INCOME',
-        reference: 'w=s-t',
         formula: 'C121-C123'
     },
     
     // ========== TAX CALCULATION SECTION ==========
+    // FROM ROW 128 ONWARDS, SHOW 3 COLUMNS FOR RESULTS
+    
     // Row 127: Empty
     { type: 'empty', displayRow: 127 },
     
-    // Row 128: TAX CHARGEABLE HEADER
+    // Row 128: TAX CHARGEABLE HEADER - 3 COLUMNS
     { 
         type: 'tax-header',
         displayRow: 128,
         description: 'TAX CHARGEABLE (Normal income tax will be adjusted against carry forward minimum tax upto the limit of Minimum tax u/s 113 or 113C as after which again minimum will be applied.)',
-        reference: 'x'
     },
     
-    // Row 129: NORMAL INCOME TAX
+    // Row 129: NORMAL INCOME TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 129,
         description: 'NORMAL INCOME TAX @ 29%',
-        reference: '',
         formula: 'IF(E126>0,E126*0.29,0)'
     },
     
-    // Row 130: FINAL/FIXED TAX
+    // Row 130: FINAL/FIXED TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 130,
         description: 'FINAL/ FIXED/ MINIMUM/ AVERAGE/ RELEVANT/ REDUCED INCOME TAX',
-        reference: '',
         formula: 'D5*0.025'
     },
     
-    // Row 131: ALTERNATE CORPORATE TAX
+    // Row 131: ALTERNATE CORPORATE TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 131,
         description: 'ACCOUNTING PROFIT / TAX CHARGEABLE 113C @ 17%',
-        reference: '',
         formula: 'IF(C66>0,C66*0.17,0)'
     },
     
-    // Row 132: MINIMUM TAX
+    // Row 132: MINIMUM TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 132,
         description: 'TURNOVER/ TAX CHARGEABLE UNDER SECTION 113 @ 1.25%',
-        reference: '',
         formula: 'IF(E3>100000000,E3*0.0125,0)'
     },
     
-    // Row 133: DIFFERENCE OF MINIMUM TAX
+    // Row 133: DIFFERENCE OF MINIMUM TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 133,
         description: 'DIFFERENCE OF MINIMUM TAX CHARGEABLE U/S 113',
-        reference: '',
         formula: 'IF((E132>E129),(E132-E129),0)'
     },
     
-    // Row 134: TAX ON HIGH EARNERS (Empty - no calculation)
-    { 
+    // Row 134: TAX ON HIGH EARNERS (COMMENTED OUT)
+    /* { 
         type: 'tax-empty',
         displayRow: 134,
         description: 'TAX ON HIGH EARNING PERSONS U/S 4C (4% will be charged on income exceeding Rs. 300M)',
-        reference: ''
-    },
+    }, */
     
-    // Row 135: TAX ON DEEMED INCOME (Empty - no calculation)
-    { 
+    // Row 135: TAX ON DEEMED INCOME (COMMENTED OUT)
+    /* { 
         type: 'tax-empty',
         displayRow: 135,
         description: 'TAX ON DEEMED INCOME U/S 7E @ 20% (OF 5% OF FMV)',
-        reference: ''
-    },
+    }, */
     
-    // Row 136: DIFFERENCE OF ALTERNATE TAX
-    { 
+    // Row 136: DIFFERENCE OF ALTERNATE TAX (COMMENTED OUT)
+    /* { 
         type: 'tax-calc',
         displayRow: 136,
         description: 'DIFFERENCE OF ALTERNATE CORPORATE TAX U/S 113C',
-        reference: '',
         formula: 'IF(E131>E129,(E131-E129),0)'
-    },
+    }, */
     
-    // Row 137: DIFFERENCE OF MINIMUM TAX CHARGEABLE (Empty - no calculation)
-    { 
+    // Row 137: DIFFERENCE OF MINIMUM TAX CHARGEABLE (COMMENTED OUT)
+    /* { 
         type: 'tax-empty',
         displayRow: 137,
         description: 'DIFFERENCE OF MINIMUM TAX CHARGEABLE',
-        reference: ''
-    },
+    }, */
     
     // Row 138: Empty
     { type: 'empty', displayRow: 138 },
     
-    // Row 139: TAX CREDIT HEADER
+    // Row 139: TAX CREDIT HEADER - 3 COLUMNS
     { 
         type: 'tax-result',
         displayRow: 139,
         description: 'TAX CREDIT -',
-        reference: 'Y'
     },
     
-    // Row 140: CHARITABLE DONATIONS CREDIT
+    // Row 140: CHARITABLE DONATIONS CREDIT - 3 COLUMNS
     { 
         type: 'tax-input',
         displayRow: 140,
         description: 'Tax Credit for Charitable Donations u/s 61',
-        reference: ''
     },
     
-    // Row 141: OTHER CREDITS
+    // Row 141: OTHER CREDITS - 3 COLUMNS
     { 
-        type: 'tax-input-zero',
+        type: 'tax-calc-fixed',
         displayRow: 141,
         description: 'Tax Credit for Certain Persons (Coal Mining Projects, Startups, IT/IT enabled Services) u/s 65F',
-        reference: '',
         value: 0
     },
     
-    // Row 142: STARTUP QUESTION (NEW FIELD)
+    // Row 142: STARTUP QUESTION - 3 COLUMNS
     { 
         type: 'startup-dropdown',
         displayRow: 142,
         description: 'Are you a startup(Define as per Income Tax) or IT services Exportor?',
-        reference: ''
     },
     
     // Row 143: Empty
     { type: 'empty', displayRow: 143 },
     
-    // Row 144: NET TAX LIABILITY
+    // Row 144: NET TAX LIABILITY - 3 COLUMNS
     { 
         type: 'tax-result',
         displayRow: 144,
         description: 'Net TAX LIABILITY',
-        reference: '',
         formula: 'E128-E139'
     },
     
     // Row 145: Empty
     { type: 'empty', displayRow: 145 },
     
-    // Row 146: ADVANCE TAX TOTAL
+    // Row 146: ADVANCE TAX TOTAL - 3 COLUMNS
     { 
         type: 'tax-result',
         displayRow: 146,
         description: 'Advance Tax Total',
-        reference: '',
         formula: 'SUM(E147:E150)'
     },
     
-    // Row 147: WITHHOLDING INCOME TAX (E column input)
+    // Row 147: WITHHOLDING INCOME TAX - 3 COLUMNS (E column input)
     { 
         type: 'e-input',
         displayRow: 147,
         description: 'WITHHOLDING INCOME TAX',
-        reference: ''
     },
     
-    // Row 148: ADVANCE INCOME TAX (E column input)
+    // Row 148: ADVANCE INCOME TAX - 3 COLUMNS (E column input)
     { 
         type: 'e-input',
         displayRow: 148,
         description: 'ADVANCE INCOME TAX',
-        reference: ''
     },
     
-    // Row 149: ADVANCE TAX U/S 147(A) (E column input)
+    // Row 149: ADVANCE TAX U/S 147(A) - 3 COLUMNS (E column input)
     { 
         type: 'e-input',
         displayRow: 149,
         description: 'ADVANCE INCOME TAX U/S 147(A)',
-        reference: ''
     },
     
-    // Row 150: ADVANCE TAX U/S 147(5B) (E column input)
+    // Row 150: ADVANCE TAX U/S 147(5B) - 3 COLUMNS (E column input)
     { 
         type: 'e-input',
         displayRow: 150,
         description: 'ADVANCE INCOME TAX U/S 147(5B)',
-        reference: ''
     },
     
     // Row 151: Empty
     { type: 'empty', displayRow: 151 },
     
-    // Row 152: ADMITTED INCOME TAX
+    // Row 152: ADMITTED INCOME TAX - 3 COLUMNS
     { 
         type: 'tax-result',
         displayRow: 152,
         description: 'ADMITTED INCOME TAX',
-        reference: '',
         formula: 'IF((E146>E144),0,(E144-E146))'
     },
     
-    // Row 153: REFUNDABLE INCOME TAX
+    // Row 153: REFUNDABLE INCOME TAX - 3 COLUMNS
     { 
         type: 'tax-result',
         displayRow: 153,
         description: 'REFUNDABLE INCOME TAX',
-        reference: '',
         formula: 'IF(E152>0,0,(E146-E144))'
     }
 ];
@@ -617,7 +567,9 @@ function formatNumber(num) {
     return Math.round(num).toLocaleString('en-US');
 }
 
-// Create table row
+// Create table row - UPDATED FOR 2-COLUMN / 3-COLUMN STRUCTURE
+// In the createTableRow() function, update the relevant cases:
+
 function createTableRow(item, index) {
     const row = document.createElement('tr');
     const calcRow = rowMapping[item.displayRow] || item.displayRow;
@@ -626,35 +578,44 @@ function createTableRow(item, index) {
         row.className = item.class;
     }
     
-    switch (item.type) {
-        case 'empty':
-            row.innerHTML = `<td colspan="5" style="height: 10px;"></td>`;
-            break;
-            
-        case 'header':
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td></td>
-                <td class="input-col"><strong>${item.totalLabel}</strong></td>
-                <td class="calculated-col"><strong>${item.exemptLabel}</strong></td>
-                <td class="calculated-col"><strong>${item.taxLabel}</strong></td>
-            `;
-            break;
-            
-        case 'section':
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td>${item.reference}</td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col"></td>
-            `;
-            break;
-            
-        case 'input':
+    // Set data-row attribute for CSS targeting
+    row.setAttribute('data-row', item.displayRow);
+    
+    // Determine which column value to show in Amount column
+    // For tax calculation rows (128+), show E column value
+    // For other rows, show C column value
+    const showEValueInAmount = item.displayRow >= 128;
+    const amountColumnValue = showEValueInAmount 
+        ? taxEngine.getValue(`E${calcRow}`)
+        : taxEngine.getValue(`C${calcRow}`);
+    
+  switch (item.type) {
+    case 'empty':
+        // ALWAYS use colspan="2" - never 3
+        row.innerHTML = `<td colspan="2" style="height: 10px;"></td>`;
+        break;
+        
+    case 'header':
+        // ALWAYS show only 2 columns
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col"><strong>Amount</strong></td>
+        `;
+        break;
+        
+    case 'input':
+        if (item.displayRow >= 128) {
+            // For tax calculation rows, show E value in Amount column (NO 3rd column)
             row.innerHTML = `
                 <td>${item.description}</td>
-                <td>${item.reference}</td>
+                <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+                    ${formatNumber(amountColumnValue)}
+                </td>
+            `;
+        } else {
+            // For regular input rows, show input field
+            row.innerHTML = `
+                <td>${item.description}</td>
                 <td class="input-col">
                     <input type="text" 
                            id="C${item.displayRow}" 
@@ -663,167 +624,164 @@ function createTableRow(item, index) {
                            value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
                            placeholder="Enter amount">
                 </td>
-                <td class="calculated-col" id="D${item.displayRow}">${formatNumber(taxEngine.getValue(`D${calcRow}`))}</td>
-                <td class="calculated-col" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
             `;
-            break;
-            
-        case 'calculated':
-        case 'calculated-special':
+        }
+        break;
+        
+    case 'calculated':
+    case 'calculated-special':
+        if (item.displayRow >= 128) {
             row.innerHTML = `
                 <td>${item.description}</td>
-                <td>${item.reference}</td>
-                <td class="input-col calculated-cell" id="C${item.displayRow}">${formatNumber(taxEngine.getValue(`C${calcRow}`))}</td>
-                <td class="calculated-col" id="D${item.displayRow}">${formatNumber(taxEngine.getValue(`D${calcRow}`))}</td>
-                <td class="calculated-col" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
-            `;
-            break;
-            
-        case 'pseb-dropdown':
-            const psebValue = taxEngine.getValue('D6') || 'Yes';
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td></td>
-                <td class="input-col"></td>
-                <td class="calculated-col">
-                    <select id="D6" data-calc-row="6" data-column="D" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #52c41a; padding: 2px 4px;">
-                        <option value="Yes" ${psebValue === 'Yes' ? 'selected' : ''}>Yes</option>
-                        <option value="No" ${psebValue === 'No' ? 'selected' : ''}>No</option>
-                    </select>
+                <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+                    ${formatNumber(amountColumnValue)}
                 </td>
-                <td class="calculated-col"></td>
             `;
-            break;
-            
-        case 'startup-dropdown':
-            const startupValue = taxEngine.getValue('C142') || 'No';
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td></td>
-                <td class="input-col">
-                    <select id="C142" data-calc-row="142" data-column="C" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #1890ff; padding: 2px 4px;">
-                        <option value="Yes" ${startupValue === 'Yes' ? 'selected' : ''}>Yes</option>
-                        <option value="No" ${startupValue === 'No' ? 'selected' : ''}>No</option>
-                    </select>
-                </td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col"></td>
-            `;
-            break;
-            
-        case 'ratio':
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td></td>
-                <td class="input-col calculated-cell" id="C${item.displayRow}">${formatNumber(taxEngine.getValue(`C${calcRow}`))}</td>
-                <td class="calculated-col" id="D${item.displayRow}">${taxEngine.getValue('D7') ? taxEngine.getValue('D7').toFixed(4) : '0.0000'}</td>
-                <td class="calculated-col" id="E${item.displayRow}">${taxEngine.getValue('D7') ? (1 - taxEngine.getValue('D7')).toFixed(4) : '1.0000'}</td>
-            `;
-            break;
-            
-        case 'total':
-        case 'subtotal':
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td><strong>${item.reference}</strong></td>
-                <td class="input-col calculated-cell" id="C${item.displayRow}">${formatNumber(taxEngine.getValue(`C${calcRow}`))}</td>
-                <td class="calculated-col" id="D${item.displayRow}">${formatNumber(taxEngine.getValue(`D${calcRow}`))}</td>
-                <td class="calculated-col" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
-            `;
-            break;
-            
-        case 'tax-header':
-            row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td><strong>${item.reference}</strong></td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-cell" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
-            `;
-            break;
-            
-        case 'tax-calc':
-        case 'tax-calc-zero':
+        } else {
             row.innerHTML = `
                 <td>${item.description}</td>
-                <td>${item.reference}</td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-cell" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
-            `;
-            break;
-            
-        case 'tax-empty':
-            row.innerHTML = `
-                <td>${item.description}</td>
-                <td>${item.reference}</td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-cell"></td>
-            `;
-            break;
-            
-        case 'tax-input':
-            row.innerHTML = `
-                <td>${item.description}</td>
-                <td>${item.reference}</td>
-                <td class="input-col">
-                    <input type="text" 
-                           id="C${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="C"
-                           value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
-                           placeholder="Enter amount">
+                <td class="input-col calculated-cell" id="C${item.displayRow}">
+                    ${formatNumber(amountColumnValue)}
                 </td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-cell" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
             `;
-            break;
-            
-        case 'tax-input-zero':
-            row.innerHTML = `
-                <td>${item.description}</td>
-                <td>${item.reference}</td>
-                <td class="input-col">
-                    <input type="text" 
-                           id="C${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="C"
-                           value="${formatNumber(item.value)}"
-                           placeholder="Enter amount">
-                </td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-cell" id="E${item.displayRow}">${formatNumber(taxEngine.getValue(`E${calcRow}`))}</td>
-            `;
-            break;
-            
-        case 'e-input':
+        }
+        break;
+        
+    case 'pseb-dropdown':
+        const psebValue = taxEngine.getValue('D6') || 'Yes';
+        // ALWAYS show only 2 columns
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col">
+                <select id="D6" data-calc-row="6" data-column="D" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #52c41a; padding: 2px 4px;">
+                    <option value="Yes" ${psebValue === 'Yes' ? 'selected' : ''}>Yes</option>
+                    <option value="No" ${psebValue === 'No' ? 'selected' : ''}>No</option>
+                </select>
+            </td>
+        `;
+        break;
+        
+    case 'startup-dropdown':
+        const startupValue = taxEngine.getValue('C142') || 'No';
+        // ALWAYS show only 2 columns
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col">
+                <select id="C142" data-calc-row="142" data-column="C" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #1890ff; padding: 2px 4px;">
+                    <option value="Yes" ${startupValue === 'Yes' ? 'selected' : ''}>Yes</option>
+                    <option value="No" ${startupValue === 'No' ? 'selected' : ''}>No</option>
+                </select>
+            </td>
+        `;
+        break;
+        
+    case 'ratio':
+        // Special handling for ratio row (7) - ALWAYS 2 columns
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col calculated-cell" id="C${item.displayRow}">
+                ${taxEngine.getValue('D7') ? taxEngine.getValue('D7').toFixed(4) : '0.0000'} / 
+                ${taxEngine.getValue('D7') ? (1 - taxEngine.getValue('D7')).toFixed(4) : '1.0000'}
+            </td>
+        `;
+        break;
+        
+    case 'total':
+    case 'subtotal':
+        if (item.displayRow >= 128) {
             row.innerHTML = `
                 <td><strong>${item.description}</strong></td>
-                <td>${item.reference}</td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col">
-                    <input type="text" 
-                           id="E${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="E"
-                           value="${formatNumber(taxEngine.getValue(`E${calcRow}`))}"
-                           placeholder="Enter amount">
+                <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+                    ${formatNumber(amountColumnValue)}
                 </td>
             `;
-            break;
-            
-        case 'tax-result':
+        } else {
             row.innerHTML = `
                 <td><strong>${item.description}</strong></td>
-                <td><strong>${item.reference}</strong></td>
-                <td class="input-col"></td>
-                <td class="calculated-col"></td>
-                <td class="calculated-col tax-result" id="E${item.displayRow}"><strong>${formatNumber(taxEngine.getValue(`E${calcRow}`))}</strong></td>
+                <td class="input-col calculated-cell" id="C${item.displayRow}">
+                    ${formatNumber(amountColumnValue)}
+                </td>
             `;
-            break;
-    }
+        }
+        break;
+        
+    case 'tax-header':
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+                ${formatNumber(taxEngine.getValue(`E${calcRow}`))}
+            </td>
+        `;
+        break;
+        
+    case 'tax-calc':
+    case 'tax-calc-zero':
+        row.innerHTML = `
+            <td>${item.description}</td>
+            <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+                ${formatNumber(taxEngine.getValue(`E${calcRow}`))}
+            </td>
+        `;
+        break;
+        
+    case 'tax-empty':
+        row.innerHTML = `
+            <td>${item.description}</td>
+            <td class="input-col"></td>
+        `;
+        break;
+        
+    case 'tax-input':
+        row.innerHTML = `
+            <td>${item.description}</td>
+            <td class="input-col">
+                <input type="text" 
+                       id="C${item.displayRow}" 
+                       data-calc-row="${calcRow}"
+                       data-column="C"
+                       value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
+                       placeholder="Enter amount">
+            </td>
+        `;
+        break;
+        
+    case 'tax-input-zero':
+        row.innerHTML = `
+            <td>${item.description}</td>
+            <td class="input-col">
+                <input type="text" 
+                       id="C${item.displayRow}" 
+                       data-calc-row="${calcRow}"
+                       data-column="C"
+                       value="${formatNumber(item.value)}"
+                       placeholder="Enter amount">
+            </td>
+        `;
+        break;
+        
+    case 'e-input':
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col">
+                <input type="text" 
+                       id="E${item.displayRow}" 
+                       data-calc-row="${calcRow}"
+                       data-column="E"
+                       value="${formatNumber(taxEngine.getValue(`E${calcRow}`))}"
+                       placeholder="Enter amount">
+            </td>
+        `;
+        break;
+        
+    case 'tax-result':
+        row.innerHTML = `
+            <td><strong>${item.description}</strong></td>
+            <td class="input-col calculated-cell tax-result" id="C${item.displayRow}">
+                <strong>${formatNumber(taxEngine.getValue(`E${calcRow}`))}</strong>
+            </td>
+        `;
+        break;
+}
     
     return row;
 }
@@ -917,33 +875,30 @@ function updateDisplay() {
     for (const displayRow of Object.keys(rowMapping)) {
         const calcRow = rowMapping[displayRow];
         
-        // Update D column
-        const dCell = document.getElementById(`D${displayRow}`);
-        if (dCell && !dCell.querySelector('input') && !dCell.querySelector('select')) {
-            dCell.textContent = formatNumber(taxEngine.getValue(`D${calcRow}`));
-        }
-        
-        // Update E column
-        const eCell = document.getElementById(`E${displayRow}`);
-        if (eCell && !eCell.querySelector('input')) {
-            eCell.textContent = formatNumber(taxEngine.getValue(`E${calcRow}`));
-        }
-        
-        // Update C column if it's a calculated cell
+        // Update C column (Amount column)
         const cCell = document.getElementById(`C${displayRow}`);
-        if (cCell && !cCell.querySelector('input') && cCell.classList.contains('calculated-cell')) {
-            cCell.textContent = formatNumber(taxEngine.getValue(`C${calcRow}`));
+        if (cCell && cCell.classList.contains('calculated-cell')) {
+            // For tax calculation rows (128+), show E value
+            // For other rows, show C value
+            const valueToShow = displayRow >= 128 
+                ? taxEngine.getValue(`E${calcRow}`)
+                : taxEngine.getValue(`C${calcRow}`);
+            
+            // Special handling for ratio row
+            if (displayRow === 7) {
+                cCell.textContent = `${taxEngine.getValue('D7') ? taxEngine.getValue('D7').toFixed(4) : '0.0000'} / ${taxEngine.getValue('D7') ? (1 - taxEngine.getValue('D7')).toFixed(4) : '1.0000'}`;
+            } else {
+                cCell.textContent = formatNumber(valueToShow);
+            }
         }
-    }
-    
-    // Update ratio row specifically
-    const d7Cell = document.getElementById('D7');
-    const e7Cell = document.getElementById('E7');
-    if (d7Cell) {
-        d7Cell.textContent = taxEngine.getValue('D7').toFixed(4);
-    }
-    if (e7Cell) {
-        e7Cell.textContent = (1 - taxEngine.getValue('D7')).toFixed(4);
+        
+        // Update E column for tax calculation rows (row 128 and above)
+        if (displayRow >= 128) {
+            const eCell = document.getElementById(`E${displayRow}`);
+            if (eCell && !eCell.querySelector('input')) {
+                eCell.textContent = formatNumber(taxEngine.getValue(`E${calcRow}`));
+            }
+        }
     }
     
     // Update results panel
@@ -968,33 +923,71 @@ function init() {
     initializeRowMapping();
     renderTable();
     
+    // Initially hide the results panel
+    const resultsPanel = document.getElementById('resultsPanel');
+    resultsPanel.style.display = 'none';
+    
     // Add button event listeners
     document.getElementById('loadTestData').addEventListener('click', () => {
         taxEngine.loadTestData();
         renderTable();
         updateResultsPanel();
+        
+        // Hide results panel when loading test data
+        resultsPanel.style.display = 'none';
+        document.getElementById('calculateTax').textContent = 'Calculate Final Tax';
     });
     
     document.getElementById('resetAll').addEventListener('click', () => {
         taxEngine.resetAll();
         renderTable();
         updateResultsPanel();
+        
+        // Hide results panel when resetting
+        resultsPanel.style.display = 'none';
+        document.getElementById('calculateTax').textContent = 'Calculate Final Tax';
     });
     
-    document.getElementById('calculateTax').addEventListener('click', () => {
-        taxEngine.calculateAll();
-        updateDisplay();
-        
+    document.getElementById('calculateTax').addEventListener('click', function(event) {
         const panel = document.getElementById('resultsPanel');
-        panel.style.display = 'block';
-        panel.style.opacity = '0';
-        panel.style.transform = 'translateY(20px)';
+        const button = event.target;
         
-        setTimeout(() => {
-            panel.style.transition = 'all 0.3s ease';
-            panel.style.opacity = '1';
-            panel.style.transform = 'translateY(0)';
-        }, 10);
+        if (panel.style.display === 'none') {
+            // Calculate tax and show panel
+            taxEngine.calculateAll();
+            updateDisplay();
+            
+            // Show panel with animation
+            panel.style.display = 'block';
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                panel.style.transition = 'all 0.3s ease';
+                panel.style.opacity = '1';
+                panel.style.transform = 'translateY(0)';
+            }, 10);
+            
+            // Scroll to panel for better UX
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Change button text
+            button.textContent = 'Hide Tax Results';
+            button.classList.remove('btn-success');
+            button.classList.add('btn-secondary');
+        } else {
+            // Hide panel
+            panel.style.opacity = '0';
+            panel.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                panel.style.display = 'none';
+                // Change button text back
+                button.textContent = 'Calculate Final Tax';
+                button.classList.remove('btn-secondary');
+                button.classList.add('btn-success');
+            }, 300);
+        }
     });
     
     // Load test data initially

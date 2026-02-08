@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Tax Calculator - Complete Replica</title>
+    <title>Excel Tax Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Excel Tax Calculator - Complete Replica</h1>
-            <p class="subtitle">Exact replication of "TAX COMPANY with logic.xlsx" with all formulas and logic</p>
-        </header>
+       
 
         <div class="controls">
             <button id="loadTestData" class="btn btn-primary">Load Test Data</button>
@@ -23,11 +20,8 @@
             <table class="excel-table" id="taxTable">
                 <thead>
                     <tr>
-                        <th style="width: 40%">Description</th>
-                        <th style="width: 10%">Reference</th>
-                        <th style="width: 15%; background-color: #e6f7ff">TOTAL AMOUNTS<br><small>(USER INPUT)</small></th>
-                        <th style="width: 15%; background-color: #f6ffed">AMOUNT EXEMPT FROM TAX<br><small>(CALCULATED)</small></th>
-                        <th style="width: 15%; background-color: #fff7e6">AMOUNT SUBJECT TO NORMAL TAX<br><small>(CALCULATED)</small></th>
+                        <th style="width: 70%">Description</th>
+                        <th style="width: 30%">Amount</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -36,7 +30,7 @@
             </table>
         </div>
 
-        <div class="results-panel" id="resultsPanel">
+        <div class="results-panel" id="resultsPanel" style="display: none;">
             <h2>Tax Calculation Results</h2>
             <div class="results-grid">
                 <div class="result-card">
@@ -73,16 +67,15 @@
         <div class="instructions">
             <h3>Instructions:</h3>
             <ul>
-                <li>Only <strong>Column C (TOTAL AMOUNTS)</strong> cells are editable (blue background)</li>
-                <li>Columns D and E are automatically calculated</li>
-                <li>Export Ratio in Row 7 drives proportional exemptions throughout</li>
-                <li>Click <strong>Load Test Data</strong> to populate with Excel sample values</li>
+                <li>Enter amounts in the <strong>Amount</strong> column for user input fields</li>
+                <li>Calculated fields are shown automatically</li>
+                <li>Click <strong>Load Test Data</strong> to populate with sample values</li>
                 <li>Click <strong>Calculate Tax</strong> to see final tax calculations</li>
             </ul>
         </div>
     </div>
 
-    <script src="formula-engine.js"></script>
+    <script src="tabular-engine.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
