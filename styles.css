@@ -208,30 +208,7 @@ body {
     font-size: 13px;
 }
 
-/* ========== TAX CALCULATION SECTION STYLING ========== */
-/* For rows 128 and above */
-.excel-table tr[data-row="128"] td:nth-child(2),
-.excel-table tr[data-row="129"] td:nth-child(2),
-.excel-table tr[data-row="130"] td:nth-child(2),
-.excel-table tr[data-row="131"] td:nth-child(2),
-.excel-table tr[data-row="132"] td:nth-child(2),
-.excel-table tr[data-row="133"] td:nth-child(2),
-.excel-table tr[data-row="139"] td:nth-child(2),
-.excel-table tr[data-row="140"] td:nth-child(2),
-.excel-table tr[data-row="141"] td:nth-child(2),
-.excel-table tr[data-row="142"] td:nth-child(2),
-.excel-table tr[data-row="144"] td:nth-child(2),
-.excel-table tr[data-row="146"] td:nth-child(2),
-.excel-table tr[data-row="147"] td:nth-child(2),
-.excel-table tr[data-row="148"] td:nth-child(2),
-.excel-table tr[data-row="149"] td:nth-child(2),
-.excel-table tr[data-row="150"] td:nth-child(2),
-.excel-table tr[data-row="152"] td:nth-child(2),
-.excel-table tr[data-row="153"] td:nth-child(2) {
-    background-color: #fff2f0 !important;
-    font-weight: 500;
-    color: #cf1322 !important;
-}
+
 
 /* Tax header rows */
 .excel-table tr.tax-header td:first-child {

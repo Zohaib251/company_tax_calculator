@@ -832,27 +832,6 @@ function init() {
     const resultsPanel = document.getElementById('resultsPanel');
     resultsPanel.style.display = 'none';
     
-    // Add button event listeners
-    document.getElementById('loadTestData').addEventListener('click', () => {
-        taxEngine.loadTestData();
-        renderTable();
-        updateResultsPanel();
-        
-        // Hide results panel when loading test data
-        resultsPanel.style.display = 'none';
-        document.getElementById('calculateTax').textContent = 'Calculate Final Tax';
-    });
-    
-    document.getElementById('resetAll').addEventListener('click', () => {
-        taxEngine.resetAll();
-        renderTable();
-        updateResultsPanel();
-        
-        // Hide results panel when resetting
-        resultsPanel.style.display = 'none';
-        document.getElementById('calculateTax').textContent = 'Calculate Final Tax';
-    });
-    
     document.getElementById('calculateTax').addEventListener('click', function(event) {
         const panel = document.getElementById('resultsPanel');
         const button = event.target;
@@ -895,9 +874,7 @@ function init() {
         }
     });
     
-    // Load test data initially
-    taxEngine.loadTestData();
-    updateResultsPanel();
+
 }
 
 // Start the application when DOM is loaded

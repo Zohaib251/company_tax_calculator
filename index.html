@@ -11,8 +11,6 @@
        
 
         <div class="controls">
-            <button id="loadTestData" class="btn btn-primary">Load Test Data</button>
-            <button id="resetAll" class="btn btn-secondary">Reset All</button>
             <button id="calculateTax" class="btn btn-success">Calculate Final Tax</button>
         </div>
 
@@ -20,8 +18,8 @@
             <table class="excel-table" id="taxTable">
                 <thead>
                     <tr>
-                        <th style="width: 70%">Description</th>
-                        <th style="width: 30%">Amount</th>
+                        <th>Description</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -34,19 +32,19 @@
             <h2>Tax Calculation Results</h2>
             <div class="results-grid">
                 <div class="result-card">
-                    <div class="result-label">Normal Income Tax @ 29%</div>
+                    <div class="result-label">Normal Income Tax</div>
                     <div class="result-value" id="normalTax">0</div>
                 </div>
                 <div class="result-card">
-                    <div class="result-label">Final/Fixed Tax @ 2.5%</div>
+                    <div class="result-label">Final/Fixed Tax</div>
                     <div class="result-value" id="finalTax">0</div>
                 </div>
                 <div class="result-card">
-                    <div class="result-label">Alternate Corporate Tax @ 17%</div>
+                    <div class="result-label">Alternate Corporate Tax</div>
                     <div class="result-value" id="alternateTax">0</div>
                 </div>
                 <div class="result-card">
-                    <div class="result-label">Minimum Tax @ 1.25%</div>
+                    <div class="result-label">Minimum Tax</div>
                     <div class="result-value" id="minimumTax">0</div>
                 </div>
                 <div class="result-card">
