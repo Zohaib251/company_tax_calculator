@@ -39,14 +39,9 @@ function initializeRowMapping() {
 // SIMPLIFIED TABLE STRUCTURE - 2 columns for input section, 3 columns for tax results
 const tableStructure = [
     // Row 1: Empty
-    { type: 'empty', displayRow: 1 },
-    
-    // Row 2: Header - SIMPLIFIED TO 2 COLUMNS
-    { 
-        type: 'header',
-        displayRow: 2,
-        description: 'Description',
-    },
+
+    { type: 'empty'},
+    { type: 'empty'},
     
     // Row 3: GROSS REVENUE
     { 
@@ -76,15 +71,8 @@ const tableStructure = [
         displayRow: 6,
         description: 'Is Company registered with PSEB',
     },
-    
-    // Row 7: RATIO
-    { 
-        type: 'ratio',
-        displayRow: 7,
-        description: 'Ratio',
-        class: 'ratio-row'
-    },
-    
+    { type: 'empty'},
+    { type: 'empty'},
     // Row 8: SELLING EXPENSES TOTAL
     { 
         type: 'total',
@@ -114,19 +102,8 @@ const tableStructure = [
         description: 'REBATE/ DUTY DRAWBACKS',
     },
     
-    // Row 12: Empty
-    { type: 'empty', displayRow: 12 },
-    
-    // Row 13: NET REVENUE
-    { 
-        type: 'subtotal',
-        displayRow: 13,
-        description: 'NET REVENUE (EXCLUDING SALES TAX, FEDERAL EXCISE, BROKERAGE, COMMISSION, DISCOUNT, FREIGHT OUTWARD)',
-        formula: 'C3-C8'
-    },
-    
-    // Row 14: Empty
-    { type: 'empty', displayRow: 14 },
+   { type: 'empty'},
+    { type: 'empty'},
     
     // Row 15: COST OF SALES TOTAL
     { 
@@ -162,8 +139,8 @@ const tableStructure = [
         formula: 'C13-C15'
     },
     
-    // Row 27: Empty
-    { type: 'empty', displayRow: 27 },
+    { type: 'empty'},
+    { type: 'empty'},
     
     // Row 28: INDIRECT EXPENSES TOTAL
     { 
@@ -201,8 +178,8 @@ const tableStructure = [
     { type: 'input', displayRow: 53, description: 'ACCOUNTING AMORTIZATION' },
     { type: 'input', displayRow: 54, description: 'ACCOUNTING DEPRECIATION' },
     
-    // Row 55: Empty
-    { type: 'empty', displayRow: 55 },
+   { type: 'empty'},
+    { type: 'empty'},
     
     // Row 56: OTHER REVENUES TOTAL
     { 
@@ -231,8 +208,8 @@ const tableStructure = [
         formula: 'C26-C28+C56'
     },
     
-    // Row 67: Empty
-    { type: 'empty', displayRow: 67 },
+    { type: 'empty'},
+    { type: 'empty'},
     
     // Row 68: INADMISSIBLE DEDUCTIONS TOTAL
     { 
@@ -243,43 +220,35 @@ const tableStructure = [
     },
     
     // Rows 69-93: Inadmissible Deductions (input fields)
-    { type: 'input', displayRow: 69, description: 'ADD BACKS U/S 29(2) PROVISION FOR DOUBTFUL DEBTS (Excess of actual bad debts over amount written off in accounts )' },
-    { type: 'input', displayRow: 70, description: 'ADD BACKS PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS' },
-    { type: 'input', displayRow: 71, description: 'ADD BACKS PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT' },
-    { type: 'input', displayRow: 72, description: 'ADD BACKS U/S 21(I) PROVISION FOR RESERVES / FUNDS / AMOUNT CARRIED TO RESERVES / FUNDS OR CAPITALIZED' },
-    { type: 'input', displayRow: 73, description: 'ADD BACKS U/S 21(A) CESS / RATE / TAX LEVIED ON PROFITS / GAINS' },
-    { type: 'input', displayRow: 74, description: 'ADD BACKS U/S 21(B) AMOUNT OF TAX DEDUCTED AT SOURCE' },
-    { type: 'input', displayRow: 75, description: 'ADD BACKS U/S 21(C) PAYMENTS LIABLE TO DEDUCTION OF TAX AT SOURCE BUT TAX NOT DEDUCTED / PAID' },
-    { type: 'input', displayRow: 76, description: 'ADD BACKS U/S 21(D) ENTERTAINMENT EXPENDITURE ABOVE PRESCRIBED LIMIT' },
-    { type: 'input', displayRow: 77, description: 'ADD BACKS U/S 21(E) CONTRIBUTIONS TO UNRECOGNIZED / UNAPPROVED FUNDS' },
-    { type: 'input', displayRow: 78, description: 'ADD BACKS U/S 21(F) CONTRIBUTIONS TO FUNDS NOT UNDER EFFECTIVE ARRANGEMENT FOR DEDUCTION OF TAX AT SOURCE' },
-    { type: 'input', displayRow: 79, description: 'ADD BACKS U/S 21(G) FINE / PENALTY FOR VIOLATION OF ANY LAW / RULE / REGULATION' },
-    { type: 'input', displayRow: 80, description: 'ADD BACKS U/S 21(H) PERSONAL EXPENDITURE' },
-    { type: 'input', displayRow: 81, description: 'ADD BACKS U/S 21(J) PROFIT ON DEBT / BROKERAGE / COMMISSION / SALARY / REMUNERATION PAID BY AN AOP TO ITS MEMBER' },
-    { type: 'input', displayRow: 82, description: 'ADD BACKS U/S 21(L) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
-    { type: 'input', displayRow: 83, description: 'ADD BACKS U/S 21(L)(A) EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH DIGITAL MODE' },
-    { type: 'input', displayRow: 84, description: 'ADD BACKS U/S 21(M) SALARY EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
-    { type: 'input', displayRow: 85, description: 'ADD BACKS U/S 21(N) CAPITAL EXPENDITURE' },
-    { type: 'input', displayRow: 86, description: 'ADD BACKS U/S 67(1) EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME' },
-    { type: 'input', displayRow: 87, description: 'ADD BACKS U/S 28(1)(B) LEASE RENTAL NOT ADMISSIBLE' },
-    { type: 'input', displayRow: 88, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES' },
-    { type: 'input', displayRow: 89, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS' },
-    { type: 'input', displayRow: 90, description: 'ADD BACKS U/S 21(P) UTILITY BILLS EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 69, description: 'PROVISION FOR DOUBTFUL DEBTS (Excess of actual bad debts over amount written off in accounts )' },
+    { type: 'input', displayRow: 70, description: 'PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS' },
+    { type: 'input', displayRow: 71, description: 'PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT' },
+    { type: 'input', displayRow: 72, description: 'PROVISION FOR RESERVES / FUNDS / AMOUNT CARRIED TO RESERVES / FUNDS OR CAPITALIZED' },
+    { type: 'input', displayRow: 73, description: 'CESS / RATE / TAX LEVIED ON PROFITS / GAINS' },
+    { type: 'input', displayRow: 74, description: 'AMOUNT OF TAX DEDUCTED AT SOURCE' },
+    { type: 'input', displayRow: 75, description: 'PAYMENTS LIABLE TO DEDUCTION OF TAX AT SOURCE BUT TAX NOT DEDUCTED / PAID' },
+    { type: 'input', displayRow: 76, description: 'ENTERTAINMENT EXPENDITURE ABOVE PRESCRIBED LIMIT' },
+    { type: 'input', displayRow: 77, description: 'CONTRIBUTIONS TO UNRECOGNIZED / UNAPPROVED FUNDS' },
+    { type: 'input', displayRow: 78, description: 'CONTRIBUTIONS TO FUNDS NOT UNDER EFFECTIVE ARRANGEMENT FOR DEDUCTION OF TAX AT SOURCE' },
+    { type: 'input', displayRow: 79, description: 'FINE / PENALTY FOR VIOLATION OF ANY LAW / RULE / REGULATION' },
+    { type: 'input', displayRow: 80, description: 'PERSONAL EXPENDITURE' },
+    { type: 'input', displayRow: 81, description: 'PROFIT ON DEBT / BROKERAGE / COMMISSION / SALARY / REMUNERATION PAID BY AN AOP TO ITS MEMBER' },
+    { type: 'input', displayRow: 82, description: 'EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 83, description: 'EXPENDITURE UNDER A SINGLE ACCOUNT HEAD EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH DIGITAL MODE' },
+    { type: 'input', displayRow: 84, description: 'SALARY EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
+    { type: 'input', displayRow: 85, description: 'CAPITAL EXPENDITURE' },
+    { type: 'input', displayRow: 86, description: 'EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME' },
+    { type: 'input', displayRow: 87, description: 'LEASE RENTAL NOT ADMISSIBLE' },
+    { type: 'input', displayRow: 88, description: 'TAX GAIN ON SALE OF INTANGIBLES' },
+    { type: 'input', displayRow: 89, description: 'TAX GAIN ON SALE OF ASSETS' },
+    { type: 'input', displayRow: 90, description: 'UTILITY BILLS EXCEEDING PRESCRIBED AMOUNT NOT PAID THROUGH PRESCRIBED MODE' },
     { type: 'input', displayRow: 91, description: 'DEDUCTION ON PROFIT ON DEBIT INADMISSIBLE U/S 106A' },
     { type: 'input', displayRow: 92, description: 'ADD BACKS PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST' },
     { type: 'input', displayRow: 93, description: 'OTHER INADMISSIBLE DEDUCTIONS' },
     
-    // Rows 94-99: Inadmissible Deductions with SPECIAL FORMULAS (NON-EDITABLE)
-    { type: 'calculated-special', displayRow: 94, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF INTANGIBLES' },
-    { type: 'calculated-special', displayRow: 95, description: 'ADD BACKS ACCOUNTING (LOSS) ON SALE OF ASSETS' },
-    { type: 'calculated-special', displayRow: 96, description: 'ADD BACKS ACCOUNTING AMORTIZATION' },
-    { type: 'calculated-special', displayRow: 97, description: 'ADD BACKS ACCOUNTING DEPRECIATION' },
-    { type: 'calculated-special', displayRow: 98, description: 'ADD BACKS TAX GAIN ON SALE OF INTANGIBLES' },
-    { type: 'calculated-special', displayRow: 99, description: 'ADD BACKS TAX GAIN ON SALE OF ASSETS' },
     
-    // Row 100: Empty
-    { type: 'empty', displayRow: 100 },
-    
+    { type: 'empty'},
+    { type: 'empty'},
     // Row 101: ADMISSIBLE DEDUCTIONS TOTAL
     { 
         type: 'total',
@@ -295,19 +264,8 @@ const tableStructure = [
     { type: 'input', displayRow: 105, description: 'TAX (LOSS) ON SALE OF INTANGIBLES' },
     { type: 'input', displayRow: 106, description: 'TAX (LOSS) ON SALE OF ASSETS' },
     
-    // Row 107: Empty
-    { type: 'empty', displayRow: 107 },
-    
-    // Row 108: INCOME BEFORE DEPRECIATION
-    { 
-        type: 'subtotal',
-        displayRow: 108,
-        description: 'INCOME / (LOSS) FROM BUSINESS BEFORE ADJUSTMENT OF ADMISSIBLE DEPRECIATION / INITIAL ALLOWANCE / AMORTIZATION FOR CURRENT / PREVIOUS YEARS',
-        formula: 'C66+C68-C101'
-    },
-    
-    // Row 109: Empty
-    { type: 'empty', displayRow: 109 },
+    { type: 'empty'},
+    { type: 'empty'},
     
     // Row 110: TAX DEPRECIATION TOTAL
     { 
@@ -322,9 +280,6 @@ const tableStructure = [
     { type: 'input', displayRow: 112, description: 'TAX DEPRECIATION / INITIAL ALLOWANCE FOR CURRENT YEAR' },
     { type: 'input', displayRow: 113, description: 'PRE-COMMENCEMENT EXPENDITURE / DEFERRED COST' },
     
-    // Row 114: Empty
-    { type: 'empty', displayRow: 114 },
-    
     // Row 115: BUSINESS INCOME (NON-EDITABLE)
     { 
         type: 'calculated',
@@ -333,12 +288,7 @@ const tableStructure = [
         formula: 'C108-C110'
     },
     
-    // Additional income types (Rows 116-120) - COMMENTED OUT
-    /* { type: 'calculated', displayRow: 116, description: 'INCOME/ LOSS FROM PROPERTY' },
-    { type: 'calculated', displayRow: 117, description: 'INCOME/ LOSS FROM CAPITAL ASSETS' },
-    { type: 'calculated', displayRow: 118, description: 'INCOME/ LOSS FROM OTHER SOURCES' },
-    { type: 'calculated', displayRow: 119, description: 'FOREIGN INCOME' },
-    { type: 'calculated', displayRow: 120, description: 'AGRICULTURAL INCOME' }, */
+
     
     // Row 121: TOTAL INCOME
     { 
@@ -348,8 +298,8 @@ const tableStructure = [
         formula: 'C115:C120'
     },
     
-    // Row 122: Empty
-    { type: 'empty', displayRow: 122 },
+    { type: 'empty'},
+    { type: 'empty'},
     
     // Row 123: DEDUCTIBLE ALLOWANCES TOTAL
     { 
@@ -366,8 +316,8 @@ const tableStructure = [
         description: 'WORKERS WELFARE FUND U/S 60A',
     },
     
-    // Row 125: Empty
-    { type: 'empty', displayRow: 125 },
+  { type: 'empty'},
+    { type: 'empty'},
     
     // Row 126: TAXABLE INCOME
     { 
@@ -387,14 +337,14 @@ const tableStructure = [
     { 
         type: 'tax-header',
         displayRow: 128,
-        description: 'TAX CHARGEABLE (Normal income tax will be adjusted against carry forward minimum tax upto the limit of Minimum tax u/s 113 or 113C as after which again minimum will be applied.)',
+        description: 'TAX CHARGEABLE',
     },
     
     // Row 129: NORMAL INCOME TAX - 3 COLUMNS
     { 
         type: 'tax-calc',
         displayRow: 129,
-        description: 'NORMAL INCOME TAX @ 29%',
+        description: 'NORMAL INCOME TAX',
         formula: 'IF(E126>0,E126*0.29,0)'
     },
     
@@ -410,7 +360,7 @@ const tableStructure = [
     { 
         type: 'tax-calc',
         displayRow: 131,
-        description: 'ACCOUNTING PROFIT / TAX CHARGEABLE 113C @ 17%',
+        description: 'ACCOUNTING PROFIT / TAX CHARGEABLE',
         formula: 'IF(C66>0,C66*0.17,0)'
     },
     
@@ -418,7 +368,7 @@ const tableStructure = [
     { 
         type: 'tax-calc',
         displayRow: 132,
-        description: 'TURNOVER/ TAX CHARGEABLE UNDER SECTION 113 @ 1.25%',
+        description: 'TURNOVER/ TAX CHARGEABLE',
         formula: 'IF(E3>100000000,E3*0.0125,0)'
     },
     
@@ -426,38 +376,10 @@ const tableStructure = [
     { 
         type: 'tax-calc',
         displayRow: 133,
-        description: 'DIFFERENCE OF MINIMUM TAX CHARGEABLE U/S 113',
+        description: 'DIFFERENCE OF MINIMUM TAX CHARGEABLE',
         formula: 'IF((E132>E129),(E132-E129),0)'
     },
     
-    // Row 134: TAX ON HIGH EARNERS (COMMENTED OUT)
-    /* { 
-        type: 'tax-empty',
-        displayRow: 134,
-        description: 'TAX ON HIGH EARNING PERSONS U/S 4C (4% will be charged on income exceeding Rs. 300M)',
-    }, */
-    
-    // Row 135: TAX ON DEEMED INCOME (COMMENTED OUT)
-    /* { 
-        type: 'tax-empty',
-        displayRow: 135,
-        description: 'TAX ON DEEMED INCOME U/S 7E @ 20% (OF 5% OF FMV)',
-    }, */
-    
-    // Row 136: DIFFERENCE OF ALTERNATE TAX (COMMENTED OUT)
-    /* { 
-        type: 'tax-calc',
-        displayRow: 136,
-        description: 'DIFFERENCE OF ALTERNATE CORPORATE TAX U/S 113C',
-        formula: 'IF(E131>E129,(E131-E129),0)'
-    }, */
-    
-    // Row 137: DIFFERENCE OF MINIMUM TAX CHARGEABLE (COMMENTED OUT)
-    /* { 
-        type: 'tax-empty',
-        displayRow: 137,
-        description: 'DIFFERENCE OF MINIMUM TAX CHARGEABLE',
-    }, */
     
     // Row 138: Empty
     { type: 'empty', displayRow: 138 },
@@ -473,14 +395,14 @@ const tableStructure = [
     { 
         type: 'tax-input',
         displayRow: 140,
-        description: 'Tax Credit for Charitable Donations u/s 61',
+        description: 'Tax Credit for Charitable Donations',
     },
     
     // Row 141: OTHER CREDITS - 3 COLUMNS
     { 
         type: 'tax-calc-fixed',
         displayRow: 141,
-        description: 'Tax Credit for Certain Persons (Coal Mining Projects, Startups, IT/IT enabled Services) u/s 65F',
+        description: 'Tax Credit for Certain Persons (Coal Mining Projects, Startups, IT/IT enabled Services)',
         value: 0
     },
     
@@ -541,24 +463,7 @@ const tableStructure = [
         description: 'ADVANCE INCOME TAX U/S 147(5B)',
     },
     
-    // Row 151: Empty
-    { type: 'empty', displayRow: 151 },
-    
-    // Row 152: ADMITTED INCOME TAX - 3 COLUMNS
-    { 
-        type: 'tax-result',
-        displayRow: 152,
-        description: 'ADMITTED INCOME TAX',
-        formula: 'IF((E146>E144),0,(E144-E146))'
-    },
-    
-    // Row 153: REFUNDABLE INCOME TAX - 3 COLUMNS
-    { 
-        type: 'tax-result',
-        displayRow: 153,
-        description: 'REFUNDABLE INCOME TAX',
-        formula: 'IF(E152>0,0,(E146-E144))'
-    }
+ 
 ];
 
 // Format number with commas
