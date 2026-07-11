@@ -1,0 +1,1173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Tax Filing Guide - FBR IRIS Portal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f0f2f5;
+        color: #2c3e50;
+        padding: 30px 20px;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        padding: 40px 50px;
+      }
+      .guide-header {
+        text-align: center;
+        padding-bottom: 30px;
+        border-bottom: 3px solid #3498db;
+        margin-bottom: 30px;
+      }
+      .guide-header h1 {
+        font-size: 32px;
+        color: #2c3e50;
+      }
+      .guide-header h1 span {
+        color: #3498db;
+      }
+      .badge {
+        display: inline-block;
+        background: #3498db;
+        color: #fff;
+        font-size: 13px;
+        padding: 4px 18px;
+        border-radius: 20px;
+        margin-top: 10px;
+      }
+      .step {
+        border-left: 5px solid #3498db;
+        background: #f8f9fa;
+        border-radius: 0 8px 8px 0;
+        padding: 25px 30px;
+        margin-bottom: 30px;
+      }
+      .step-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: #3498db;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .step-description {
+        font-size: 15px;
+        color: #4a5568;
+        margin-bottom: 15px;
+        padding-left: 48px;
+      }
+      .instruction {
+        background: #fff3cd;
+        color: #856404;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin: 12px 0 16px 0;
+        border-left: 4px solid #f6c23e;
+      }
+      .special-instruction {
+        background: #e8f4fd;
+        border-left: 3px solid #3498db;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #2c5282;
+      }
+      .warning-note {
+        background: #fef3c7;
+        color: #92400e;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin-top: 12px;
+        border-left: 4px solid #f59e0b;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 16px 0 10px 0;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+      }
+      table.guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        background: #ffffff;
+      }
+      table.guide-table thead th {
+        background: #2c3e50;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 12px 14px;
+        border: 1px solid #2c3e50;
+      }
+      table.guide-table tbody td {
+        padding: 10px 14px;
+        border: 1px solid #e2e8f0;
+      }
+      .code-column {
+        font-weight: 600;
+        color: #2c3e50;
+        background: #edf2f7;
+        font-family: "Consolas", monospace;
+        text-align: center;
+      }
+      .amount-column {
+        font-family: "Consolas", monospace;
+        text-align: right;
+        font-weight: bold;
+        color: #2b6cb0;
+      }
+      .exempt-column {
+        font-family: "Consolas", monospace;
+        text-align: right;
+        font-weight: bold;
+        color: #38a169;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="guide-header">
+        <h1>Company Tax Filing Guide <span>| FBR IRIS Portal</span></h1>
+      </div>
+
+      <!-- ================= PHASE 0 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">0</span> Pre-Requisites: Core Compliance
+          Attributes Configuration
+        </div>
+        <div class="step-description">
+          Before entering any financial figures, you must configure the return's
+          backend routing configuration attributes. These dropdowns
+          initialization panels alter downstream matrix operations.
+        </div>
+
+        <div class="instruction">
+          📍 <strong>Exact FBR Portal Navigation Path:</strong><br />
+          1. Open the Corporate Return Form (114) Dashboard.<br />
+          2. Top Left Menu bar mein check karein, wahan
+          <strong>"Attributes"</strong> ka aik specific tab/button hoga.<br />
+          3. Click on the <strong>"Attributes"</strong> tab to render the
+          profile parameters panel.<br />
+          4. Locate the configuration questions matching the codes below,
+          double-click the value container, change the parameters, and click
+          <strong>"Save"</strong> on the upper operations grid.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Row Code</th>
+                <th>FBR Portal Attribute Question</th>
+                <th>Your System Choice</th>
+                <th>Dynamic Functional Engine Routing Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">D6</td>
+                <td>
+                  Is the Company registered with PSEB (Pakistan Software Export
+                  Board)?
+                </td>
+                <td class="amount-column" id="guideD6">-</td>
+                <td>
+                  <strong>If "Yes":</strong> Export revenue (Code 3008) is
+                  safely isolated and channeled straight to the
+                  <strong>2.5% Fixed / Final Tax head (Code 920100)</strong
+                  >.<br />
+                  <strong>If "No":</strong> Export proceeds route natively into
+                  standard corporate tax rules at 29%.
+                </td>
+              </tr>
+              <tr>
+                <td class="code-column">C142</td>
+                <td>
+                  Are you a Startup or an IT Services Exporter (claiming Section
+                  65F)?
+                </td>
+                <td class="amount-column" id="guideC142">-</td>
+                <td>
+                  <strong>If "Yes":</strong> System triggers a 100% Tax Credit
+                  under Section 65F, initializing structural balancing entries
+                  inside Code 931901 to drop core corporate payload tax to
+                  zero.<br />
+                  <strong>If "No":</strong> Baseline normal computational
+                  processing takes effect.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warning-note">
+          ⚠️ <strong>CRITICAL RECONCILIATION BLOCK:</strong> Form data fields
+          populate after these options save. Altering attributes later triggers
+          complete system computation resets.
+        </div>
+      </div>
+
+      <!-- ================= PHASE 1 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">1</span> Manufacturing / Trading Account
+        </div>
+        <div class="step-description">
+          On left sidebar Click on <strong>Business </strong> -> <strong>Manufacturing / Items</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">3004</td>
+                <td>Gross Domestic Sales / Services Fee</td>
+                <td class="amount-column" id="guideC4">0</td>
+                <td class="exempt-column" id="guideD4">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3008</td>
+                <td>Gross Export Sales / Services Fee</td>
+                <td class="amount-column" id="guideC5">0</td>
+                <td class="exempt-column" id="guideD5">0</td>
+              </tr>
+              <!-- <tr>
+                <td class="code-column">3009</td>
+                <td>Gross Revenue (Total)</td>
+                <td class="amount-column" id="guideC3">0</td>
+                <td class="exempt-column" id="guideD3">0</td>
+              </tr> -->
+              <tr>
+                <td class="code-column">3011</td>
+                <td>Domestic Commission / Brokerage / Discount</td>
+                <td class="amount-column" id="guideC9">0</td>
+                <td class="exempt-column" id="guideD9">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3012</td>
+                <td>Foreign Commission / Brokerage / Discount</td>
+                <td class="amount-column" id="guideC10">0</td>
+                <td class="exempt-column" id="guideD10">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3070</td>
+                <td>Rebate / Duty Drawbacks</td>
+                <td class="amount-column" id="guideC11">0</td>
+                <td class="exempt-column" id="guideD11">0</td>
+              </tr>
+              <!--  <tr>
+                <td class="code-column">3019</td>
+                <td>Selling Expenses (Total)</td>
+                <td class="amount-column" id="guideC8">0</td>
+                <td class="exempt-column" id="guideD8">0</td>
+              </tr> -->
+              <!--  <tr>
+                <td class="code-column">3029</td>
+                <td>Net Revenue</td>
+                <td class="amount-column" id="guideC13">0</td>
+                <td class="exempt-column" id="guideD13">0</td>
+              </tr> -->
+              <tr>
+                <td class="code-column">3071</td>
+                <td>Salaries / Wages (Direct)</td>
+                <td class="amount-column" id="guideC17">0</td>
+                <td class="exempt-column" id="guideD17">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3073</td>
+                <td>Power (Direct)</td>
+                <td class="amount-column" id="guideC18">0</td>
+                <td class="exempt-column" id="guideD18">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3074</td>
+                <td>Gas (Direct)</td>
+                <td class="amount-column" id="guideC19">0</td>
+                <td class="exempt-column" id="guideD19">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3077</td>
+                <td>Repair / Maintenance (Direct)</td>
+                <td class="amount-column" id="guideC20">0</td>
+                <td class="exempt-column" id="guideD20">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3080</td>
+                <td>Insurance (Direct)</td>
+                <td class="amount-column" id="guideC21">0</td>
+                <td class="exempt-column" id="guideD21">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3081</td>
+                <td>Royalty (Direct)</td>
+                <td class="amount-column" id="guideC22">0</td>
+                <td class="exempt-column" id="guideD22">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3083</td>
+                <td>Other Direct Expenses</td>
+                <td class="amount-column" id="guideC23">0</td>
+                <td class="exempt-column" id="guideD23">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3087</td>
+                <td>Accounting Amortisation (Direct)</td>
+                <td class="amount-column" id="guideC24">0</td>
+                <td class="exempt-column" id="guideD24">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3088</td>
+                <td>Accounting Depreciation (Direct)</td>
+                <td class="amount-column" id="guideC25">0</td>
+                <td class="exempt-column" id="guideD25">0</td>
+              </tr>
+              <!--   <tr>
+                <td class="code-column">3030</td>
+                <td>Cost of Sales / Services (Total)</td>
+                <td class="amount-column" id="guideC15">0</td>
+                <td class="exempt-column" id="guideD15">0</td>
+              </tr> -->
+              <!-- <tr>
+                <td class="code-column">3100</td>
+                <td>Gross Profit / (Loss)</td>
+                <td class="amount-column" id="guideC26">0</td>
+                <td class="exempt-column" id="guideD26">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+       <!-- ================= PHASE 2 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">2</span> Other Revenues
+        </div>
+        <div class="step-description">
+            On left sidebar then Click on <strong>Other Revenues</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">3101</td>
+                <td>Fee for Technical / Professional Services</td>
+                <td class="amount-column" id="guideC58">0</td>
+                <td class="exempt-column" id="guideD58">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3102</td>
+                <td>Fee for Other Services</td>
+                <td class="amount-column" id="guideC59">0</td>
+                <td class="exempt-column" id="guideD59">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3106</td>
+                <td>Profit on Debt (Other Revenues)</td>
+                <td class="amount-column" id="guideC60">0</td>
+                <td class="exempt-column" id="guideD60">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3107</td>
+                <td>Royalty (Other Revenues)</td>
+                <td class="amount-column" id="guideC61">0</td>
+                <td class="exempt-column" id="guideD61">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3108</td>
+                <td>License / Franchise Fee</td>
+                <td class="amount-column" id="guideC62">0</td>
+                <td class="exempt-column" id="guideD62">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3115</td>
+                <td>Accounting Gain on Sale of Intangibles</td>
+                <td class="amount-column" id="guideC63">0</td>
+                <td class="exempt-column" id="guideD63">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3116</td>
+                <td>Accounting Gain on Sale of Assets</td>
+                <td class="amount-column" id="guideC64">0</td>
+                <td class="exempt-column" id="guideD64">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3128</td>
+                <td>Others (Other Revenues)</td>
+                <td class="amount-column" id="guideC65">0</td>
+                <td class="exempt-column" id="guideD65">0</td>
+              </tr>
+              <!--  <tr>
+                <td class="code-column">3129</td>
+                <td>Add: Other Revenues (Total)</td>
+                <td class="amount-column" id="guideC56">0</td>
+                <td class="exempt-column" id="guideD56">0</td>
+              </tr> -->
+              <!--  <tr>
+                <td class="code-column">3200</td>
+                <td>Accounting Profit / (Loss)</td>
+                <td class="amount-column" id="guideC66">0</td>
+                <td class="exempt-column" id="guideD66">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ================= PHASE 3 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">3</span> Management, Administrative &amp;
+          Indirect Expenses
+        </div>
+        <div class="step-description">
+           On left sidebar then Click on <strong>Management, Adminstrative, Selling $ Financial Expenses</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">3151</td>
+                <td>Rent</td>
+                <td class="amount-column" id="guideC29">0</td>
+                <td class="exempt-column" id="guideD29">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3152</td>
+                <td>Rates / Taxes / Cess</td>
+                <td class="amount-column" id="guideC30">0</td>
+                <td class="exempt-column" id="guideD30">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3154</td>
+                <td>Salaries / Wages / Perquisites (Indirect)</td>
+                <td class="amount-column" id="guideC31">0</td>
+                <td class="exempt-column" id="guideD31">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3155</td>
+                <td>Traveling / Conveyance / Vehicles</td>
+                <td class="amount-column" id="guideC32">0</td>
+                <td class="exempt-column" id="guideD32">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3158</td>
+                <td>Electricity / Water / Gas (Indirect)</td>
+                <td class="amount-column" id="guideC33">0</td>
+                <td class="exempt-column" id="guideD33">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3162</td>
+                <td>Communication</td>
+                <td class="amount-column" id="guideC34">0</td>
+                <td class="exempt-column" id="guideD34">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3165</td>
+                <td>Repair / Maintenance (Indirect)</td>
+                <td class="amount-column" id="guideC35">0</td>
+                <td class="exempt-column" id="guideD35">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3166</td>
+                <td>Stationery / Printing / Photocopies</td>
+                <td class="amount-column" id="guideC36">0</td>
+                <td class="exempt-column" id="guideD36">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3168</td>
+                <td>Advertisement / Publicity / Promotion</td>
+                <td class="amount-column" id="guideC37">0</td>
+                <td class="exempt-column" id="guideD37">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3170</td>
+                <td>Insurance (Indirect)</td>
+                <td class="amount-column" id="guideC38">0</td>
+                <td class="exempt-column" id="guideD38">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3171</td>
+                <td>Professional Charges</td>
+                <td class="amount-column" id="guideC39">0</td>
+                <td class="exempt-column" id="guideD39">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3172</td>
+                <td>Profit on Debt (Financial Charges)</td>
+                <td class="amount-column" id="guideC40">0</td>
+                <td class="exempt-column" id="guideD40">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3174</td>
+                <td>Donation / Charity</td>
+                <td class="amount-column" id="guideC41">0</td>
+                <td class="exempt-column" id="guideD41">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3178</td>
+                <td>Brokerage / Commission (Indirect)</td>
+                <td class="amount-column" id="guideC42">0</td>
+                <td class="exempt-column" id="guideD42">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3180</td>
+                <td>Other Indirect Expenses</td>
+                <td class="amount-column" id="guideC43">0</td>
+                <td class="exempt-column" id="guideD43">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3183</td>
+                <td>Directors Fee</td>
+                <td class="amount-column" id="guideC44">0</td>
+                <td class="exempt-column" id="guideD44">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3185</td>
+                <td>Workers Profit Participation Fund</td>
+                <td class="amount-column" id="guideC45">0</td>
+                <td class="exempt-column" id="guideD45">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3191</td>
+                <td>Provision for Doubtful / Bad Debts</td>
+                <td class="amount-column" id="guideC46">0</td>
+                <td class="exempt-column" id="guideD46">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3192</td>
+                <td>Provision for Obsolete Stocks / Stores</td>
+                <td class="amount-column" id="guideC47">0</td>
+                <td class="exempt-column" id="guideD47">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3193</td>
+                <td>Provision for Diminution in Investment</td>
+                <td class="amount-column" id="guideC48">0</td>
+                <td class="exempt-column" id="guideD48">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3186</td>
+                <td>Irrecoverable Debts Written Off</td>
+                <td class="amount-column" id="guideC49">0</td>
+                <td class="exempt-column" id="guideD49">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3187</td>
+                <td>Obsolete Stocks / Stores Written Off</td>
+                <td class="amount-column" id="guideC50">0</td>
+                <td class="exempt-column" id="guideD50">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3195</td>
+                <td>Accounting (Loss) on Sale of Intangibles</td>
+                <td class="amount-column" id="guideC51">0</td>
+                <td class="exempt-column" id="guideD51">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3196</td>
+                <td>Accounting (Loss) on Sale of Assets</td>
+                <td class="amount-column" id="guideC52">0</td>
+                <td class="exempt-column" id="guideD52">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3197</td>
+                <td>Accounting Amortization (Indirect)</td>
+                <td class="amount-column" id="guideC53">0</td>
+                <td class="exempt-column" id="guideD53">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3198</td>
+                <td>Accounting Depreciation (Indirect)</td>
+                <td class="amount-column" id="guideC54">0</td>
+                <td class="exempt-column" id="guideD54">0</td>
+              </tr>
+              <!--  <tr>
+                <td class="code-column">3199</td>
+                <td>Management &amp; Selling Expenses (Total)</td>
+                <td class="amount-column" id="guideC28">0</td>
+                <td class="exempt-column" id="guideD28">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+     
+
+      <!-- ================= PHASE 4 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">4</span> Inadmissible Deductions
+        </div>
+        <div class="step-description">
+            On left sidebar then Click on <strong>Inadmissible / Admissible Deductions</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">3201</td>
+                <td>Provision for Doubtful Debts</td>
+                <td class="amount-column" id="guideC69">0</td>
+                <td class="exempt-column" id="guideD69">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3202</td>
+                <td>Provision for Obsolete Stocks</td>
+                <td class="amount-column" id="guideC70">0</td>
+                <td class="exempt-column" id="guideD70">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3203</td>
+                <td>Provision for Diminution in Value</td>
+                <td class="amount-column" id="guideC71">0</td>
+                <td class="exempt-column" id="guideD71">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3204</td>
+                <td>Provision for Reserves / Funds</td>
+                <td class="amount-column" id="guideC72">0</td>
+                <td class="exempt-column" id="guideD72">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3205</td>
+                <td>Cess / Rate / Tax Levied on Profits</td>
+                <td class="amount-column" id="guideC73">0</td>
+                <td class="exempt-column" id="guideD73">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3206</td>
+                <td>Amount of Tax Deducted at Source</td>
+                <td class="amount-column" id="guideC74">0</td>
+                <td class="exempt-column" id="guideD74">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3207</td>
+                <td>Payments Liable to Tax Not Deducted</td>
+                <td class="amount-column" id="guideC75">0</td>
+                <td class="exempt-column" id="guideD75">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3208</td>
+                <td>Entertainment Expenditure</td>
+                <td class="amount-column" id="guideC76">0</td>
+                <td class="exempt-column" id="guideD76">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3209</td>
+                <td>Contributions to Unrecognized Funds</td>
+                <td class="amount-column" id="guideC77">0</td>
+                <td class="exempt-column" id="guideD77">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3210</td>
+                <td>Contributions to Funds</td>
+                <td class="amount-column" id="guideC78">0</td>
+                <td class="exempt-column" id="guideD78">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3211</td>
+                <td>Fine / Penalty</td>
+                <td class="amount-column" id="guideC79">0</td>
+                <td class="exempt-column" id="guideD79">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3212</td>
+                <td>Personal Expenditure</td>
+                <td class="amount-column" id="guideC80">0</td>
+                <td class="exempt-column" id="guideD80">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3213</td>
+                <td>AOP to its Member</td>
+                <td class="amount-column" id="guideC81">0</td>
+                <td class="exempt-column" id="guideD81">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3215</td>
+                <td>Expenditure Exceeding Limit</td>
+                <td class="amount-column" id="guideC82">0</td>
+                <td class="exempt-column" id="guideD82">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3228</td>
+                <td>Expenditure Not Through Digital Mode</td>
+                <td class="amount-column" id="guideC83">0</td>
+                <td class="exempt-column" id="guideD83">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3216</td>
+                <td>Salary Exceeding Limit</td>
+                <td class="amount-column" id="guideC84">0</td>
+                <td class="exempt-column" id="guideD84">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3217</td>
+                <td>Capital Expenditure</td>
+                <td class="amount-column" id="guideC85">0</td>
+                <td class="exempt-column" id="guideD85">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3218</td>
+                <td>Expenditure Attributable to Non-Business</td>
+                <td class="amount-column" id="guideC86">0</td>
+                <td class="exempt-column" id="guideD86">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3220</td>
+                <td>Lease Rental Not Admissible</td>
+                <td class="amount-column" id="guideC87">0</td>
+                <td class="exempt-column" id="guideD87">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3225</td>
+                <td>Tax Gain on Sale of Intangibles</td>
+                <td class="amount-column" id="guideC88">0</td>
+                <td class="exempt-column" id="guideD88">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3226</td>
+                <td>Tax Gain on Sale of Assets</td>
+                <td class="amount-column" id="guideC89">0</td>
+                <td class="exempt-column" id="guideD89">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">322902</td>
+                <td>Utility Bills Exceeding Limit</td>
+                <td class="amount-column" id="guideC90">0</td>
+                <td class="exempt-column" id="guideD90">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">322904</td>
+                <td>Profit on Debit Inadmissible u/s 106A</td>
+                <td class="amount-column" id="guideC91">0</td>
+                <td class="exempt-column" id="guideD91">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3230</td>
+                <td>Pre-Commencement Expenditure (Inadmissible)</td>
+                <td class="amount-column" id="guideC92">0</td>
+                <td class="exempt-column" id="guideD92">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3234</td>
+                <td>Other Inadmissible Deductions</td>
+                <td class="amount-column" id="guideC93">0</td>
+                <td class="exempt-column" id="guideD93">0</td>
+              </tr>
+              <!-- <tr>
+                <td class="code-column">3239</td>
+                <td>Inadmissible Deductions (Total)</td>
+                <td class="amount-column" id="guideC68">0</td>
+                <td class="exempt-column" id="guideD68">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= PHASE 5 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">5</span> Admissible Deductions &amp; Tax
+          Depreciation
+        </div>
+        <div class="step-description">
+           Stay on <strong>Inadmissible / Admissible Deductions</strong> section. Scroll down to bottom you see <strong>Admissible Deductions</strong> section. Enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">3245</td>
+                <td>Accounting Gain on Intangibles (Admissible)</td>
+                <td class="amount-column" id="guideC102">0</td>
+                <td class="exempt-column" id="guideD102">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3246</td>
+                <td>Accounting Gain on Assets (Admissible)</td>
+                <td class="amount-column" id="guideC103">0</td>
+                <td class="exempt-column" id="guideD103">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3254</td>
+                <td>Other Admissible Deductions</td>
+                <td class="amount-column" id="guideC104">0</td>
+                <td class="exempt-column" id="guideD104">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3255</td>
+                <td>Tax (Loss) on Sale of Intangibles</td>
+                <td class="amount-column" id="guideC105">0</td>
+                <td class="exempt-column" id="guideD105">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3256</td>
+                <td>Tax (Loss) on Sale of Assets</td>
+                <td class="amount-column" id="guideC106">0</td>
+                <td class="exempt-column" id="guideD106">0</td>
+              </tr>
+              <!-- <tr>
+                <td class="code-column">3270</td>
+                <td>Income Before Depreciation (Subtotal)</td>
+                <td class="amount-column" id="guideC108">0</td>
+                <td class="exempt-column" id="guideD108">0</td>
+              </tr> -->
+              <tr>
+                <td class="code-column">3247</td>
+                <td>Tax Amortization for Current Year</td>
+                <td class="amount-column" id="guideC111">0</td>
+                <td class="exempt-column" id="guideD111">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3248</td>
+                <td>Tax Depreciation / Initial Allowance</td>
+                <td class="amount-column" id="guideC112">0</td>
+                <td class="exempt-column" id="guideD112">0</td>
+              </tr>
+              <tr>
+                <td class="code-column">3250</td>
+                <td>Pre-Commencement Expenditure Adjustment</td>
+                <td class="amount-column" id="guideC113">0</td>
+                <td class="exempt-column" id="guideD113">0</td>
+              </tr>
+              <!--  <tr>
+                <td class="code-column">3000</td>
+                <td>Income / Loss from Business</td>
+                <td class="amount-column" id="guideC115">0</td>
+                <td class="exempt-column" id="guideD115">0</td>
+              </tr> -->
+              <!--  <tr>
+                <td class="code-column">9000</td>
+                <td>Total Income</td>
+                <td class="amount-column" id="guideC121">0</td>
+                <td class="exempt-column" id="guideD121">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ================= PHASE 6 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">6</span> Deductible Allowances
+        </div>
+        <div class="step-description">
+            On left sidebar then Click on <strong>Tax Chargeable / Payemnts</strong> -> <strong>Deductible Allowances</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">9002</td>
+                <td>Workers Welfare Fund u/s 60A</td>
+                <td class="amount-column" id="guideC124">0</td>
+            
+              </tr>
+              <!--  <tr>
+                <td class="code-column">9009</td>
+                <td>Deductible Allowances (Total)</td>
+                <td class="amount-column" id="guideC123">0</td>
+                <td class="exempt-column" id="guideD123">0</td>
+              </tr> -->
+              <!--  <tr>
+                <td class="code-column">9100</td>
+                <td>Taxable Income</td>
+                <td class="amount-column" id="guideC126">0</td>
+                <td class="exempt-column" id="guideD126">0</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ================= PHASE 7 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">7</span> Tax Credit
+        </div>
+        <div class="step-description">
+            On left sidebar then Click on <strong>Tax Credit</strong>. Then enter the value on respective fields. After entering the values, click on <strong>Calculate</strong> button.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Eligible Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">9311</td>
+                <td>Tax Credit for Charitable Donations</td>
+                <td class="amount-column" id="guideC140">0</td>
+                
+              </tr>
+              <!--  <tr>
+                <td class="code-column">931901</td>
+                <td>Tax Credit for Certain Persons (Sec 65F)</td>
+                <td class="amount-column" id="guideE141">0</td>
+                <td>IT Exporter 100% Tax Holiday Credit placeholder.</td>
+              </tr>
+              <tr>
+                <td class="code-column">9329</td>
+                <td>Tax Credit (Total)</td>
+                <td class="amount-column" id="guideE139">0</td>
+                <td>Sum total of active rebate components.</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- ================= PHASE 8 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">8</span> Tax Computations &amp; Advance
+          Adjustments
+        </div>
+        <div class="step-description">
+          IRIS Tab: <strong>Tax Computation</strong>. Verification and
+          adjustable deductions execution phase.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Total Amount</th>
+                <th>IRIS Data Placement Instructions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">920000</td>
+                <td>Normal Income Tax @ 29%</td>
+                <td class="amount-column" id="guideE129">0</td>
+                <td>Auto-calculated by IRIS based on Code 9100 Column C.</td>
+              </tr>
+              <tr>
+                <td class="code-column">920100</td>
+                <td>Final / Fixed Income Tax @ 2.5%</td>
+                <td class="amount-column" id="guideE130">0</td>
+                <td>
+                  Triggered automatically if profile Attribute D6 is "Yes".
+                </td>
+              </tr>
+              <tr>
+                <td class="code-column">923173</td>
+                <td>Alternate Corporate Tax @ 17%</td>
+                <td class="amount-column" id="guideE131">0</td>
+                <td>Evaluated internally against accounting margins.</td>
+              </tr>
+              <tr>
+                <td class="code-column">923195</td>
+                <td>Minimum Tax @ 1.25%</td>
+                <td class="amount-column" id="guideE132">0</td>
+                <td>Calculated on aggregate corporate turnover.</td>
+              </tr>
+              <tr>
+                <td class="code-column">923194</td>
+                <td>Difference of Minimum Tax</td>
+                <td class="amount-column" id="guideE133">0</td>
+                <td>Computed threshold difference field.</td>
+              </tr>
+              <tr>
+                <td class="code-column">9200</td>
+                <td>Tax Chargeable</td>
+                <td class="amount-column" id="guideE128">0</td>
+                <td>
+                  <strong>Total Gross Tax baseline</strong> computed by portal
+                  rules.
+                </td>
+              </tr>
+
+              <tr>
+                <td class="code-column">9201</td>
+                <td>Withholding Income Tax</td>
+                <td class="amount-column" id="guideE147">0</td>
+                <td>Input validated certificate collections here.</td>
+              </tr>
+              <tr>
+                <td class="code-column">9202</td>
+                <td>Advance Income Tax</td>
+                <td class="amount-column" id="guideE148">0</td>
+                <td>Input quarterly challan payments.</td>
+              </tr>
+              <tr>
+                <td class="code-column">92022</td>
+                <td>Advance Income Tax u/s 147(A)</td>
+                <td class="amount-column" id="guideE149">0</td>
+                <td>Input direct sub-section payments.</td>
+              </tr>
+              <tr>
+                <td class="code-column">92021</td>
+                <td>Advance Income Tax u/s 147(5B)</td>
+                <td class="amount-column" id="guideE150">0</td>
+                <td>Input transactional advance liabilities.</td>
+              </tr>
+              <tr style="background: #e6f7ff; font-weight: bold">
+                <td class="code-column">9203</td>
+                <td>Admitted Income Tax (Payable)</td>
+                <td class="amount-column" id="guideE152">0</td>
+                <td>
+                  <strong>Final Amount to pay via CPR Challan</strong> before
+                  filing.
+                </td>
+              </tr>
+              <tr style="background: #f6ffed; font-weight: bold">
+                <td class="code-column">9210</td>
+                <td>Refundable Income Tax</td>
+                <td class="amount-column" id="guideE153">0</td>
+                <td>Carryforward surplus refund balance due to the company.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let dataReceived = false; // Flag to prevent duplicate processing
+      window.addEventListener("message", function (event) {
+        // Ensure the message is the one we're expecting and hasn't been processed
+        if (
+          event.data &&
+          event.data.type === "POPULATE_FBR_GUIDE" &&
+          !dataReceived
+        ) {
+          console.log(
+            "⚡ Target Guide received transactional payload data arrays:",
+            event.data.payload,
+          );
+          dataReceived = true; // Set flag to true
+          const engineData = event.data.payload;
+
+          // Directly handle string values for D6 and C142
+          document.getElementById("guideD6").textContent =
+            engineData["D6"] || "No";
+          document.getElementById("guideC142").textContent =
+            engineData["C142"] || "No";
+
+          // Automated dynamic cells matching matrix loop
+          for (let i = 1; i <= 160; i++) {
+            // Skip rows that are handled manually
+            if (i === 6 || i === 142) continue;
+
+            // Populate C columns
+            const elC = document.getElementById(`guideC${i}`);
+            if (elC) {
+              let valC = parseFloat(engineData[`C${i}`]) || 0;
+              elC.textContent = Math.round(valC).toLocaleString("en-US");
+            }
+            // Populate D columns
+            const elD = document.getElementById(`guideD${i}`);
+            if (elD) {
+              let valD = parseFloat(engineData[`D${i}`]) || 0;
+              elD.textContent =
+                valD !== 0 ? Math.round(valD).toLocaleString("en-US") : "0";
+            }
+            // Populate E columns
+            const elE = document.getElementById(`guideE${i}`);
+            if (elE) {
+              let valE = parseFloat(engineData[`E${i}`]) || 0;
+              elE.textContent = Math.round(valE).toLocaleString("en-US");
+            }
+          }
+          console.log(
+            "✅ Guide structural translation layers populated instantly.",
+          );
+
+          // Send acknowledgment back to the parent window
+          if (event.source) {
+            event.source.postMessage({ type: "DATA_RECEIVED" }, event.origin);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
