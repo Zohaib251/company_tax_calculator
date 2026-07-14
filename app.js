@@ -195,6 +195,7 @@ const tableStructure = [
     type: "input",
     displayRow: 4,
     description: "GROSS DOMESTIC SALES/ SERVICES FEE",
+    tooltip: "Enter the total sales revenue or services fee earned inside Pakistan",
   },
 
   // Row 5: EXPORT SALES
@@ -202,6 +203,7 @@ const tableStructure = [
     type: "input",
     displayRow: 5,
     description: "GROSS EXPORT SALES/ SERVICES FEE",
+    tooltip: "Enter total export sales/IT services revenue earned outside Pakistan.",
   },
 
   // Row 6: PSEB Registration (Dropdown)
@@ -228,6 +230,8 @@ const tableStructure = [
     displayRow: 9,
     description:
       "DOMESTIC COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
+    tooltip:
+      "Enter the commission, brokerage, or discount given on local sales.",
   },
 
   // Row 10: FOREIGN COMMISSION
@@ -236,6 +240,8 @@ const tableStructure = [
     displayRow: 10,
     description:
       "FOREIGN COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
+    tooltip:
+      "Enter the commission, brokerage, or discount given on foreign sales.",
   },
 
   // Row 11: REBATE/DUTY DRAWBACKS
@@ -271,8 +277,20 @@ const tableStructure = [
   { type: "input", displayRow: 21, description: "INSURANCE" },
   { type: "input", displayRow: 22, description: "ROYALTY" },
   { type: "input", displayRow: 23, description: "OTHER DIRECT EXPENSES" },
-  { type: "input", displayRow: 24, description: "ACCOUNTING AMORTISATION" },
-  { type: "input", displayRow: 25, description: "ACCOUNTING DEPRECIATION" },
+  {
+    type: "input",
+    displayRow: 24,
+    description: "ACCOUNTING AMORTISATION",
+    tooltip:
+      "Enter the annual amortization amount for intangible assets. Example: If a software license costs 500,000 for 5 years, enter 100,000.",
+  },
+  {
+    type: "input",
+    displayRow: 25,
+    description: "ACCOUNTING DEPRECIATION",
+    tooltip:
+      "Enter the annual depreciation amount for physical assets. Example: If a machine costs 1,000,000 with 5-year life, enter 200,000.",
+  },
 
   // Row 26: GROSS PROFIT
   {
@@ -325,6 +343,7 @@ const tableStructure = [
     type: "input",
     displayRow: 40,
     description: "PROFIT ON DEBT (FINANCIAL CHARGES / MARKUP / INTEREST)",
+    tooltip: "Enter the total interest, markup, or finance cost PAID on bank loans or borrowings. (Do not enter earned income here).",
   },
   { type: "input", displayRow: 41, description: "DONATION / CHARITY" },
   { type: "input", displayRow: 42, description: "BROKERAGE / COMMISSION" },
@@ -334,45 +353,69 @@ const tableStructure = [
     type: "input",
     displayRow: 45,
     description: "WORKERS PROFIT PARTICIPATION FUND",
+    tooltip: "Enter the amount contributed to workers' profit sharing fund.",
   },
   {
     type: "input",
     displayRow: 46,
     description: "PROVISION FOR DOUBTFUL / BAD DEBTS",
+    tooltip:
+      "Enter the amount of debts that may not be recovered. Example: If customer owes 100,000 and may not pay, enter 100,000.",
   },
   {
     type: "input",
     displayRow: 47,
     description:
       "PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS",
+    tooltip:
+      "Enter the value of old/useless stock that may not be sold. Example: If you have 200,000 worth of slow-moving stock, enter 200,000.",
   },
   {
     type: "input",
     displayRow: 48,
     description: "PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT",
+    tooltip:
+      "Enter the decrease in value of your investments. Example: If investment of 500,000 is now worth 400,000, enter 100,000.",
   },
   {
     type: "input",
     displayRow: 49,
     description: "IRRECOVERABLE DEBTS WRITTEN OFF",
+    tooltip:
+      "Enter the debts that cannot be recovered and are removed from accounts.",
   },
   {
     type: "input",
     displayRow: 50,
     description: "OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS WRITTEN OFF",
+    tooltip: "Enter the old/useless stock removed from accounts.",
   },
   {
     type: "input",
     displayRow: 51,
     description: "ACCOUNTING (LOSS) ON SALE OF INTANGIBLES",
+    tooltip:
+      "Enter the loss from selling non-physical assets for less than book value. Example: Bought for 200,000 sold for 150,000, enter 50,000.",
   },
   {
     type: "input",
     displayRow: 52,
     description: "ACCOUNTING (LOSS) ON SALE OF ASSETS",
+    tooltip:
+      "Enter the loss from selling physical assets for less than book value. Example: Bought for 500,000 sold for 300,000, enter 200,000.",
   },
-  { type: "input", displayRow: 53, description: "ACCOUNTING AMORTIZATION" },
-  { type: "input", displayRow: 54, description: "ACCOUNTING DEPRECIATION" },
+  {
+    type: "input",
+    displayRow: 53,
+    description: "ACCOUNTING AMORTIZATION",
+    tooltip: "Enter the annual amortization amount for intangible assets.",
+  },
+  {
+    type: "input",
+    displayRow: 54,
+    description: "ACCOUNTING DEPRECIATION",
+    tooltip: "Enter the annual depreciation amount for physical assets.",
+  },
 
   { type: "empty" },
   { type: "empty" },
@@ -390,6 +433,7 @@ const tableStructure = [
     type: "input",
     displayRow: 58,
     description: "FEE FOR TECHNICAL / PROFESSIONAL SERVICES",
+    tooltip: "Enter the fees earned from technical or professional services.",
   },
   { type: "input", displayRow: 59, description: "FEE FOR OTHER SERVICES" },
   { type: "input", displayRow: 60, description: "PROFIT ON DEBT" },
@@ -399,11 +443,15 @@ const tableStructure = [
     type: "input",
     displayRow: 63,
     description: "ACCOUNTING GAIN ON SALE OF INTANGIBLES",
+    tooltip:
+      "Enter the profit from selling non-physical assets for more than book value. Example: Bought for 200,000 sold for 300,000, enter 100,000.",
   },
   {
     type: "input",
     displayRow: 64,
     description: "ACCOUNTING GAIN ON SALE OF ASSETS",
+    tooltip:
+      "Enter the profit from selling physical assets for more than book value. Example: Bought for 500,000 sold for 700,000, enter 200,000.",
   },
   { type: "input", displayRow: 65, description: "OTHERS" },
 
@@ -413,6 +461,7 @@ const tableStructure = [
     displayRow: 66,
     description: "ACCOUNTING PROFIT/ (LOSS)",
     formula: "C26-C28+C56",
+    tooltip: "Auto-calculated. Profit shown in the company's accounting books.",
   },
 
   { type: "empty" },
@@ -424,6 +473,7 @@ const tableStructure = [
     displayRow: 68,
     description: "INADMISSIBLE DEDUCTIONS",
     formula: "C69:C99",
+    tooltip: "Enter the deductions that are not allowed as per tax laws.",
   },
 
   // Rows 69-93: Inadmissible Deductions
@@ -431,86 +481,165 @@ const tableStructure = [
     type: "input",
     displayRow: 69,
     description: "PROVISION FOR DOUBTFUL DEBTS",
+    tooltip:
+      "Enter the amount of debts that may not be recovered. Example: If customer owes 100,000 and may not pay, enter 100,000.",
   },
   {
     type: "input",
     displayRow: 70,
     description: "PROVISION FOR OBSOLETE STOCKS",
+    tooltip: "Enter the value of old/useless stocks that may not be sold.",
   },
   {
     type: "input",
     displayRow: 71,
     description: "PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT",
+    tooltip: "Enter the decrease in value of your investments.",
   },
   {
     type: "input",
     displayRow: 72,
     description: "PROVISION FOR RESERVES / FUNDS",
+    tooltip: "Enter the amount set aside for future expenses or reserves.",
   },
   {
     type: "input",
     displayRow: 73,
     description: "CESS / RATE / TAX LEVIED ON PROFITS",
+    tooltip: "Enter the additional tax like education cess charged on profits.",
   },
   {
     type: "input",
     displayRow: 74,
     description: "AMOUNT OF TAX DEDUCTED AT SOURCE",
+    tooltip: "Only enter withholding tax here if it was mistakenly charged as an expense in your accounting P&L.",
   },
   {
     type: "input",
     displayRow: 75,
     description: "PAYMENTS LIABLE TO TAX NOT DEDUCTED",
+    tooltip:
+      "Enter the amount of payments where tax should have been deducted but was not.",
   },
-  { type: "input", displayRow: 76, description: "ENTERTAINMENT EXPENDITURE" },
+  {
+    type: "input",
+    displayRow: 76,
+    description: "ENTERTAINMENT EXPENDITURE",
+    tooltip: "Enter the expenses on client dinners, lunches, or entertainment.",
+  },
   {
     type: "input",
     displayRow: 77,
     description: "CONTRIBUTIONS TO UNRECOGNIZED FUNDS",
+    tooltip: "Enter the amounts given to funds not approved by FBR.",
   },
-  { type: "input", displayRow: 78, description: "CONTRIBUTIONS TO FUNDS" },
-  { type: "input", displayRow: 79, description: "FINE / PENALTY" },
-  { type: "input", displayRow: 80, description: "PERSONAL EXPENDITURE" },
-  { type: "input", displayRow: 81, description: "AOP TO ITS MEMBER" },
-  { type: "input", displayRow: 82, description: "EXPENDITURE EXCEEDING LIMIT" },
+  {
+    type: "input",
+    displayRow: 78,
+    description: "CONTRIBUTIONS TO FUNDS",
+    tooltip: "Enter the amounts given to approved funds like pension funds.",
+  },
+  {
+    type: "input",
+    displayRow: 79,
+    description: "FINE / PENALTY",
+    tooltip: "Enter the penalties paid for violating any law or regulation.",
+  },
+  {
+    type: "input",
+    displayRow: 80,
+    description: "PERSONAL EXPENDITURE",
+    tooltip:
+      "Enter the owner or partner's personal expenses not related to business.",
+  },
+  {
+    type: "input",
+    displayRow: 81,
+    description: "AOP TO ITS MEMBER",
+    tooltip:
+      "Enter the amount paid by an Association of Persons (AOP) to its member.",
+  },
+  {
+    type: "input",
+    displayRow: 82,
+    description: "EXPENDITURE EXCEEDING LIMIT",
+    tooltip: "Enter the cash payments made above FBR's prescribed limit.",
+  },
   {
     type: "input",
     displayRow: 83,
     description: "EXPENDITURE NOT THROUGH DIGITAL MODE",
+    tooltip:
+      "Enter the payments not made through digital modes like bank transfer.",
   },
-  { type: "input", displayRow: 84, description: "SALARY EXCEEDING LIMIT" },
-  { type: "input", displayRow: 85, description: "CAPITAL EXPENDITURE" },
+  {
+    type: "input",
+    displayRow: 84,
+    description: "SALARY EXCEEDING LIMIT",
+    tooltip:
+      "Enter the salary paid above FBR's limit without proper documentation.",
+  },
+  {
+    type: "input",
+    displayRow: 85,
+    description: "CAPITAL EXPENDITURE",
+    tooltip:
+      "Enter the expenses on purchasing assets like machinery or buildings.",
+  },
   {
     type: "input",
     displayRow: 86,
     description: "EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME",
+    tooltip:
+      "Enter the expenses related to non-business income like personal property.",
   },
-  { type: "input", displayRow: 87, description: "LEASE RENTAL NOT ADMISSIBLE" },
+  {
+    type: "input",
+    displayRow: 87,
+    description: "LEASE RENTAL NOT ADMISSIBLE",
+    tooltip:
+      "Enter the lease rental expenses that are not allowed under tax laws.",
+  },
   {
     type: "input",
     displayRow: 88,
     description: "TAX GAIN ON SALE OF INTANGIBLES",
+    tooltip:
+      "Enter the profit from selling non-physical assets like software or patents.",
   },
-  { type: "input", displayRow: 89, description: "TAX GAIN ON SALE OF ASSETS" },
+  {
+    type: "input",
+    displayRow: 89,
+    description: "TAX GAIN ON SALE OF ASSETS",
+    tooltip:
+      "Enter the profit from selling physical assets like machinery or buildings.",
+  },
   {
     type: "input",
     displayRow: 90,
     description: "UTILITY BILLS EXCEEDING LIMIT",
+    tooltip:
+      "Enter the utility bills (electricity, gas) paid above FBR's limit.",
   },
   {
     type: "input",
     displayRow: 91,
     description: "PROFIT ON DEBIT INADMISSIBLE U/S 106A",
+    tooltip:
+      "Enter the profit that is inadmissible under Section 106A of tax law.",
   },
   {
     type: "input",
     displayRow: 92,
     description: "PRE-COMMENCEMENT EXPENDITURE",
+    tooltip:
+      "Enter the expenses incurred before starting the business (registration, licenses).",
   },
   {
     type: "input",
     displayRow: 93,
     description: "OTHER INADMISSIBLE DEDUCTIONS",
+    tooltip: "Enter other deductions that are not admissible under tax laws.",
   },
 
   { type: "empty" },
@@ -522,6 +651,7 @@ const tableStructure = [
     displayRow: 101,
     description: "ADMISSIBLE DEDUCTIONS",
     formula: "C102:C106",
+    tooltip: "Enter the deductions that are allowed as per tax laws.",
   },
 
   // Rows 102-106: Admissible Deductions
@@ -529,11 +659,15 @@ const tableStructure = [
     type: "input",
     displayRow: 102,
     description: "ACCOUNTING GAIN ON SALE OF INTANGIBLES",
+    tooltip:
+      "Enter the profit from selling non-physical assets for more than book value.",
   },
   {
     type: "input",
     displayRow: 103,
     description: "ACCOUNTING GAIN ON SALE OF ASSETS",
+    tooltip:
+      "Enter the profit from selling physical assets for more than book value.",
   },
   {
     type: "input",
@@ -544,11 +678,15 @@ const tableStructure = [
     type: "input",
     displayRow: 105,
     description: "TAX (LOSS) ON SALE OF INTANGIBLES",
+    tooltip:
+      "Enter the tax loss on sale of non-physical assets like software or patents.",
   },
   {
     type: "input",
     displayRow: 106,
     description: "TAX (LOSS) ON SALE OF ASSETS",
+    tooltip:
+      "Enter the tax loss on sale of physical assets like machinery or buildings.",
   },
 
   { type: "empty" },
@@ -567,16 +705,21 @@ const tableStructure = [
     type: "input",
     displayRow: 111,
     description: "TAX AMORTIZATION FOR CURRENT YEAR",
+    tooltip:
+      "Enter the amortization amount claimed for tax purposes this year.",
   },
   {
     type: "input",
     displayRow: 112,
     description: "TAX DEPRECIATION / INITIAL ALLOWANCE",
+    tooltip:
+      "Enter the depreciation or initial allowance claimed for tax purposes this year.",
   },
   {
     type: "input",
     displayRow: 113,
     description: "PRE-COMMENCEMENT EXPENDITURE",
+    tooltip: "Enter the expenses incurred before starting the business.",
   },
 
   // Row 115: BUSINESS INCOME
@@ -611,6 +754,7 @@ const tableStructure = [
     type: "input",
     displayRow: 124,
     description: "WORKERS WELFARE FUND U/S 60A",
+    tooltip: "Enter the amount paid to the workers welfare fund.",
   },
 
   { type: "empty" },
@@ -689,6 +833,7 @@ const tableStructure = [
     type: "tax-input",
     displayRow: 140,
     description: "Tax Credit for Charitable Donations",
+    tooltip: "Enter the tax credit received for making charitable donations.",
   },
 
   // Row 141: OTHER CREDITS
@@ -731,21 +876,26 @@ const tableStructure = [
     type: "e-input",
     displayRow: 147,
     description: "WITHHOLDING INCOME TAX",
+    tooltip:
+      "Enter the total adjustable withholding tax (WHT) deducted from company payments (e.g., imports, utilities, bank transactions)",
   },
   {
     type: "e-input",
     displayRow: 148,
     description: "ADVANCE INCOME TAX",
+    tooltip: "Enter the total advance tax paid through quarterly challans during the year. This includes all 4 regular installments (Sep, Dec, Mar, Jun). Example: If you paid 250,000 each quarter, enter 1,000,000.",
   },
   {
     type: "e-input",
     displayRow: 149,
     description: "ADVANCE INCOME TAX U/S 147(A)",
+    tooltip: "Section 147(A): Enter voluntary extra advance tax paid outside quarterly installments. Example: Paid 200,000 extra, enter 200,000.",
   },
   {
     type: "e-input",
     displayRow: 150,
     description: "ADVANCE INCOME TAX U/S 147(5B)",
+    tooltip: "Section 147(5B): Enter advance tax paid on specific transactions like property sale, vehicle sale, etc. This is separate from regular advance tax.",
   },
 ];
 
@@ -766,8 +916,6 @@ function formatNumber(num) {
 // FBR TABLE GENERATION - UPDATED WITH D COLUMN
 // =========================================================================
 
-
-
 // =========================================================================
 // CREATE TABLE ROW
 // =========================================================================
@@ -787,6 +935,14 @@ function createTableRow(item, index) {
     ? taxEngine.getValue(`E${calcRow}`)
     : taxEngine.getValue(`C${calcRow}`);
 
+  // Helper function to render description with tooltip
+  const renderDescription = (description, tooltip) => {
+    if (tooltip) {
+      return `${description} <span class="info-icon" data-tooltip="${tooltip.replace(/"/g, '&quot;')}">?</span>`;
+    }
+    return description;
+  };
+
   switch (item.type) {
     case "empty":
       row.innerHTML = `<td colspan="2" style="height: 10px;"></td>`;
@@ -794,31 +950,31 @@ function createTableRow(item, index) {
 
     case "header":
       row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td class="input-col"><strong>Amount</strong></td>
-            `;
+        <td><strong>${item.description}</strong></td>
+        <td class="input-col"><strong>Amount</strong></td>
+      `;
       break;
 
     case "input":
       if (item.displayRow >= 128) {
         row.innerHTML = `
-                    <td>${item.description}</td>
-                    <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
-                        ${formatNumber(amountColumnValue)}
-                    </td>
-                `;
+          <td>${renderDescription(item.description, item.tooltip)}</td>
+          <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+            ${formatNumber(amountColumnValue)}
+          </td>
+        `;
       } else {
         row.innerHTML = `
-                    <td>${item.description}</td>
-                    <td class="input-col">
-                        <input type="text" 
-                               id="C${item.displayRow}" 
-                               data-calc-row="${calcRow}"
-                               data-column="C"
-                               value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
-                               placeholder="Enter amount">
-                    </td>
-                `;
+          <td>${renderDescription(item.description, item.tooltip)}</td>
+          <td class="input-col">
+            <input type="text" 
+                   id="C${item.displayRow}" 
+                   data-calc-row="${calcRow}"
+                   data-column="C"
+                   value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
+                   placeholder="Enter amount">
+          </td>
+        `;
       }
       break;
 
@@ -826,73 +982,73 @@ function createTableRow(item, index) {
     case "calculated-special":
       if (item.displayRow >= 128) {
         row.innerHTML = `
-                    <td>${item.description}</td>
-                    <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
-                        ${formatNumber(amountColumnValue)}
-                    </td>
-                `;
+          <td>${renderDescription(item.description, item.tooltip)}</td>
+          <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+            ${formatNumber(amountColumnValue)}
+          </td>
+        `;
       } else {
         row.innerHTML = `
-                    <td>${item.description}</td>
-                    <td class="input-col calculated-cell" id="C${item.displayRow}">
-                        ${formatNumber(amountColumnValue)}
-                    </td>
-                `;
+          <td>${renderDescription(item.description, item.tooltip)}</td>
+          <td class="input-col calculated-cell" id="C${item.displayRow}">
+            ${formatNumber(amountColumnValue)}
+          </td>
+        `;
       }
       break;
 
     case "pseb-dropdown":
       const psebValue = taxEngine.getValue("D6") || "Yes";
       row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td class="input-col">
-                    <select id="D6" data-calc-row="6" data-column="D" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #52c41a; padding: 2px 4px;">
-                        <option value="Yes" ${psebValue === "Yes" ? "selected" : ""}>Yes</option>
-                        <option value="No" ${psebValue === "No" ? "selected" : ""}>No</option>
-                    </select>
-                </td>
-            `;
+        <td><strong>${item.description}</strong></td>
+        <td class="input-col">
+          <select id="D6" data-calc-row="6" data-column="D" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #52c41a; padding: 2px 4px;">
+            <option value="Yes" ${psebValue === "Yes" ? "selected" : ""}>Yes</option>
+            <option value="No" ${psebValue === "No" ? "selected" : ""}>No</option>
+          </select>
+        </td>
+      `;
       break;
 
     case "startup-dropdown":
       const startupValue = taxEngine.getValue("C142") || "No";
       row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td class="input-col">
-                    <select id="C142" data-calc-row="142" data-column="C" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #1890ff; padding: 2px 4px;">
-                        <option value="Yes" ${startupValue === "Yes" ? "selected" : ""}>Yes</option>
-                        <option value="No" ${startupValue === "No" ? "selected" : ""}>No</option>
-                    </select>
-                </td>
-            `;
+        <td><strong>${item.description}</strong></td>
+        <td class="input-col">
+          <select id="C142" data-calc-row="142" data-column="C" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #1890ff; padding: 2px 4px;">
+            <option value="Yes" ${startupValue === "Yes" ? "selected" : ""}>Yes</option>
+            <option value="No" ${startupValue === "No" ? "selected" : ""}>No</option>
+          </select>
+        </td>
+      `;
       break;
 
     case "ratio":
       row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td class="input-col calculated-cell" id="C${item.displayRow}">
-                    ${taxEngine.getValue("D7") ? taxEngine.getValue("D7").toFixed(4) : "0.0000"} / 
-                    ${taxEngine.getValue("D7") ? (1 - taxEngine.getValue("D7")).toFixed(4) : "1.0000"}
-                </td>
-            `;
+        <td><strong>${item.description}</strong></td>
+        <td class="input-col calculated-cell" id="C${item.displayRow}">
+          ${taxEngine.getValue("D7") ? taxEngine.getValue("D7").toFixed(4) : "0.0000"} / 
+          ${taxEngine.getValue("D7") ? (1 - taxEngine.getValue("D7")).toFixed(4) : "1.0000"}
+        </td>
+      `;
       break;
 
     case "total":
     case "subtotal":
       if (item.displayRow >= 128) {
         row.innerHTML = `
-                    <td><strong>${item.description}</strong></td>
-                    <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
-                        ${formatNumber(amountColumnValue)}
-                    </td>
-                `;
+          <td><strong>${renderDescription(item.description, item.tooltip)}</strong></td>
+          <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+            ${formatNumber(amountColumnValue)}
+          </td>
+        `;
       } else {
         row.innerHTML = `
-                    <td><strong>${item.description}</strong></td>
-                    <td class="input-col calculated-cell" id="C${item.displayRow}">
-                        ${formatNumber(amountColumnValue)}
-                    </td>
-                `;
+          <td><strong>${renderDescription(item.description, item.tooltip)}</strong></td>
+          <td class="input-col calculated-cell" id="C${item.displayRow}">
+            ${formatNumber(amountColumnValue)}
+          </td>
+        `;
       }
       break;
 
@@ -901,53 +1057,53 @@ function createTableRow(item, index) {
     case "tax-calc-zero":
     case "tax-result":
       row.innerHTML = `
-                <td>${item.description}</td>
-                <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
-                    ${formatNumber(taxEngine.getValue(`E${calcRow}`))}
-                </td>
-            `;
+        <td>${renderDescription(item.description, item.tooltip)}</td>
+        <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
+          ${formatNumber(taxEngine.getValue(`E${calcRow}`))}
+        </td>
+      `;
       break;
 
     case "tax-input":
       row.innerHTML = `
-                <td>${item.description}</td>
-                <td class="input-col">
-                    <input type="text" 
-                           id="C${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="C"
-                           value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
-                           placeholder="Enter amount">
-                </td>
-            `;
+        <td>${renderDescription(item.description, item.tooltip)}</td>
+        <td class="input-col">
+          <input type="text" 
+                 id="C${item.displayRow}" 
+                 data-calc-row="${calcRow}"
+                 data-column="C"
+                 value="${formatNumber(taxEngine.getValue(`C${calcRow}`))}"
+                 placeholder="Enter amount">
+        </td>
+      `;
       break;
 
     case "tax-input-zero":
       row.innerHTML = `
-                <td>${item.description}</td>
-                <td class="input-col">
-                    <input type="text" 
-                           id="C${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="C"
-                           value="${formatNumber(item.value)}"
-                           placeholder="Enter amount">
-                </td>
-            `;
+        <td>${renderDescription(item.description, item.tooltip)}</td>
+        <td class="input-col">
+          <input type="text" 
+                 id="C${item.displayRow}" 
+                 data-calc-row="${calcRow}"
+                 data-column="C"
+                 value="${formatNumber(item.value)}"
+                 placeholder="Enter amount">
+        </td>
+      `;
       break;
 
     case "e-input":
       row.innerHTML = `
-                <td><strong>${item.description}</strong></td>
-                <td class="input-col">
-                    <input type="text" 
-                           id="E${item.displayRow}" 
-                           data-calc-row="${calcRow}"
-                           data-column="E"
-                           value="${formatNumber(taxEngine.getValue(`E${calcRow}`))}"
-                           placeholder="Enter amount">
-                </td>
-            `;
+        <td><strong>${renderDescription(item.description, item.tooltip)}</strong></td>
+        <td class="input-col">
+          <input type="text" 
+                 id="E${item.displayRow}" 
+                 data-calc-row="${calcRow}"
+                 data-column="E"
+                 value="${formatNumber(taxEngine.getValue(`E${calcRow}`))}"
+                 placeholder="Enter amount">
+        </td>
+      `;
       break;
   }
 
@@ -1102,69 +1258,73 @@ function init() {
 
   const resultsPanel = document.getElementById("resultsPanel");
   resultsPanel.style.display = "none";
-  
-document.getElementById("calculateTax").addEventListener("click", function (event) {
-  // 1. Run engine calculations
-  taxEngine.calculateAll();
-  updateDisplay();
 
-  // 2. Open the guide window
-  console.log("📖 Opening Filing Guide...");
-  const guideWindow = window.open("tax-filing-guide.html", "_blank");
+  document
+    .getElementById("calculateTax")
+    .addEventListener("click", function (event) {
+      // 1. Run engine calculations
+      taxEngine.calculateAll();
+      updateDisplay();
 
-  if (guideWindow) {
-    let syncInterval = null;
+      // 2. Open the guide window
+      console.log("📖 Opening Filing Guide...");
+      const guideWindow = window.open("tax-filing-guide.html", "_blank");
 
-    // 3. Send data to guide
-    const sendData = () => {
-      console.log("📤 Sending data to guide...");
-      guideWindow.postMessage(
-        {
-          type: "POPULATE_FBR_GUIDE",
-          payload: taxEngine.data,
-        },
-        "*"
-      );
-    };
+      if (guideWindow) {
+        let syncInterval = null;
 
-    // Start polling
-    syncInterval = setInterval(sendData, 200);
+        // 3. Send data to guide
+        const sendData = () => {
+          console.log("📤 Sending data to guide...");
+          guideWindow.postMessage(
+            {
+              type: "POPULATE_FBR_GUIDE",
+              payload: taxEngine.data,
+            },
+            "*",
+          );
+        };
 
-    // 4. Stop polling when guide acknowledges
-    const receiveAck = (e) => {
-      if (e.data.type === "DATA_RECEIVED") {
-        console.log("✅ Guide received data. Stopping polling.");
-        clearInterval(syncInterval);
-        window.removeEventListener("message", receiveAck);
+        // Start polling
+        syncInterval = setInterval(sendData, 200);
+
+        // 4. Stop polling when guide acknowledges
+        const receiveAck = (e) => {
+          if (e.data.type === "DATA_RECEIVED") {
+            console.log("✅ Guide received data. Stopping polling.");
+            clearInterval(syncInterval);
+            window.removeEventListener("message", receiveAck);
+          }
+        };
+        window.addEventListener("message", receiveAck);
+
+        // 5. Clean up if guide is closed
+        const checkClosed = setInterval(() => {
+          if (guideWindow.closed) {
+            console.log("🔒 Guide window closed.");
+            clearInterval(checkClosed);
+            clearInterval(syncInterval);
+            window.removeEventListener("message", receiveAck);
+          }
+        }, 500);
+      } else {
+        console.warn("⚠️ Popup blocked! Please allow popups for this site.");
+        alert("Please allow popups to open the Filing Guide.");
       }
-    };
-    window.addEventListener("message", receiveAck);
 
-    // 5. Clean up if guide is closed
-    const checkClosed = setInterval(() => {
-      if (guideWindow.closed) {
-        console.log("🔒 Guide window closed.");
-        clearInterval(checkClosed);
-        clearInterval(syncInterval);
-        window.removeEventListener("message", receiveAck);
+      // 6. Hide results panel (if it exists)
+      const panel = document.getElementById("resultsPanel");
+      if (panel) {
+        panel.style.display = "none";
       }
-    }, 500);
-  } else {
-    console.warn("⚠️ Popup blocked! Please allow popups for this site.");
-    alert("Please allow popups to open the Filing Guide.");
-  }
 
-  // 6. Hide results panel (if it exists)
-  const panel = document.getElementById("resultsPanel");
-  if (panel) {
-    panel.style.display = "none";
-  }
-
-  // 7. Button text stays the same - NO CHANGE
-  // Button will always show "Calculate Final Tax"
-});
+      // 7. Button text stays the same - NO CHANGE
+      // Button will always show "Calculate Final Tax"
+    });
 }
 
 document.addEventListener("DOMContentLoaded", init);
 
 document.addEventListener("DOMContentLoaded", init);
+
+
