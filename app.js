@@ -919,7 +919,7 @@ const tableStructure = [
   {
     type: "tax-result",
     displayRow: 139,
-    description: "TAX CREDIT -",
+    description: "TAX CREDIT",
   },
 
   // Row 140: CHARITABLE DONATIONS CREDIT
@@ -1059,6 +1059,16 @@ const tableStructure = [
     displayRow: 144,
     description: "Net TAX LIABILITY",
     formula: "E128-E139",
+  },{
+    type: "tax-result",
+    displayRow: 152,
+    description: "Admitted Income Tax",
+    formula: "=IF((E146>E144),0,(E144-E146))",
+  },{
+    type: "tax-result",
+    displayRow: 153,
+    description: "Refundable Income tax",
+    formula: "=IF(E152>0,0,(E146-E144))",
   },
 
   /* { type: "empty", displayRow: 145 }, */
