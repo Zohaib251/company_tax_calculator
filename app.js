@@ -913,9 +913,82 @@ const tableStructure = [
     tooltip:
       "Enter the Workers' Welfare Fund amount actually paid this year (not just set aside).",
   },
+  { type: "empty" },
+
+  // Row 139: TAX CREDIT
+  {
+    type: "tax-result",
+    displayRow: 139,
+    description: "TAX CREDIT -",
+  },
+
+  // Row 140: CHARITABLE DONATIONS CREDIT
+  {
+    type: "tax-input",
+    displayRow: 140,
+    description: "Tax Credit for Charitable Donations",
+    tooltip:
+      "Enter the amount of donations you gave to approved charities, universities, or non-profits via crossed cheque.",
+  },
+
+  // Row 141: OTHER CREDITS
+  {
+    type: "tax-calc-fixed",
+    displayRow: 141,
+    description: "Tax Credit for Certain Persons",
+    value: 0,
+  },
+
+  // Row 142: STARTUP QUESTION
+  {
+    type: "startup-dropdown",
+    displayRow: 142,
+    description: "Are you a startup or IT services Exporter.",
+    tooltip:
+      "Select Yes if PSEB Certified Startup (100% tax credit) or IT exporter (0.25% tax rate). Select No otherwise.",
+  },
+
+/*   { type: "empty", displayRow: 143 }, */
+
 
   { type: "empty" },
-  { type: "empty" },
+  // Row 146: ADVANCE TAX TOTAL
+  {
+    type: "tax-result",
+    displayRow: 146,
+    description: "Advance Tax Total",
+    formula: "SUM(E147:E150)",
+  },
+
+  // Row 147-150: Advance Tax Inputs
+  {
+    type: "e-input",
+    displayRow: 147,
+    description: "WITHHOLDING INCOME TAX",
+    tooltip:
+      "Enter the total tax that customers, banks, or others deducted from your payments this year (as shown on your Withholding tax certificates). ",
+  },
+  {
+    type: "e-input",
+    displayRow: 148,
+    description: "ADVANCE INCOME TAX",
+    tooltip: "Enter the quarterly advance tax instalments you paid",
+  },
+  {
+    type: "e-input",
+    displayRow: 149,
+    description: "ADVANCE INCOME TAX U/S 147(A)",
+    tooltip:
+      "Enter the advance tax paid at 3% of turnover declared to a provincial revenue authority (only for sales tax registered persons)",
+  },
+  {
+    type: "e-input",
+    displayRow: 150,
+    description: "ADVANCE INCOME TAX U/S 147(5B)",
+    tooltip:
+      "Enter the adjustable advance tax paid quarterly on capital gains from selling securities. 2% if held under 6 months, 1.5% if held 6 to 12 months. Does not apply to individual investors..",
+  },
+   { type: "empty" },
 
   // Row 126: TAXABLE INCOME
   {
@@ -976,42 +1049,9 @@ const tableStructure = [
     formula: "IF((E132>E129),(E132-E129),0)",
   },
 
-  { type: "empty", displayRow: 138 },
+ /*  { type: "empty", displayRow: 138 }, */
 
-  // Row 139: TAX CREDIT
-  {
-    type: "tax-result",
-    displayRow: 139,
-    description: "TAX CREDIT -",
-  },
-
-  // Row 140: CHARITABLE DONATIONS CREDIT
-  {
-    type: "tax-input",
-    displayRow: 140,
-    description: "Tax Credit for Charitable Donations",
-    tooltip:
-      "Enter the amount of donations you gave to approved charities, universities, or non-profits via crossed cheque.",
-  },
-
-  // Row 141: OTHER CREDITS
-  {
-    type: "tax-calc-fixed",
-    displayRow: 141,
-    description: "Tax Credit for Certain Persons",
-    value: 0,
-  },
-
-  // Row 142: STARTUP QUESTION
-  {
-    type: "startup-dropdown",
-    displayRow: 142,
-    description: "Are you a startup or IT services Exporter.",
-    toottip:
-      "Select Yes if PSEB-certified startup (100% tax credit) or IT exporter (0.25% tax rate). Select No otherwise.",
-  },
-
-  { type: "empty", displayRow: 143 },
+  
 
   // Row 144: NET TAX LIABILITY
   {
@@ -1021,44 +1061,9 @@ const tableStructure = [
     formula: "E128-E139",
   },
 
-  { type: "empty", displayRow: 145 },
+  /* { type: "empty", displayRow: 145 }, */
 
-  // Row 146: ADVANCE TAX TOTAL
-  {
-    type: "tax-result",
-    displayRow: 146,
-    description: "Advance Tax Total",
-    formula: "SUM(E147:E150)",
-  },
-
-  // Row 147-150: Advance Tax Inputs
-  {
-    type: "e-input",
-    displayRow: 147,
-    description: "WITHHOLDING INCOME TAX",
-    tooltip:
-      "Enter the total tax that customers, banks, or others deducted from your payments this year (as shown on your Withholding tax certificates). ",
-  },
-  {
-    type: "e-input",
-    displayRow: 148,
-    description: "ADVANCE INCOME TAX",
-    tooltip: "Enter the quarterly advance tax instalments you paid",
-  },
-  {
-    type: "e-input",
-    displayRow: 149,
-    description: "ADVANCE INCOME TAX U/S 147(A)",
-    tooltip:
-      "Enter the advance tax paid at 3% of turnover declared to a provincial revenue authority (only for sales tax registered persons)",
-  },
-  {
-    type: "e-input",
-    displayRow: 150,
-    description: "ADVANCE INCOME TAX U/S 147(5B)",
-    tooltip:
-      "Enter the adjustable advance tax paid quarterly on capital gains from selling securities. 2% if held under 6 months, 1.5% if held 6 to 12 months. Does not apply to individual investors..",
-  },
+  
 ];
 
 // =========================================================================
@@ -1154,7 +1159,7 @@ function createTableRow(item, index) {
     case "pseb-dropdown":
       const psebValue = taxEngine.getValue("D6") || "Yes";
       row.innerHTML = `
-        <td><strong>${item.description}</strong></td>
+        <td>${renderDescription(item.description, item.tooltip)}</td>
         <td class="input-col">
           <select id="D6" data-calc-row="6" data-column="D" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #52c41a; padding: 2px 4px;">
             <option value="Yes" ${psebValue === "Yes" ? "selected" : ""}>Yes</option>
@@ -1167,7 +1172,7 @@ function createTableRow(item, index) {
     case "startup-dropdown":
       const startupValue = taxEngine.getValue("C142") || "No";
       row.innerHTML = `
-        <td><strong>${item.description}</strong></td>
+        <td>${renderDescription(item.description, item.tooltip)}</td>
         <td class="input-col">
           <select id="C142" data-calc-row="142" data-column="C" style="width: 100%; border: none; background: transparent; font-family: Consolas; font-size: 11px; color: #1890ff; padding: 2px 4px;">
             <option value="Yes" ${startupValue === "Yes" ? "selected" : ""}>Yes</option>
@@ -1211,7 +1216,7 @@ function createTableRow(item, index) {
     case "tax-calc-zero":
     case "tax-result":
       row.innerHTML = `
-        <td>${renderDescription(item.description, item.tooltip)}</td>
+        <td><strong>${renderDescription(item.description, item.tooltip)}</strong></td>
         <td class="input-col calculated-cell tax-cell" id="C${item.displayRow}">
           ${formatNumber(taxEngine.getValue(`E${calcRow}`))}
         </td>
@@ -1248,7 +1253,7 @@ function createTableRow(item, index) {
 
     case "e-input":
       row.innerHTML = `
-        <td><strong>${renderDescription(item.description, item.tooltip)}</strong></td>
+        <td>${renderDescription(item.description, item.tooltip)}</td>
         <td class="input-col">
           <input type="text" 
                  id="E${item.displayRow}" 
