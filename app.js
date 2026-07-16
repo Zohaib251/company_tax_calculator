@@ -1029,7 +1029,7 @@ const tableStructure = [
   {
     type: "tax-calc",
     displayRow: 131,
-    description: "ALTERNATE CORPORATE TAX",
+    description: "Accounting Profit / Tax Chargeable u/s 113C @17%",
     formula: "IF(C66>0,C66*0.17,0)",
   },
 
@@ -1037,7 +1037,7 @@ const tableStructure = [
   {
     type: "tax-calc",
     displayRow: 132,
-    description: "MINIMUM TAX",
+    description: "Turnover / Tax Chargeable u/s 113 @ 1.25%",
     formula: "IF(E3>100000000,E3*0.0125,0)",
   },
 
