@@ -195,7 +195,8 @@ const tableStructure = [
     type: "input",
     displayRow: 4,
     description: "GROSS DOMESTIC SALES/ SERVICES FEE",
-    tooltip: "Enter the total sales revenue or services fee earned inside Pakistan",
+    tooltip:
+      "Enter your total sales or services fee earned from customers inside Pakistan this year. Do not deduct Sales Tax, FED, commission, or discount.",
   },
 
   // Row 5: EXPORT SALES
@@ -203,7 +204,8 @@ const tableStructure = [
     type: "input",
     displayRow: 5,
     description: "GROSS EXPORT SALES/ SERVICES FEE",
-    tooltip: "Enter total export sales/IT services revenue earned outside Pakistan.",
+    tooltip:
+      "Enter your total sales or services fee earned from customers outside Pakistan this year (before any deductions).",
   },
 
   // Row 6: PSEB Registration (Dropdown)
@@ -211,6 +213,8 @@ const tableStructure = [
     type: "pseb-dropdown",
     displayRow: 6,
     description: "Is Company registered with PSEB",
+    tooltip:
+      "Select Yes if your company is registered with PSEB. PSEB-registered companies get a special benefit: export sales are taxed at only 0.25% under Section 154A instead of the normal rate (29% or 1%).",
   },
   { type: "empty" },
   { type: "empty" },
@@ -231,7 +235,7 @@ const tableStructure = [
     description:
       "DOMESTIC COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
     tooltip:
-      "Enter the commission, brokerage, or discount given on local sales.",
+      "Enter commission, brokerage, discounts, or delivery costs paid on local sales.",
   },
 
   // Row 10: FOREIGN COMMISSION
@@ -241,7 +245,7 @@ const tableStructure = [
     description:
       "FOREIGN COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
     tooltip:
-      "Enter the commission, brokerage, or discount given on foreign sales.",
+      "Enter commission, brokerage, discounts, or freight costs related to export sales.",
   },
 
   // Row 11: REBATE/DUTY DRAWBACKS
@@ -249,6 +253,7 @@ const tableStructure = [
     type: "input",
     displayRow: 11,
     description: "REBATE/ DUTY DRAWBACKS",
+    tooltip: "Enter the total rebate or duty drawback received on exports.",
   },
 
   { type: "empty" },
@@ -270,26 +275,68 @@ const tableStructure = [
   },
 
   // Rows 17-25: Direct Expenses Items
-  { type: "input", displayRow: 17, description: "SALARIES/ WAGES" },
-  { type: "input", displayRow: 18, description: "POWER" },
-  { type: "input", displayRow: 19, description: "GAS" },
-  { type: "input", displayRow: 20, description: "REPAIR/ MAINTENANCE" },
-  { type: "input", displayRow: 21, description: "INSURANCE" },
-  { type: "input", displayRow: 22, description: "ROYALTY" },
-  { type: "input", displayRow: 23, description: "OTHER DIRECT EXPENSES" },
+  {
+    type: "input",
+    displayRow: 17,
+    description: "SALARIES/ WAGES",
+    tooltip:
+      "Enter salaries paid to software developers, engineers, and IT delivery staff directly involved in software development, implementation, or IT services. This does NOT include admin/office staff.",
+  },
+  {
+    type: "input",
+    displayRow: 18,
+    description: "POWER",
+    tooltip:
+      "Enter electricity charges for your IT infrastructure server rooms, data centers, or development labs. Separate from general office electricity.",
+  },
+  {
+    type: "input",
+    displayRow: 19,
+    description: "GAS",
+    tooltip:
+      "Enter gas charges if used in your IT operations (e.g., for cooling systems in server rooms).",
+  },
+  {
+    type: "input",
+    displayRow: 20,
+    description: "REPAIR/ MAINTENANCE",
+    tooltip:
+      "Enter repair/maintenance costs for IT equipment servers, computers, networking hardware, and office IT infrastructure",
+  },
+  {
+    type: "input",
+    displayRow: 21,
+    description: "INSURANCE",
+    tooltip:
+      "Enter insurance premiums for IT equipment, servers, data centers, or cyber insurance policies.",
+  },
+  {
+    type: "input",
+    displayRow: 22,
+    description: "ROYALTY",
+    tooltip:
+      "Enter royalty paid for software licenses, patents, or technology used in your IT products/services.",
+  },
+  {
+    type: "input",
+    displayRow: 23,
+    description: "OTHER DIRECT EXPENSES",
+    tooltip:
+      "Enter other IT project costs not listed above cloud hosting fees (AWS, Azure), software subscriptions, third-party APIs, or development tools. Must be directly related to your IT services to qualify",
+  },
   {
     type: "input",
     displayRow: 24,
     description: "ACCOUNTING AMORTISATION",
     tooltip:
-      "Enter the annual amortization amount for intangible assets. Example: If a software license costs 500,000 for 5 years, enter 100,000.",
+      "Enter amortisation of intangible IT assets software licenses, patents, or intellectual property used in your IT business, as recorded in your accounting books.",
   },
   {
     type: "input",
     displayRow: 25,
     description: "ACCOUNTING DEPRECIATION",
     tooltip:
-      "Enter the annual depreciation amount for physical assets. Example: If a machine costs 1,000,000 with 5-year life, enter 200,000.",
+      "Enter depreciation of IT equipment servers, computers, networking hardware, and office IT assets as calculated in your accounting books.",
   },
 
   // Row 26: GROSS PROFIT
@@ -312,55 +359,126 @@ const tableStructure = [
   },
 
   // Rows 29-54: Indirect Expenses Items
-  { type: "input", displayRow: 29, description: "RENT" },
-  { type: "input", displayRow: 30, description: "RATES / TAXES / CESS" },
+  {
+    type: "input",
+    displayRow: 29,
+    description: "RENT",
+    tooltip:
+      "Enter rent for office space, co-working spaces, or server/storage facilities.",
+  },
+  {
+    type: "input",
+    displayRow: 30,
+    description: "RATES / TAXES / CESS",
+    tooltip:
+      "Enter property taxes, provincial cess, or other levies on business premises. But not Income tax itself",
+  },
   {
     type: "input",
     displayRow: 31,
     description: "SALARIES / WAGES / PERQUISITES / BENEFITS",
+    tooltip:
+      "Enter salaries, wages, and benefits paid to office, management, and admin staff (not developers). Salary over Rs. 32,000/month must be paid via bank/digital means.",
   },
   {
     type: "input",
     displayRow: 32,
     description: "TRAVELING / CONVEYANCE / VEHICLES RUNNING / MAINTENANCE",
+    tooltip:
+      "Enter travel, conveyance, and vehicle costs for business purposes. Personal travel by directors/employees is not allowed",
   },
-  { type: "input", displayRow: 33, description: "ELECTRICITY / WATER / GAS" },
-  { type: "input", displayRow: 34, description: "COMMUNICATION" },
-  { type: "input", displayRow: 35, description: "REPAIR / MAINTENANCE" },
+  {
+    type: "input",
+    displayRow: 33,
+    description: "ELECTRICITY / WATER / GAS",
+    tooltip:
+      "Enter electricity, water, and gas charges for office/admin premises (not server rooms/factory).",
+  },
+  {
+    type: "input",
+    displayRow: 34,
+    description: "COMMUNICATION",
+    tooltip: "Enter telephone, internet, courier, and postage costs.",
+  },
+  {
+    type: "input",
+    displayRow: 35,
+    description: "REPAIR / MAINTENANCE",
+    tooltip:
+      "Enter repair/maintenance costs for office equipment, furniture, and non-production IT assets.",
+  },
   {
     type: "input",
     displayRow: 36,
     description: "STATIONERY / PRINTING / PHOTOCOPIES / OFFICE SUPPLIES",
+    tooltip:
+      "Enter costs of stationery, printing, photocopying, and office supplies",
   },
   {
     type: "input",
     displayRow: 37,
     description: "ADVERTISEMENT / PUBLICITY / PROMOTION",
+    tooltip: "Enter advertising, publicity, and marketing costs.",
   },
-  { type: "input", displayRow: 38, description: "INSURANCE" },
-  { type: "input", displayRow: 39, description: "PROFESSIONAL CHARGES" },
+  {
+    type: "input",
+    displayRow: 38,
+    description: "INSURANCE",
+    tooltip:
+      "Enter insurance premiums for office assets, general liability, or cyber insurance.",
+  },
+  {
+    type: "input",
+    displayRow: 39,
+    description: "PROFESSIONAL CHARGES",
+    tooltip:
+      "Enter fees paid to auditors, lawyers, tax consultants, and similar professionals. ",
+  },
   {
     type: "input",
     displayRow: 40,
     description: "PROFIT ON DEBT (FINANCIAL CHARGES / MARKUP / INTEREST)",
-    tooltip: "Enter the total interest, markup, or finance cost PAID on bank loans or borrowings. (Do not enter earned income here).",
+    tooltip: "Enter interest, markup, or financial charges on business loans.",
   },
-  { type: "input", displayRow: 41, description: "DONATION / CHARITY" },
-  { type: "input", displayRow: 42, description: "BROKERAGE / COMMISSION" },
-  { type: "input", displayRow: 43, description: "OTHER INDIRECT EXPENSES" },
-  { type: "input", displayRow: 44, description: "DIRECTORS FEE" },
+  {
+    type: "input",
+    displayRow: 41,
+    description: "DONATION / CHARITY",
+  },
+  {
+    type: "input",
+    displayRow: 42,
+    description: "BROKERAGE / COMMISSION",
+    tooltip:
+      "Enter brokerage or commission paid for general business purposes (not tied to a specific sale).",
+  },
+  {
+    type: "input",
+    displayRow: 43,
+    description: "OTHER INDIRECT EXPENSES",
+    tooltip:
+      "Enter any other admin or selling expense not listed above (bank charges, subscriptions, etc.).",
+  },
+  {
+    type: "input",
+    displayRow: 44,
+    description: "DIRECTORS FEE",
+    tooltip:
+      "Enter fees paid to directors for board meetings or director duties.",
+  },
   {
     type: "input",
     displayRow: 45,
     description: "WORKERS PROFIT PARTICIPATION FUND",
-    tooltip: "Enter the amount contributed to workers' profit sharing fund.",
+    tooltip:
+      "Enter the amount charged for Workers' Profit Participation Fund under the Companies Profits Act..",
   },
   {
     type: "input",
     displayRow: 46,
     description: "PROVISION FOR DOUBTFUL / BAD DEBTS",
     tooltip:
-      "Enter the amount of debts that may not be recovered. Example: If customer owes 100,000 and may not pay, enter 100,000.",
+      "Enter the accounting provision for receivables expected to turn bad. Tax law does NOT allow estimated provisions only actual debts written off qualify.",
   },
   {
     type: "input",
@@ -368,53 +486,56 @@ const tableStructure = [
     description:
       "PROVISION FOR OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS",
     tooltip:
-      "Enter the value of old/useless stock that may not be sold. Example: If you have 200,000 worth of slow-moving stock, enter 200,000.",
+      "Enter the accounting write down for stock or assets expected to lose value.",
   },
   {
     type: "input",
     displayRow: 48,
     description: "PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT",
     tooltip:
-      "Enter the decrease in value of your investments. Example: If investment of 500,000 is now worth 400,000, enter 100,000.",
+      "Enter the accounting write down when investment value falls below cost.",
   },
   {
     type: "input",
     displayRow: 49,
     description: "IRRECOVERABLE DEBTS WRITTEN OFF",
     tooltip:
-      "Enter the debts that cannot be recovered and are removed from accounts.",
+      "Enter the actual amount of debts formally written off this year (not a provision)",
   },
   {
     type: "input",
     displayRow: 50,
     description: "OBSOLETE STOCKS / STORES / SPARES / FIXED ASSETS WRITTEN OFF",
-    tooltip: "Enter the old/useless stock removed from accounts.",
+    tooltip:
+      "Enter the actual cost of stock or assets disposed of or written off as worthless this year. An actual loss, not an estimate.",
   },
   {
     type: "input",
     displayRow: 51,
     description: "ACCOUNTING (LOSS) ON SALE OF INTANGIBLES",
     tooltip:
-      "Enter the loss from selling non-physical assets for less than book value. Example: Bought for 200,000 sold for 150,000, enter 50,000.",
+      "Enter the loss recorded when an intangible asset (software, license) sold for less than book value.",
   },
   {
     type: "input",
     displayRow: 52,
     description: "ACCOUNTING (LOSS) ON SALE OF ASSETS",
     tooltip:
-      "Enter the loss from selling physical assets for less than book value. Example: Bought for 500,000 sold for 300,000, enter 200,000.",
+      "Enter the loss recorded when a fixed asset sold for less than book value.",
   },
   {
     type: "input",
     displayRow: 53,
     description: "ACCOUNTING AMORTIZATION",
-    tooltip: "Enter the annual amortization amount for intangible assets.",
+    tooltip:
+      "Enter amortisation of intangible assets used in admin functions, per accounting books. ",
   },
   {
     type: "input",
     displayRow: 54,
     description: "ACCOUNTING DEPRECIATION",
-    tooltip: "Enter the annual depreciation amount for physical assets.",
+    tooltip:
+      "Enter depreciation of office/admin assets as per accounting books.",
   },
 
   { type: "empty" },
@@ -433,25 +554,50 @@ const tableStructure = [
     type: "input",
     displayRow: 58,
     description: "FEE FOR TECHNICAL / PROFESSIONAL SERVICES",
-    tooltip: "Enter the fees earned from technical or professional services.",
+    tooltip:
+      "Enter fees earned for providing IT/technical services (software development, consulting, implementation) to clients.",
   },
-  { type: "input", displayRow: 59, description: "FEE FOR OTHER SERVICES" },
-  { type: "input", displayRow: 60, description: "PROFIT ON DEBT" },
-  { type: "input", displayRow: 61, description: "ROYALTY" },
-  { type: "input", displayRow: 62, description: "LICENSE / FRANCHISE FEE" },
+  {
+    type: "input",
+    displayRow: 59,
+    description: "FEE FOR OTHER SERVICES",
+    tooltip:
+      "Enter fees earned from any other service not classified as technical/professional (e.g., training, support, maintenance).",
+  },
+  {
+    type: "input",
+    displayRow: 60,
+    description: "PROFIT ON DEBT",
+    tooltip:
+      "Enter interest or profit on debt earned (e.g., bank deposits, loans given).",
+  },
+  {
+    type: "input",
+    displayRow: 61,
+    description: "ROYALTY",
+    tooltip:
+      "Enter royalty income earned from licensing your patents, trademarks, software IP, or proprietary technology.",
+  },
+  {
+    type: "input",
+    displayRow: 62,
+    description: "LICENSE / FRANCHISE FEE",
+    tooltip:
+      "Enter license or franchise fees earned from allowing others to use your brand, systems, or processes.",
+  },
   {
     type: "input",
     displayRow: 63,
     description: "ACCOUNTING GAIN ON SALE OF INTANGIBLES",
     tooltip:
-      "Enter the profit from selling non-physical assets for more than book value. Example: Bought for 200,000 sold for 300,000, enter 100,000.",
+      "Enter the accounting gain from selling intangible assets (software, patents, IP).",
   },
   {
     type: "input",
     displayRow: 64,
     description: "ACCOUNTING GAIN ON SALE OF ASSETS",
     tooltip:
-      "Enter the profit from selling physical assets for more than book value. Example: Bought for 500,000 sold for 700,000, enter 200,000.",
+      "Enter the accounting gain from selling fixed assets (computers, servers, equipment). ",
   },
   { type: "input", displayRow: 65, description: "OTHERS" },
 
@@ -461,7 +607,6 @@ const tableStructure = [
     displayRow: 66,
     description: "ACCOUNTING PROFIT/ (LOSS)",
     formula: "C26-C28+C56",
-    tooltip: "Auto-calculated. Profit shown in the company's accounting books.",
   },
 
   { type: "empty" },
@@ -482,164 +627,172 @@ const tableStructure = [
     displayRow: 69,
     description: "PROVISION FOR DOUBTFUL DEBTS",
     tooltip:
-      "Enter the amount of debts that may not be recovered. Example: If customer owes 100,000 and may not pay, enter 100,000.",
+      "Enter the amount of debts you think may not be recovered. This is an estimate and not an actual write-off.",
   },
   {
     type: "input",
     displayRow: 70,
     description: "PROVISION FOR OBSOLETE STOCKS",
-    tooltip: "Enter the value of old/useless stocks that may not be sold.",
+    tooltip:
+      "Enter the value of old/useless stock you expect to write off. This is an estimate and not an actual write-off.",
   },
   {
     type: "input",
     displayRow: 71,
     description: "PROVISION FOR DIMINUTION IN VALUE OF INVESTMENT",
-    tooltip: "Enter the decrease in value of your investments.",
+    tooltip:
+      "Enter the amount your investments have decreased in value. This is an estimate and not an actual write-off.",
   },
   {
     type: "input",
     displayRow: 72,
     description: "PROVISION FOR RESERVES / FUNDS",
-    tooltip: "Enter the amount set aside for future expenses or reserves.",
+    tooltip:
+      "Enter any amount you have set aside for future use. Not allowed as a deduction under tax law.",
   },
   {
     type: "input",
     displayRow: 73,
     description: "CESS / RATE / TAX LEVIED ON PROFITS",
-    tooltip: "Enter the additional tax like education cess charged on profits.",
+    tooltip:
+      "Enter any additional tax or cess charged on your profits. Tax on profit cannot be deducted.",
   },
   {
     type: "input",
     displayRow: 74,
     description: "AMOUNT OF TAX DEDUCTED AT SOURCE",
-    tooltip: "Only enter withholding tax here if it was mistakenly charged as an expense in your accounting P&L.",
+    tooltip:
+      "Enter Witholding Tax that you have shown as an expense. Tax deducted is your own liability, not a business cost.",
   },
   {
     type: "input",
     displayRow: 75,
     description: "PAYMENTS LIABLE TO TAX NOT DEDUCTED",
-    tooltip:
-      "Enter the amount of payments where tax should have been deducted but was not.",
+    tooltip: "Enter payments where you were supposed to deduct tax but didn't.",
   },
   {
     type: "input",
     displayRow: 76,
     description: "ENTERTAINMENT EXPENDITURE",
-    tooltip: "Enter the expenses on client dinners, lunches, or entertainment.",
+    tooltip:
+      "Enter entertainment expenses above FBR's limit. Only the excess amount is added back.",
   },
   {
     type: "input",
     displayRow: 77,
     description: "CONTRIBUTIONS TO UNRECOGNIZED FUNDS",
-    tooltip: "Enter the amounts given to funds not approved by FBR.",
+    tooltip:
+      "Enter contributions to funds that are not approved by tax authorities.",
   },
   {
     type: "input",
     displayRow: 78,
     description: "CONTRIBUTIONS TO FUNDS",
-    tooltip: "Enter the amounts given to approved funds like pension funds.",
+    tooltip:
+      "Enter contributions to funds that don't have Withholding Tax arrangement.",
   },
   {
     type: "input",
     displayRow: 79,
     description: "FINE / PENALTY",
-    tooltip: "Enter the penalties paid for violating any law or regulation.",
+    tooltip:
+      "Enter any fines or penalties you paid. Never allowed as a business deduction.",
   },
   {
     type: "input",
     displayRow: 80,
     description: "PERSONAL EXPENDITURE",
     tooltip:
-      "Enter the owner or partner's personal expenses not related to business.",
+      "Enter any personal expenses charged to the business. Completely disallowed.",
   },
   {
     type: "input",
     displayRow: 81,
     description: "AOP TO ITS MEMBER",
-    tooltip:
-      "Enter the amount paid by an Association of Persons (AOP) to its member.",
+    tooltip: "Only for AOPs — Companies leave zero.",
   },
   {
     type: "input",
     displayRow: 82,
     description: "EXPENDITURE EXCEEDING LIMIT",
-    tooltip: "Enter the cash payments made above FBR's prescribed limit.",
+    tooltip:
+      "Enter expenses over Rs. 250,000 paid in cash/cheque (not bank transfer).",
   },
   {
     type: "input",
     displayRow: 83,
     description: "EXPENDITURE NOT THROUGH DIGITAL MODE",
     tooltip:
-      "Enter the payments not made through digital modes like bank transfer.",
+      "Enter expenses over Rs. 250,000 not paid digitally. Not allowed once FBR notifies.",
   },
   {
     type: "input",
     displayRow: 84,
     description: "SALARY EXCEEDING LIMIT",
     tooltip:
-      "Enter the salary paid above FBR's limit without proper documentation.",
+      "Enter salary over Rs. 32,000 paid in cash. Entire salary is disallowed.",
   },
   {
     type: "input",
     displayRow: 85,
     description: "CAPITAL EXPENDITURE",
     tooltip:
-      "Enter the expenses on purchasing assets like machinery or buildings.",
+      "Enter expenses on buying assets or major improvements. Should be depreciated, not expensed.",
   },
   {
     type: "input",
     displayRow: 86,
     description: "EXPENDITURE ATTRIBUTABLE TO NON-BUSINESS INCOME",
     tooltip:
-      "Enter the expenses related to non-business income like personal property.",
+      "Enter expenses related to non-business income. Only business portion is allowed.",
   },
   {
     type: "input",
     displayRow: 87,
     description: "LEASE RENTAL NOT ADMISSIBLE",
     tooltip:
-      "Enter the lease rental expenses that are not allowed under tax laws.",
+      "Enter the disallowed portion of vehicle lease rentals (above Rs. 2.5 million financed amount).",
   },
   {
     type: "input",
     displayRow: 88,
     description: "TAX GAIN ON SALE OF INTANGIBLES",
     tooltip:
-      "Enter the profit from selling non-physical assets like software or patents.",
+      "Enter tax gain on sale of intangibles (patents, software, etc.). Reconciles with accounting gain.",
   },
   {
     type: "input",
     displayRow: 89,
     description: "TAX GAIN ON SALE OF ASSETS",
     tooltip:
-      "Enter the profit from selling physical assets like machinery or buildings.",
+      "Enter tax gain on sale of assets (computers, servers, etc.). Reconciles with accounting gain.",
   },
   {
     type: "input",
     displayRow: 90,
     description: "UTILITY BILLS EXCEEDING LIMIT",
     tooltip:
-      "Enter the utility bills (electricity, gas) paid above FBR's limit.",
+      "Enter utility bills above FBR's limit not paid via proper mode. Disallowed.",
   },
   {
     type: "input",
     displayRow: 91,
     description: "PROFIT ON DEBIT INADMISSIBLE U/S 106A",
     tooltip:
-      "Enter the profit that is inadmissible under Section 106A of tax law.",
+      "Only for foreign-controlled companies. Enter disallowed interest portion.",
   },
   {
     type: "input",
     displayRow: 92,
     description: "PRE-COMMENCEMENT EXPENDITURE",
     tooltip:
-      "Enter the expenses incurred before starting the business (registration, licenses).",
+      "Enter expenses incurred before starting business. Should be amortised, not expensed fully.",
   },
   {
     type: "input",
     displayRow: 93,
     description: "OTHER INADMISSIBLE DEDUCTIONS",
-    tooltip: "Enter other deductions that are not admissible under tax laws.",
+    tooltip: "Enter any other expense not allowed by tax law.",
   },
 
   { type: "empty" },
@@ -660,33 +813,35 @@ const tableStructure = [
     displayRow: 102,
     description: "ACCOUNTING GAIN ON SALE OF INTANGIBLES",
     tooltip:
-      "Enter the profit from selling non-physical assets for more than book value.",
+      "Enter the accounting gain from selling intangible assets (software, patents, IP) as recorded in your books.",
   },
   {
     type: "input",
     displayRow: 103,
     description: "ACCOUNTING GAIN ON SALE OF ASSETS",
     tooltip:
-      "Enter the profit from selling physical assets for more than book value.",
+      "Enter the accounting gain from selling fixed assets (computers, servers, equipment) as recorded in your books. ",
   },
   {
     type: "input",
     displayRow: 104,
     description: "OTHER ADMISSIBLE DEDUCTIONS",
+    tooltip:
+      "Enter any other tax allowed deduction not listed above (e.g., R&D costs, employee training, scientific research)",
   },
   {
     type: "input",
     displayRow: 105,
     description: "TAX (LOSS) ON SALE OF INTANGIBLES",
     tooltip:
-      "Enter the tax loss on sale of non-physical assets like software or patents.",
+      "Enter the loss from selling software/patents/IP as calculated under tax rules. This is the actual loss allowed under Section 24",
   },
   {
     type: "input",
     displayRow: 106,
     description: "TAX (LOSS) ON SALE OF ASSETS",
     tooltip:
-      "Enter the tax loss on sale of physical assets like machinery or buildings.",
+      "Enter the loss from selling computers/servers/equipment as calculated under tax rules. This is the actual loss allowed under Section 22",
   },
 
   { type: "empty" },
@@ -706,20 +861,21 @@ const tableStructure = [
     displayRow: 111,
     description: "TAX AMORTIZATION FOR CURRENT YEAR",
     tooltip:
-      "Enter the amortization amount claimed for tax purposes this year.",
+      "Enter tax amortisation for software, licenses, or patents. Calculate cost divided by useful life (max 15 years). Do NOT enter your accounting figure.",
   },
   {
     type: "input",
     displayRow: 112,
     description: "TAX DEPRECIATION / INITIAL ALLOWANCE",
     tooltip:
-      "Enter the depreciation or initial allowance claimed for tax purposes this year.",
+      "Enter tax depreciation + initial allowance for assets bought this year. Do NOT enter your accounting figure.",
   },
   {
     type: "input",
     displayRow: 113,
     description: "PRE-COMMENCEMENT EXPENDITURE",
-    tooltip: "Enter the expenses incurred before starting the business.",
+    tooltip:
+      "Enter this year's instalment of pre-startup costs (feasibility studies, trial production) spread evenly under tax rules.",
   },
 
   // Row 115: BUSINESS INCOME
@@ -754,7 +910,8 @@ const tableStructure = [
     type: "input",
     displayRow: 124,
     description: "WORKERS WELFARE FUND U/S 60A",
-    tooltip: "Enter the amount paid to the workers welfare fund.",
+    tooltip:
+      "Enter the Workers' Welfare Fund amount actually paid this year (not just set aside).",
   },
 
   { type: "empty" },
@@ -833,7 +990,8 @@ const tableStructure = [
     type: "tax-input",
     displayRow: 140,
     description: "Tax Credit for Charitable Donations",
-    tooltip: "Enter the tax credit received for making charitable donations.",
+    tooltip:
+      "Enter the amount of donations you gave to approved charities, universities, or non-profits via crossed cheque.",
   },
 
   // Row 141: OTHER CREDITS
@@ -848,7 +1006,9 @@ const tableStructure = [
   {
     type: "startup-dropdown",
     displayRow: 142,
-    description: "Are you a startup or IT services Exporter?",
+    description: "Are you a startup or IT services Exporter.",
+    toottip:
+      "Select Yes if PSEB-certified startup (100% tax credit) or IT exporter (0.25% tax rate). Select No otherwise.",
   },
 
   { type: "empty", displayRow: 143 },
@@ -877,25 +1037,27 @@ const tableStructure = [
     displayRow: 147,
     description: "WITHHOLDING INCOME TAX",
     tooltip:
-      "Enter the total adjustable withholding tax (WHT) deducted from company payments (e.g., imports, utilities, bank transactions)",
+      "Enter the total tax that customers, banks, or others deducted from your payments this year (as shown on your Withholding tax certificates). ",
   },
   {
     type: "e-input",
     displayRow: 148,
     description: "ADVANCE INCOME TAX",
-    tooltip: "Enter the total advance tax paid through quarterly challans during the year. This includes all 4 regular installments (Sep, Dec, Mar, Jun). Example: If you paid 250,000 each quarter, enter 1,000,000.",
+    tooltip: "Enter the quarterly advance tax instalments you paid",
   },
   {
     type: "e-input",
     displayRow: 149,
     description: "ADVANCE INCOME TAX U/S 147(A)",
-    tooltip: "Section 147(A): Enter voluntary extra advance tax paid outside quarterly installments. Example: Paid 200,000 extra, enter 200,000.",
+    tooltip:
+      "Enter the advance tax paid at 3% of turnover declared to a provincial revenue authority (only for sales tax registered persons)",
   },
   {
     type: "e-input",
     displayRow: 150,
     description: "ADVANCE INCOME TAX U/S 147(5B)",
-    tooltip: "Section 147(5B): Enter advance tax paid on specific transactions like property sale, vehicle sale, etc. This is separate from regular advance tax.",
+    tooltip:
+      "Enter the adjustable advance tax paid quarterly on capital gains from selling securities. 2% if held under 6 months, 1.5% if held 6 to 12 months. Does not apply to individual investors..",
   },
 ];
 
@@ -907,7 +1069,6 @@ function formatNumber(num) {
   if (num === null || num === undefined || isNaN(num)) return "0";
   return Math.round(num).toLocaleString("en-US");
 }
-
 
 // =========================================================================
 // CREATE TABLE ROW
@@ -931,7 +1092,7 @@ function createTableRow(item, index) {
   // Helper function to render description with tooltip
   const renderDescription = (description, tooltip) => {
     if (tooltip) {
-      return `${description} <span class="info-icon" data-tooltip="${tooltip.replace(/"/g, '&quot;')}">?</span>`;
+      return `${description} <span class="info-icon" data-tooltip="${tooltip.replace(/"/g, "&quot;")}">?</span>`;
     }
     return description;
   };
@@ -1317,5 +1478,3 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
