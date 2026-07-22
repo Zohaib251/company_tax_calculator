@@ -123,7 +123,7 @@ class TaxEngine {
     // D15 = SUM(D17:D25)
     this.data["D15"] = this.sumRange("D", 17, 25);
     // E15 = SUM(E17:E25) - Note: Excel shows E16:E25 but should be E17:E25
-    this.data["E15"] = this.sumRange("E", 17, 25);
+    this.data["E15"] = this.sumRange("E", 16, 25);
 
     // Apply proportional exemption to direct expenses (rows 17-25)
     for (let i = 17; i <= 25; i++) {
@@ -288,7 +288,7 @@ class TaxEngine {
     this.data["E129"] = taxableIncome > 0 ? taxableIncome * 0.29 : 0;
 
     // E130: FINAL/FIXED TAX @ 2.5%
-    this.data["E130"] = this.getValue("D5") * 0.025;
+    this.data["E130"] = this.getValue("D5") * 0.0025;
 
     // E131: ALTERNATE CORPORATE TAX @ 17% (with IF condition)
     const accountingProfit = this.getValue("C66");
