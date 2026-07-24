@@ -140,8 +140,8 @@ const fbrCodeMapping = {
   E141: { field: "TAX CREDIT FOR CERTAIN PERSONS", code: "931901" },
   E144: { field: "NET TAX LIABILITY", code: "" },
   E146: { field: "ADVANCE TAX TOTAL", code: "" },
-  E147: { field: "WITHHOLDING INCOME TAX", code: "9201" },
-  E148: { field: "ADVANCE INCOME TAX", code: "9202" },
+  E147: { field: "TAX DEDUCTED ON EXPORTS (BY BANK)", code: "9201" },
+  E148: { field: "TAX DEDUCTED ON LOCAL SALES (BY CLIENTS)", code: "9202" },
   E149: { field: "ADVANCE INCOME TAX U/S 147(A)", code: "92022" },
   E150: { field: "ADVANCE INCOME TAX U/S 147(5B)", code: "92021" },
   E152: { field: "ADMITTED INCOME TAX", code: "9203" },
@@ -212,9 +212,9 @@ const tableStructure = [
   {
     type: "pseb-dropdown",
     displayRow: 6,
-    description: "Is Company registered with PSEB",
+    description: "Is the Company registered with PSEB?",
     tooltip:
-      "Select Yes if your company is registered with PSEB. PSEB-registered companies get a special benefit: export sales are taxed at only 0.25% under Section 154A instead of the normal rate (29% or 1%).",
+      "Select 'Yes' if you hold a valid Pakistan Software Export Board registration to legally qualify your IT/ITeS exports.",
   },
   { type: "empty" },
   { type: "empty" },
@@ -235,7 +235,7 @@ const tableStructure = [
     description:
       "DOMESTIC COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
     tooltip:
-      "Enter commission, brokerage, discounts, or delivery costs paid on local sales.",
+      "Enter any commission, discounts, or local marketing agent fees paid specifically to generate domestic sales.",
   },
 
   // Row 10: FOREIGN COMMISSION
@@ -245,7 +245,7 @@ const tableStructure = [
     description:
       "FOREIGN COMMISSION/ BROKERAGE/ DISCOUNT/ FREIGHT OUTWARD, etc.",
     tooltip:
-      "Enter commission, brokerage, discounts, or freight costs related to export sales.",
+      "Enter commissions or platform fees paid internationally (e.g., Upwork service fees, global affiliate commissions) to secure export contracts.",
   },
 
   // Row 11: REBATE/DUTY DRAWBACKS
@@ -253,7 +253,7 @@ const tableStructure = [
     type: "input",
     displayRow: 11,
     description: "REBATE/ DUTY DRAWBACKS",
-    tooltip: "Enter the total rebate or duty drawback received on exports.",
+    tooltip: "Enter any government cash-support, export rebates, or duty drawbacks received on your software or technology exports.",
   },
 
   { type: "empty" },
@@ -279,15 +279,13 @@ const tableStructure = [
     type: "input",
     displayRow: 17,
     description: "SALARIES/ WAGES",
-    tooltip:
-      "Enter salaries paid to software developers, engineers, and IT delivery staff directly involved in software development, implementation, or IT services. This does NOT include admin/office staff.",
+   tooltip: "Enter salaries paid directly to your technical team—software engineers, developers, UI/UX designers, and QA testers actively building your IT products or services.",
   },
   {
     type: "input",
     displayRow: 18,
     description: "POWER",
-    tooltip:
-      "Enter electricity charges for your IT infrastructure server rooms, data centers, or development labs. Separate from general office electricity.",
+    tooltip: "Enter electricity bills specifically consumed by your server infrastructure, data hosting units, or heavy technical development labs.",
   },
   {
     type: "input",
@@ -300,8 +298,7 @@ const tableStructure = [
     type: "input",
     displayRow: 20,
     description: "REPAIR/ MAINTENANCE",
-    tooltip:
-      "Enter repair/maintenance costs for IT equipment servers, computers, networking hardware, and office IT infrastructure",
+    tooltip: "Enter maintenance costs for core technical hardware like developer workstations, servers, and dedicated networking gear.",
   },
   {
     type: "input",
@@ -322,7 +319,7 @@ const tableStructure = [
     displayRow: 23,
     description: "OTHER DIRECT EXPENSES",
     tooltip:
-      "Enter other IT project costs not listed above cloud hosting fees (AWS, Azure), software subscriptions, third-party APIs, or development tools. Must be directly related to your IT services to qualify",
+      "Enter other IT project costs not listed above like cloud hosting fees (AWS, Azure), software subscriptions, third-party APIs, or development tools. Must be directly related to your IT services to qualify",
   },
   {
     type: "input",
@@ -385,7 +382,7 @@ const tableStructure = [
     displayRow: 32,
     description: "TRAVELING / CONVEYANCE / VEHICLES RUNNING / MAINTENANCE",
     tooltip:
-      "Enter travel, conveyance, and vehicle costs for business purposes. Personal travel by directors/employees is not allowed",
+      "Enter official business travel expenses, client meetings conveyance, or company vehicle running costs for management.",
   },
   {
     type: "input",
@@ -444,13 +441,14 @@ const tableStructure = [
     type: "input",
     displayRow: 41,
     description: "DONATION / CHARITY",
+    tooltip: "Enter donations given to approved non-profits, educational trusts, or welfare institutions via proper cross-cheque/banking channels.",
   },
   {
     type: "input",
     displayRow: 42,
     description: "BROKERAGE / COMMISSION",
     tooltip:
-      "Enter brokerage or commission paid for general business purposes (not tied to a specific sale).",
+      "Enter brokerage or commission paid for general business purposes.",
   },
   {
     type: "input",
@@ -478,7 +476,7 @@ const tableStructure = [
     displayRow: 46,
     description: "PROVISION FOR DOUBTFUL / BAD DEBTS",
     tooltip:
-      "Enter the accounting provision for receivables expected to turn bad. Tax law does NOT allow estimated provisions only actual debts written off qualify.",
+      "Enter estimated bad debts. Note: FBR does NOT allow accounting estimates as deductions unless the debt is formally written off.",
   },
   {
     type: "input",
@@ -674,8 +672,8 @@ const tableStructure = [
     type: "input",
     displayRow: 76,
     description: "ENTERTAINMENT EXPENDITURE",
-    tooltip:
-      "Enter entertainment expenses above FBR's limit. Only the excess amount is added back.",
+  tooltip:
+      "Enter office/client entertainment costs. Note: Under FBR rules, any entertainment expenses that are personal in nature, lack proper verification, or exceed reasonable business limits must be entered here as an inadmissible add-back.",
   },
   {
     type: "input",
@@ -810,24 +808,10 @@ const tableStructure = [
   // Rows 102-106: Admissible Deductions
   {
     type: "input",
-    displayRow: 102,
-    description: "ACCOUNTING GAIN ON SALE OF INTANGIBLES",
-    tooltip:
-      "Enter the accounting gain from selling intangible assets (software, patents, IP) as recorded in your books.",
-  },
-  {
-    type: "input",
-    displayRow: 103,
-    description: "ACCOUNTING GAIN ON SALE OF ASSETS",
-    tooltip:
-      "Enter the accounting gain from selling fixed assets (computers, servers, equipment) as recorded in your books. ",
-  },
-  {
-    type: "input",
     displayRow: 104,
     description: "OTHER ADMISSIBLE DEDUCTIONS",
     tooltip:
-      "Enter any other tax allowed deduction not listed above (e.g., R&D costs, employee training, scientific research)",
+      "Enter any other tax allowed deduction not listed below (e.g., R&D costs, employee training, scientific research)",
   },
   {
     type: "input",
@@ -847,40 +831,9 @@ const tableStructure = [
   { type: "empty" },
   { type: "empty" },
 
-  // Row 110: TAX DEPRECIATION TOTAL
-  {
-    type: "total",
-    displayRow: 110,
-    description: "TAX DEPRECIATION/ INITIAL ALLOWANCE/ AMORTISATION",
-    formula: "C111:C113",
-  },
-
-  // Rows 111-113: Tax Depreciation
-  {
-    type: "input",
-    displayRow: 111,
-    description: "TAX AMORTIZATION FOR CURRENT YEAR",
-    tooltip:
-      "Enter tax amortisation for software, licenses, or patents. Calculate cost divided by useful life (max 15 years). Do NOT enter your accounting figure.",
-  },
-  {
-    type: "input",
-    displayRow: 112,
-    description: "TAX DEPRECIATION / INITIAL ALLOWANCE",
-    tooltip:
-      "Enter tax depreciation + initial allowance for assets bought this year. Do NOT enter your accounting figure.",
-  },
-  {
-    type: "input",
-    displayRow: 113,
-    description: "PRE-COMMENCEMENT EXPENDITURE",
-    tooltip:
-      "Enter this year's instalment of pre-startup costs (feasibility studies, trial production) spread evenly under tax rules.",
-  },
-
   // Row 115: BUSINESS INCOME
   {
-    type: "calculated",
+    type: "total",
     displayRow: 115,
     description: "INCOME/ LOSS FROM BUSINESS",
     formula: "C108-C110",
@@ -911,7 +864,7 @@ const tableStructure = [
     displayRow: 124,
     description: "WORKERS WELFARE FUND U/S 60A",
     tooltip:
-      "Enter the Workers' Welfare Fund amount actually paid this year (not just set aside).",
+      "Enter the Workers' Welfare Fund amount actually paid this year.",
   },
   { type: "empty" },
 
@@ -928,7 +881,7 @@ const tableStructure = [
     displayRow: 140,
     description: "Tax Credit for Charitable Donations",
     tooltip:
-      "Enter the amount of donations you gave to approved charities, universities, or non-profits via crossed cheque.",
+      "Enter donations made specifically to approved charitable organizations or associated trusts to claim proportional tax credits..",
   },
 
   // Row 141: OTHER CREDITS
@@ -943,15 +896,13 @@ const tableStructure = [
   {
     type: "startup-dropdown",
     displayRow: 142,
-    description: "Are you a startup or IT services Exporter.",
+    description: "Are you a Certified Startup.",
     tooltip:
-      "Select Yes if PSEB Certified Startup (100% tax credit) or IT exporter (0.25% tax rate). Select No otherwise.",
+      "Select 'Yes' ONLY if your tech business is PSEB-certified, has annual sales under Rs. 100 million, and is still within its first 3 years of certification.",
   },
 
-/*   { type: "empty", displayRow: 143 }, */
-
-
   { type: "empty" },
+  
   // Row 146: ADVANCE TAX TOTAL
   {
     type: "tax-result",
@@ -960,35 +911,24 @@ const tableStructure = [
     formula: "SUM(E147:E150)",
   },
 
-  // Row 147-150: Advance Tax Inputs
+  // =========================================================================
+  // NEW: 2 SEPARATE WITHHOLDING TAX INPUTS
+  // =========================================================================
   {
     type: "e-input",
     displayRow: 147,
-    description: "WITHHOLDING INCOME TAX",
-    tooltip:
-      "Enter the total tax that customers, banks, or others deducted from your payments this year (as shown on your Withholding tax certificates). ",
+    description: "Tax Deducted on Exports (By Bank)",
+   tooltip: "Enter the precise total tax withheld by banks on incoming foreign exchange earnings for your IT/ITeS services as per your PRC certificates.",
   },
   {
     type: "e-input",
     displayRow: 148,
-    description: "ADVANCE INCOME TAX",
-    tooltip: "Enter the quarterly advance tax instalments you paid",
-  },
-  {
-    type: "e-input",
-    displayRow: 149,
-    description: "ADVANCE INCOME TAX U/S 147(A)",
+    description: "Tax Deducted on Local Services (By Clients)",
     tooltip:
-      "Enter the advance tax paid at 3% of turnover declared to a provincial revenue authority (only for sales tax registered persons)",
+      "Enter the exact tax amount deducted by your local clients. Only claim if you have the Computerised Payment Receipt..",
   },
-  {
-    type: "e-input",
-    displayRow: 150,
-    description: "ADVANCE INCOME TAX U/S 147(5B)",
-    tooltip:
-      "Enter the adjustable advance tax paid quarterly on capital gains from selling securities. 2% if held under 6 months, 1.5% if held 6 to 12 months. Does not apply to individual investors..",
-  },
-   { type: "empty" },
+  
+  { type: "empty" },
 
   // Row 126: TAXABLE INCOME
   {
@@ -1049,31 +989,25 @@ const tableStructure = [
     formula: "IF((E132>E129),(E132-E129),0)",
   },
 
- /*  { type: "empty", displayRow: 138 }, */
-
-  
-
   // Row 144: NET TAX LIABILITY
   {
     type: "tax-result",
     displayRow: 144,
     description: "Net TAX LIABILITY",
     formula: "E128-E139",
-  },{
+  }, 
+  {
     type: "tax-result",
     displayRow: 152,
     description: "Admitted Income Tax",
     formula: "=IF((E146>E144),0,(E144-E146))",
-  },{
+  }, 
+  {
     type: "tax-result",
     displayRow: 153,
     description: "Refundable Income tax",
     formula: "=IF(E152>0,0,(E146-E144))",
-  },
-
-  /* { type: "empty", displayRow: 145 }, */
-
-  
+  }
 ];
 
 // =========================================================================
@@ -1191,6 +1125,7 @@ function createTableRow(item, index) {
         </td>
       `;
       break;
+  
 
     case "ratio":
       row.innerHTML = `

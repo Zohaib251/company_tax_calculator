@@ -38,15 +38,6 @@
       .guide-header h1 span {
         color: #3498db;
       }
-      .badge {
-        display: inline-block;
-        background: #3498db;
-        color: #fff;
-        font-size: 13px;
-        padding: 4px 18px;
-        border-radius: 20px;
-        margin-top: 10px;
-      }
       .step {
         border-left: 5px solid #3498db;
         background: #f8f9fa;
@@ -148,6 +139,10 @@
         font-weight: bold;
         color: #38a169;
       }
+      .auto-calc-row {
+        background: #f1f5f9;
+        color: #64748b;
+      }
     </style>
   </head>
   <body>
@@ -162,7 +157,7 @@
           <span class="step-number">1</span> Visit IRIS Portal
         </div>
         <div class="instruction">
-          🔗 Go to: <strong>https://iris.fbr.gov.pk</strong>
+          Go to: <strong>https://iris.fbr.gov.pk</strong>
         </div>
       </div>
       <!-- ================= Step 2 ================= -->
@@ -181,18 +176,44 @@
         </div>
         <div class="instruction">
           Click on <strong>"Income Tax Return"</strong> → then write
-          <strong>01-JUL-2024 - 30-JUN-2025</strong>
+          <strong>01-JUL-2025 - 30-JUN-2026</strong>
         </div>
       </div>
       <!-- ================= Step 4 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">4</span> Manufacturing / Trading Account
+          <span class="step-number">4</span> Resident Status & Start Filing
+        </div>
+        <div class="step-description">
+          Click on <strong>Income From business</strong> and answer the Yes/No
+          question below it:
+          <strong
+            >Are you a Tax Resident of Pakistan as per sections 82 to 84 of ITO,
+            2001?</strong
+          >
+        </div>
+        <div class="instruction">
+          <strong>Definition of Resident company:</strong> A company shall be a
+          resident company for a tax year if —<br />
+          (a) it is incorporated or formed by or under any law in force in
+          Pakistan;<br />
+          (b) the control and management of the affairs of the company is
+          situated wholly in Pakistan at any time in the year; or<br />
+          (c) it is a Provincial Government or Local Government in Pakistan.
+        </div>
+        <div class="special-instruction">
+          After answering, click on
+          <strong>"Start Return filing"</strong> button
+        </div>
+      </div>
+      <!-- ================= Step 5 ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">5</span> Manufacturing/ Trading Items
         </div>
         <div class="step-description">
           On left sidebar Click on <strong>Business </strong> then
-          <strong>Manufacturing / Items</strong>. Then enter the value on
-          respective fields.
+          <strong>Manufacturing/ Trading Items</strong>. Then enter the values.
         </div>
 
         <div class="table-wrap">
@@ -202,7 +223,7 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+                <th>Subject to Final Tax</th>
               </tr>
             </thead>
             <tbody>
@@ -294,17 +315,17 @@
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
-      <!-- ================= Step 5 ================= -->
+      <!-- ================= Step 6 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">5</span> Other Revenues
+          <span class="step-number">6</span> Other Revenues
         </div>
         <div class="step-description">
           On left sidebar then Click on <strong>Other Revenues</strong>. Then
-          enter the value on respective fields.
+          enter the values.
         </div>
 
         <div class="table-wrap">
@@ -314,7 +335,7 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+                <th>Subject to Final / Fixed Tax</th>
               </tr>
             </thead>
             <tbody>
@@ -370,20 +391,20 @@
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
-      <!-- ================= Step 6 ================= -->
+      <!-- ================= Step 7 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">6</span> Management, Administrative &amp;
-          Indirect Expenses
+          <span class="step-number">7</span> Admin, Selling & Financial Expenses
         </div>
         <div class="step-description">
           On left sidebar then Click on
-          <strong
-            >Management, Adminstrative, Selling & Financial Expenses</strong
-          >. Then enter the value on respective fields.
+          <strong>Admin, Selling & Financial Expenses</strong>. <br /><br />
+          <strong>Note:</strong> If any expense field is not visible, click on
+          <strong>+Other expenses</strong> then select that field to add it, and
+          then enter your value.
         </div>
 
         <div class="table-wrap">
@@ -393,7 +414,7 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+                <th>Subject to Final Tax</th>
               </tr>
             </thead>
             <tbody>
@@ -557,18 +578,20 @@
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
-      <!-- ================= Step 7 ================= -->
+      <!-- ================= Step 8 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">7</span> Inadmissible Deductions
+          <span class="step-number">8</span> Inadmissible Deductions
         </div>
         <div class="step-description">
           On left sidebar then Click on
-          <strong>Inadmissible / Admissible Deductions</strong>. Then enter the
-          value on respective fields.
+          <strong>Inadmissible / Admissible Deductions</strong>.<br /><br />
+          <strong>Note:</strong> If any field is not visible, click on the
+          <strong>+Inadmissible</strong> button select it, add it, and then
+          enter your value.
         </div>
 
         <div class="table-wrap">
@@ -578,151 +601,151 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+                <th>Subject to Final Tax</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="code-column">3201</td>
-                <td>Provision for Doubtful Debts</td>
+                <td>Add Backs u/s 29(2) Provision for Doubtful Debts </td>
                 <td class="amount-column" id="guideC69">0</td>
                 <td class="exempt-column" id="guideD69">0</td>
               </tr>
               <tr>
                 <td class="code-column">3202</td>
-                <td>Provision for Obsolete Stocks</td>
+                <td>Add Backs Provision for Obsolete Stocks / Stores / Spares / Fixed Assets </td>
                 <td class="amount-column" id="guideC70">0</td>
                 <td class="exempt-column" id="guideD70">0</td>
               </tr>
               <tr>
                 <td class="code-column">3203</td>
-                <td>Provision for Diminution in Value</td>
+                <td>Add Backs Provision for Diminution in Value of Investment </td>
                 <td class="amount-column" id="guideC71">0</td>
                 <td class="exempt-column" id="guideD71">0</td>
               </tr>
               <tr>
                 <td class="code-column">3204</td>
-                <td>Provision for Reserves / Funds</td>
+                <td>Add Backs u/s 21(i) Provision for Reserves / Funds / Amount carried to Reserves / Funds or Capitalized</td>
                 <td class="amount-column" id="guideC72">0</td>
                 <td class="exempt-column" id="guideD72">0</td>
               </tr>
               <tr>
                 <td class="code-column">3205</td>
-                <td>Cess / Rate / Tax Levied on Profits</td>
+                <td>Add Backs u/s 21(a) Cess / Rate / Tax levied on Profits / Gains</td>
                 <td class="amount-column" id="guideC73">0</td>
                 <td class="exempt-column" id="guideD73">0</td>
               </tr>
               <tr>
                 <td class="code-column">3206</td>
-                <td>Amount of Tax Deducted at Source</td>
+                <td>Add Backs u/s 21(b) Amount of Tax Deducted at Source</td>
                 <td class="amount-column" id="guideC74">0</td>
                 <td class="exempt-column" id="guideD74">0</td>
               </tr>
               <tr>
                 <td class="code-column">3207</td>
-                <td>Payments Liable to Tax Not Deducted</td>
+                <td>Add Backs u/s 21(c) Payments liable to Deduction of Tax at Source but Tax not Deducted / Paid</td>
                 <td class="amount-column" id="guideC75">0</td>
                 <td class="exempt-column" id="guideD75">0</td>
               </tr>
               <tr>
                 <td class="code-column">3208</td>
-                <td>Entertainment Expenditure</td>
+                <td>Add Backs u/s 21(d) Entertainment Expenditure above prescribed limit</td>
                 <td class="amount-column" id="guideC76">0</td>
                 <td class="exempt-column" id="guideD76">0</td>
               </tr>
               <tr>
                 <td class="code-column">3209</td>
-                <td>Contributions to Unrecognized Funds</td>
+                <td>Add Backs u/s 21(e) Contributions to Unrecognized / Unapproved Funds</td>
                 <td class="amount-column" id="guideC77">0</td>
                 <td class="exempt-column" id="guideD77">0</td>
               </tr>
               <tr>
                 <td class="code-column">3210</td>
-                <td>Contributions to Funds</td>
+                <td>Add Backs u/s 21(f) Contributions to Funds not under effective arrangement for deduction of Tax at source</td>
                 <td class="amount-column" id="guideC78">0</td>
                 <td class="exempt-column" id="guideD78">0</td>
               </tr>
               <tr>
                 <td class="code-column">3211</td>
-                <td>Fine / Penalty</td>
+                <td>Add Backs u/s 21(g) Fine / Penalty for violation of any law / rule / regulation</td>
                 <td class="amount-column" id="guideC79">0</td>
                 <td class="exempt-column" id="guideD79">0</td>
               </tr>
               <tr>
                 <td class="code-column">3212</td>
-                <td>Personal Expenditure</td>
+                <td>Add Backs u/s 21(h) Personal Expenditure</td>
                 <td class="amount-column" id="guideC80">0</td>
                 <td class="exempt-column" id="guideD80">0</td>
               </tr>
               <tr>
                 <td class="code-column">3213</td>
-                <td>AOP to its Member</td>
+                <td>Add Backs u/s 21(j) Profit on Debt / brokerage / Commission / salary / remuneration Paid by an AOP to its member</td>
                 <td class="amount-column" id="guideC81">0</td>
                 <td class="exempt-column" id="guideD81">0</td>
               </tr>
               <tr>
                 <td class="code-column">3215</td>
-                <td>Expenditure Exceeding Limit</td>
+                <td>Add Backs u/s 21(l) Expenditure under a single Account head exceeding prescribed amount not paid through prescribed mode</td>
                 <td class="amount-column" id="guideC82">0</td>
                 <td class="exempt-column" id="guideD82">0</td>
               </tr>
               <tr>
                 <td class="code-column">3228</td>
-                <td>Expenditure Not Through Digital Mode</td>
+                <td>Add Backs u/s 21(la) Expenditure under a single Account head exceeding prescribed amount not paid through digital mode</td>
                 <td class="amount-column" id="guideC83">0</td>
                 <td class="exempt-column" id="guideD83">0</td>
               </tr>
               <tr>
                 <td class="code-column">3216</td>
-                <td>Salary Exceeding Limit</td>
+                <td>Add Backs u/s 21(m) Salary exceeding prescribed amount not paid through prescribed mode</td>
                 <td class="amount-column" id="guideC84">0</td>
                 <td class="exempt-column" id="guideD84">0</td>
               </tr>
               <tr>
                 <td class="code-column">3217</td>
-                <td>Capital Expenditure</td>
+                <td>Add Backs u/s 21(n) Capital Expenditure</td>
                 <td class="amount-column" id="guideC85">0</td>
                 <td class="exempt-column" id="guideD85">0</td>
               </tr>
               <tr>
                 <td class="code-column">3218</td>
-                <td>Expenditure Attributable to Non-Business</td>
+                <td>Add Backs u/s 67(1) Expenditure attributable to Non-Business Incom</td>
                 <td class="amount-column" id="guideC86">0</td>
                 <td class="exempt-column" id="guideD86">0</td>
               </tr>
               <tr>
                 <td class="code-column">3220</td>
-                <td>Lease Rental Not Admissible</td>
+                <td>Add Backs u/s 28(1)(b) Lease Rental not admissible</td>
                 <td class="amount-column" id="guideC87">0</td>
                 <td class="exempt-column" id="guideD87">0</td>
               </tr>
               <tr>
                 <td class="code-column">3225</td>
-                <td>Tax Gain on Sale of Intangibles</td>
+                <td>Add Backs Tax Gain on Sale of Intangibles </td>
                 <td class="amount-column" id="guideC88">0</td>
                 <td class="exempt-column" id="guideD88">0</td>
               </tr>
               <tr>
                 <td class="code-column">3226</td>
-                <td>Tax Gain on Sale of Assets</td>
+                <td>Add Backs Tax Gain on Sale of Assets</td>
                 <td class="amount-column" id="guideC89">0</td>
                 <td class="exempt-column" id="guideD89">0</td>
               </tr>
               <tr>
                 <td class="code-column">322902</td>
-                <td>Utility Bills Exceeding Limit</td>
+                <td>Add Backs u/s 21(p) Utility Bills exceeding prescribed amount not paid through prescribed mode</td>
                 <td class="amount-column" id="guideC90">0</td>
                 <td class="exempt-column" id="guideD90">0</td>
               </tr>
               <tr>
                 <td class="code-column">322904</td>
-                <td>Profit on Debit Inadmissible u/s 106A</td>
+                <td>Deduction on profit on debit inadmissible u/s 106A</td>
                 <td class="amount-column" id="guideC91">0</td>
                 <td class="exempt-column" id="guideD91">0</td>
               </tr>
               <tr>
                 <td class="code-column">3230</td>
-                <td>Pre-Commencement Expenditure (Inadmissible)</td>
+                <td>Add Backs Pre-Commencement Expenditure / Deferred Cost </td>
                 <td class="amount-column" id="guideC92">0</td>
                 <td class="exempt-column" id="guideD92">0</td>
               </tr>
@@ -736,20 +759,21 @@
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
-      <!-- ================= Step 8 ================= -->
+      <!-- ================= Step 9 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">8</span> Admissible Deductions &amp; Tax
-          Depreciation
+          <span class="step-number">9</span> Admissible Deductions
         </div>
         <div class="step-description">
           Stay on <strong>Inadmissible / Admissible Deductions</strong> section.
           Scroll down to bottom you see
-          <strong>Admissible Deductions</strong> section. Enter the value on
-          respective fields.
+          <strong>Admissible Deductions</strong> section.<br /><br />
+          <strong>Note:</strong> If any field is not visible, click on the
+          <strong>+Admissible</strong> button select it, add it, and then enter
+          your value.
         </div>
 
         <div class="table-wrap">
@@ -759,22 +783,10 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
+                <th>Subject to Final Tax</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="code-column">3245</td>
-                <td>Accounting Gain on Intangibles</td>
-                <td class="amount-column" id="guideC102">0</td>
-                <td class="exempt-column" id="guideD102">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">3246</td>
-                <td>Accounting Gain on Assets</td>
-                <td class="amount-column" id="guideC103">0</td>
-                <td class="exempt-column" id="guideD103">0</td>
-              </tr>
               <tr>
                 <td class="code-column">3254</td>
                 <td>Other Admissible Deductions</td>
@@ -793,67 +805,11 @@
                 <td class="amount-column" id="guideC106">0</td>
                 <td class="exempt-column" id="guideD106">0</td>
               </tr>
-              <tr>
-                <td class="code-column">3247</td>
-                <td>Tax Amortization for Current Year</td>
-                <td class="amount-column" id="guideC111">0</td>
-                <td class="exempt-column" id="guideD111">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">3248</td>
-                <td>Tax Depreciation / Initial Allowance</td>
-                <td class="amount-column" id="guideC112">0</td>
-                <td class="exempt-column" id="guideD112">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">3250</td>
-                <td>Pre-Commencement Expenditure Adjustment</td>
-                <td class="amount-column" id="guideC113">0</td>
-                <td class="exempt-column" id="guideD113">0</td>
-              </tr>
             </tbody>
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
-        </div>
-      </div>
-      <!-- ================= Step 9 ================= -->
-      <div class="step">
-        <div class="step-title">
-          <span class="step-number">9</span> Adjustmens
-        </div>
-        <div class="step-description">
-          On left sidebar click on<strong> Adjustments</strong> section. Enter
-          the value on respective fields.
-        </div>
-
-        <div class="table-wrap">
-          <table class="guide-table">
-            <thead>
-              <tr>
-                <th>Code</th>
-                <th>Description</th>
-                <th>Total Amount</th>
-                <th>Amount Exempt from Tax / Subject to Fixed / Final Tax</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="code-column">3270</td>
-                <td>
-                  Income / (Loss) from Business before adjustment of Admissible
-                  Depreciation / Initial Allowance / Amortization for current /
-                  previous years
-                </td>
-                <td class="amount-column" id="guideC108">0</td>
-                <td class="exempt-column" id="guideD108">0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
       <!-- ================= Step 10 ================= -->
@@ -864,8 +820,8 @@
         </div>
         <div class="step-description">
           On left sidebar then click on
-          <strong>Business Assets / Equity / Liabilities</strong> section. Enter
-          the values based on your company's financial position.
+          <strong>Business Sheet</strong> section. Enter the values based on
+          your company's financial position.
         </div>
 
         <!-- ASSETS SECTION -->
@@ -886,7 +842,7 @@
               font-weight: bold;
             "
           >
-            📌 ASSETS
+            ASSETS
           </p>
           <p style="font-size: 13px; color: #4a5568; margin-bottom: 8px">
             Enter the value for each asset field in the portal. If you don't
@@ -981,7 +937,7 @@
               border-radius: 4px;
             "
           >
-            ✅ <strong>Total Assets</strong> (Code: 3349) will be
+            <strong>Total Assets</strong> (Code: 3349) will be
             <strong>auto-calculated</strong> by the portal.
           </p>
         </div>
@@ -1004,7 +960,7 @@
               font-weight: bold;
             "
           >
-            📌 EQUITY
+            EQUITY
           </p>
           <p style="font-size: 13px; color: #4a5568; margin-bottom: 8px">
             Enter the value for each equity field in the portal.If you don't
@@ -1071,7 +1027,7 @@
               font-weight: bold;
             "
           >
-            📌 LIABILITIES
+            LIABILITIES
           </p>
           <p style="font-size: 13px; color: #4a5568; margin-bottom: 8px">
             Enter the value for each liability field in the portal. If you don't
@@ -1136,7 +1092,7 @@
               border-radius: 4px;
             "
           >
-            ✅ <strong>Total Equity / Liabilities</strong> (Code: 3399) will be
+            <strong>Total Equity / Liabilities</strong> (Code: 3399) will be
             <strong>auto-calculated</strong> by the portal.
           </p>
         </div>
@@ -1159,20 +1115,20 @@
               font-weight: bold;
             "
           >
-            ⚠️ IMPORTANT BALANCING RULE
+            IMPORTANT BALANCING RULE
           </p>
           <p style="font-size: 13px; color: #92400e">
             <strong>Total Assets (3349)</strong> must equal
             <strong>Total Equity / Liabilities (3399)</strong>
           </p>
           <p style="font-size: 13px; color: #92400e; margin-top: 4px">
-            ✅ After entering all values, click <strong>"Calculate"</strong> to
+            After entering all values, click <strong>"Calculate"</strong> to
             auto-balance.
           </p>
         </div>
 
         <div class="special-instruction">
-          ✅ After entering all values, click <strong>"Calculate"</strong>
+          After entering all values, click <strong>"Calculate"</strong>
         </div>
       </div>
       <!-- ================= Step 11 ================= -->
@@ -1181,10 +1137,9 @@
           <span class="step-number">11</span> Deductible Allowances
         </div>
         <div class="step-description">
-          On left sidebar Click on
-          <strong>Tax Chargeable / Payemnts</strong> then
-          <strong>Deductible Allowances</strong>. Then enter the value on
-          respective fields.
+          On left sidebar Then click on
+          <strong>Tax Chargeable / Payements</strong> then
+          <strong>Allowances, Reductions and Credits</strong>.
         </div>
 
         <div class="table-wrap">
@@ -1193,7 +1148,7 @@
               <tr>
                 <th>Code</th>
                 <th>Description</th>
-                <th>Total</th>
+                <th>Total Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -1206,7 +1161,7 @@
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
       <!-- ================= Step 12 ================= -->
@@ -1216,8 +1171,10 @@
           Tax Credit
         </div>
         <div class="step-description">
-          On left sidebar Click on <strong>Tax Credit</strong>. Then enter the
-          value on respective fields.
+          Stay on <strong>Allowances, Reductions and Credits</strong>. Scroll
+          down. You see Tax Credit Section infront of that you see
+          <strong>+Credit</strong> button click on it. Select the respective Tax
+          credit that has value click add then enter value in it.
         </div>
 
         <div class="table-wrap">
@@ -1231,35 +1188,38 @@
             </thead>
             <tbody>
               <tr>
-                <td class="code-column">9311</td>
-                <td>Tax Credit for Charitable Donations</td>
+                <td class="code-column">9331</td>
+                <td>
+                  Tax Credit for Charitable Donations where Donation is Made to
+                  Associate u/s 61
+                </td>
                 <td class="amount-column" id="guideC140">0</td>
               </tr>
               <tr>
-                <td class="code-column">931901</td>
-                <td>
-                  Tax Credit for Certain Persons (Coal Mining Projects,
-                  Startups) u/s 65F
-                </td>
-                <td class="amount-column" id="guide931901">0</td>
+                <td class="code-column">931904</td>
+                <td>Tax Credit for Certain Persons (Startups) u/s 65F</td>
+                <td class="amount-column" id="guide931904">0</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click
+          <strong>"Calculate"</strong>.
         </div>
       </div>
       <!-- ================= Step 13 ================= -->
       <div class="step">
         <div class="step-title">
           <span class="step-number">13</span>
-          Export Schemes (u/s 154A)
+          Withholding Tax / Final Tax
         </div>
         <div class="step-description">
-          On left sidebar click on
-          <strong>Fixed / Final Tax</strong> section.
+          On left sidebar click on <strong>Withholding Tax</strong>.<br /><br />
+          In front of Final Tax you see <strong>+section</strong> button click
+          on it select the respective description that has value select it then
+          click on add then enter the value on that field.
         </div>
 
         <div class="table-wrap">
@@ -1267,100 +1227,76 @@
             <thead>
               <tr>
                 <th style="width: 15%">Code</th>
-                <th style="width: 35%">Description</th>
+                <th style="width: 60%">Description</th>
                 <th style="width: 25%">Taxable Amount</th>
-                <th style="width: 25%">Tax Collected / Deducted</th>
+                <th style="width: 25%">Tax Deducted</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="code-column">64060290</td>
                 <td>Export of IT/ITeS Services u/s 154A @ 0.25%</td>
-                <td class="exempt-column" id="guide64060290">0</td>
-                <td class="amount-column">
-                  <input
-                    type="text"
-                    id="guideWHT1"
-                    style="
-                      width: 100%;
-                      border: none;
-                      outline: none;
-                      background: transparent;
-                      text-align: right;
-                      font-family: Consolas, monospace;
-                      font-size: 9px;
-                      color: #1890ff;
-                      padding: 2px 4px;
-                    "
-                    placeholder="Enter Withholding Tax deducted by bank"
-                  />
-                </td>
+                <td class="amount-column" id="guide64060290">0</td>
+                <td class="amount-column" id="guideWHT1" style="color: #1890ff">0</td>
               </tr>
               <tr>
                 <td class="code-column">64060285</td>
                 <td>Export of Services u/s 154A @ 1%</td>
                 <td class="amount-column" id="guide64060285">0</td>
-                <td class="amount-column">
-                  <input
-                    type="text"
-                    id="guideWHT2"
-                    style="
-                      width: 100%;
-                      font-size: xx-small;
-                      border: none;
-                      outline: none;
-                      background: transparent;
-                      text-align: right;
-                      font-family: Consolas, monospace;
-
-                      color: #1890ff;
-                      padding: 2px 4px;
-                    "
-                    placeholder="Enter Withholding Tax deducted by bank"
-                  />
-                </td>
+                <td class="amount-column" id="guideWHT2" style="color: #1890ff">0</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div
-          class="warning-note"
-          style="
-            background: #e8f4fd;
-            border-left: 4px solid #3498db;
-            color: #2c5282;
-          "
-        >
-          <strong>📌 Important Rules:</strong><br />
-          <span style="font-size: 13px">
-            • <strong>If PSEB Registered = Yes:</strong> Use Code
-            <strong>64060290</strong> (0.25%) → Taxable Amount Value <br />
-            • <strong>If PSEB Registered = No:</strong> Use Code
-            <strong>64060285</strong> (1%) → Taxable Amount Value<br />
-            • Enter the
-            <strong
-              >Withholding Tax already deducted by bank on Gross Export
-              Sales</strong
-            >
-            in the Tax Collected/Deducted column<br />
-            • <strong>Leave the other scheme code BLANK</strong>
-          </span>
+        <div class="special-instruction">
+          After entering values, click <strong>"Calculate"</strong>
+        </div>
+      </div>
+      <!-- ================= Step 14 (Adjustable Withholding Tax) ================= -->
+      <div class="step">
+        <div class="step-title">
+          <span class="step-number">14</span> Adjustable Withholding Tax
+        </div>
+        <div class="step-description">
+          On left sidebar click on <strong>Tax Chargeable / Payments</strong> and then <strong>Adjustable Tax</strong>.<br /><br />
+          <strong>Note:</strong> Click on the <strong>+section</strong> (or add) button, select code <strong>64060116</strong> for IT/Software services withholding tax, and enter your deducted amount.
+        </div>
+
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">Code</th>
+                <th style="width: 55%">Description</th>
+                <th style="width: 15%">Taxable Amount</th>
+                <th style="width: 15%">Tax Deducted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-column">64060116</td>
+                <td>Payment for Services u/s 153(1)(b) @8% u/c (42) of Part IV of Second Schedule</td>
+                <!-- YAHAN ID ADD KI GAYI HAI -->
+                <td class="amount-column" id="guideAdjustableReceipts">0</td>
+                <td class="amount-column" id="guideAdjustableTax" style="color: #1890ff;">0</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>
         </div>
       </div>
-      <!-- ================= Step 14 ================= -->
+      <!-- ================= Step 15 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">14</span> Tax Computations &amp; Advance
-          Adjustments
+          <span class="step-number">15</span> Tax Computations
         </div>
         <div class="step-description">
-          On left sidebar Click on <strong>Computation</strong>. Then enter the
-          value on respective fields.
+          On left sidebar Click on <strong>Computation</strong>.
+          <strong>Note:</strong> In front of Turnover Tax u/s 113, click on the <strong>+Turnover</strong> button. Select <strong>Turnover / Tax Chargeable u/s 113 @ 1.25%</strong>, add it to your form, and then enter your turnover value.
         </div>
 
         <div class="table-wrap">
@@ -1375,47 +1311,34 @@
             <tbody>
               <tr>
                 <td class="code-column">923173</td>
-                <td>Accounting Profit / Tax Chargeable u/s 113C @17%</td>
-                <td class="amount-column" id="guideE131">0</td>
+                <td>
+                  Accounting Profit / Tax Chargeable u/s 113C @17%
+                </td>
+                <td class="amount-column" id="guideACTBase">0</td>
               </tr>
               <tr>
-                <td class="code-column">9201</td>
-                <td>Withholding Income Tax</td>
-                <td class="amount-column" id="guideE147">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">9202</td>
-                <td>Advance Income Tax</td>
-                <td class="amount-column" id="guideE148">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">92022</td>
-                <td>Advance Income Tax u/s 147(A)</td>
-                <td class="amount-column" id="guideE149">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">92021</td>
-                <td>Advance Income Tax u/s 147(5B)</td>
-                <td class="amount-column" id="guideE150">0</td>
+                <td class="code-column">923161</td>
+                <td>
+                  Turnover / Tax Chargeable u/s 113 @ 1.25%
+                </td>
+                <td class="amount-column" id="guideTurnoverBase">0</td> 
               </tr>
             </tbody>
           </table>
         </div>
         <div class="special-instruction">
-          ✅ After entering values, click <strong>"Calculate"</strong>
+          After entering values, click <strong>"Calculate"</strong>.
         </div>
       </div>
-      <!-- ================= Step 15 ================= -->
+      <!-- ================= Step 16 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">15</span>Tax Computation Summary (Verify
+          <span class="step-number">16</span> Tax Computation Summary (Verify
           with IRIS Portal)
         </div>
         <div class="instruction">
-          Stay on <strong>Computations</strong> section on IRIS Portal
-        </div>
-        <div class="instruction">
-          Compare the values shown on IRIS portal with the values below:
+          Stay on <strong>Computations</strong> section on IRIS Portal. Compare
+          the auto-calculated final tax values.
         </div>
 
         <div class="table-wrap">
@@ -1440,21 +1363,6 @@
                 </td>
                 <td class="amount-column" id="guideE130">0</td>
               </tr>
-              <tr>
-                <td class="code-column">923161</td>
-                <td>Turnover / Tax Chargeable u/s 113 @ 1.25%</td>
-                <td class="amount-column" id="guideE132">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">923194</td>
-                <td>DIFFERENCE OF MINIMUM TAX CHARGEABLE U/S 113</td>
-                <td class="amount-column" id="guideE133">0</td>
-              </tr>
-              <tr>
-                <td class="code-column">9200</td>
-                <td>Tax Chargeable</td>
-                <td class="amount-column" id="guideE128">0</td>
-              </tr>
               <tr style="background: #e6f7ff; font-weight: bold">
                 <td class="code-column">9203</td>
                 <td>Admitted Income Tax (Payable)</td>
@@ -1469,27 +1377,37 @@
           </table>
         </div>
         <div class="instruction">
-          ✅ <strong>If values match</strong> → Your tax calculation is correct
+          <strong>If values match</strong> → Your tax calculation is correct
         </div>
         <div class="instruction">
-          ⚠️ <strong>If values do not match</strong> → Review your entries and
+          <strong>If values do not match</strong> → Review your entries and
           recalculate
         </div>
       </div>
-      <!-- ================= Step 16 ================= -->
+      <!-- ================= Step 17 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">16</span>
-          Company Director Information
+          <span class="step-number">17</span>
+          Business Details & Ownership
         </div>
         <div class="step-description">
-          On top bar of form click <strong>Company Director</strong> option.
+          On top bar of form click <strong>Business Details</strong> option.
+        </div>
+
+        <div class="special-instruction">
+          <strong>1. Add Business Detail:</strong><br />
+          Click on the <strong>+Business</strong> button next to "Add business detail", select your business, and provide the required information.
+        </div>
+
+        <div class="special-instruction" style="margin-top: 15px;">
+          <strong>2. Add Ownership Information:</strong><br />
+          Scroll down to <strong>Ownership (Shareholders/Directors/Members/Partners)</strong>. Click on the <strong>+owners</strong> button to add owner/director information.
         </div>
 
         <div class="warning-note">
-          ⚠️ <strong>Important:</strong> You need to enter company all Directors
-          information.
+          <strong>Important:</strong> You need to enter information for all Directors/Shareholders.
         </div>
+        
         <div class="table-wrap">
           <table class="guide-table">
             <thead>
@@ -1528,14 +1446,13 @@
         </div>
 
         <div class="warning-note">
-          ⚠️ <strong>Important:</strong> After entering director information,
-          click <strong>"Add"</strong> then click <strong>"Save"</strong>
+          <strong>Important:</strong> After entering business and director information, click <strong>"Add"</strong> and then click <strong>"Save"</strong> on the top bar.
         </div>
       </div>
-      <!-- ================= Step 17 ================= -->
+      <!-- ================= Step 18 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">17</span>
+          <span class="step-number">18</span>
           Attach Final Accounts &amp; Statements
         </div>
         <div class="step-description">
@@ -1572,13 +1489,13 @@
         </div>
 
         <div class="special-instruction">
-          ✅ After uploading files, click <strong>"Save"</strong>
+          After uploading files, click <strong>"Save"</strong>
         </div>
       </div>
-      <!-- ================= Step 18 ================= -->
+      <!-- ================= Step 19 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">18</span>
+          <span class="step-number">19</span>
           Attributes Configuration
         </div>
         <div class="step-description">
@@ -1603,14 +1520,13 @@
                 </td>
               </tr>
               <tr>
-                <td><strong>Business Sector-1</strong></td>
+                <td><strong>Person status</strong></td>
                 <td>
-                  Select
+                  Select the
                   <strong
-                    >Services / Service Provider - Information
-                    Technology</strong
+                    >Company status.</strong
                   >
-                  for IT companies
+                  
                 </td>
               </tr>
             </tbody>
@@ -1618,37 +1534,37 @@
         </div>
 
         <div class="special-instruction">
-          ✅ After selecting, click <strong>"Save"</strong>
+          After selecting, click <strong>"Save"</strong>
         </div>
       </div>
-      <!-- ================= Step 19 ================= -->
+      <!-- ================= Step 20 ================= -->
       <div class="step">
         <div class="step-title">
-          <span class="step-number">19</span> Generate PSID, Save & Submit
+          <span class="step-number">20</span> Generate PSID, Save & Submit
         </div>
 
         <div class="special-instruction">
-          <strong>Step 19.1:</strong> Go to
+          <strong>Step 20.1:</strong> Go to
           <strong>Tax Chargeable/Payments → Computation</strong>
         </div>
         <div class="special-instruction">
-          <strong>Step 19.2:</strong> Find
+          <strong>Step 20.2:</strong> Find
           <strong>Code 9203 (Admitted Income Tax)</strong>
         </div>
         <div class="special-instruction">
-          <strong>Step 19.3:</strong> Click on the
+          <strong>Step 20.3:</strong> Click on the
           <strong>"Prepare PSID"</strong> button next to it
         </div>
         <div class="special-instruction">
-          <strong>Step 19.4:</strong> PSID will be generated automatically. Save
+          <strong>Step 20.4:</strong> PSID will be generated automatically. Save
           or print it for your records.
         </div>
         <div class="special-instruction">
-          <strong>Step 19.5:</strong> Click the <strong>"Save"</strong> button
+          <strong>Step 20.5:</strong> Click the <strong>"Save"</strong> button
           on top of the page
         </div>
         <div class="special-instruction">
-          <strong>Step 19.6:</strong> Click the <strong>"Submit"</strong> button
+          <strong>Step 20.6:</strong> Click the <strong>"Submit"</strong> button
           on top of the page
         </div>
 
@@ -1661,7 +1577,7 @@
             margin-top: 15px;
           "
         >
-          <strong>Step 19.7: Confirm Submission</strong><br />
+          <strong>Step 20.7: Confirm Submission</strong><br />
           After clicking <strong>"Submit"</strong>, the portal will ask for
           confirmation:
           <ul style="margin: 8px 0 0 20px; font-size: 13px">
@@ -1709,7 +1625,7 @@
           const engineData = event.data.payload;
 
           // ============================================================
-          // DYNAMIC CELLS (C, D, E columns)
+          // DYNAMIC CELLS (C, D columns only for FBR Input mapped)
           // ============================================================
           for (let i = 1; i <= 160; i++) {
             if (i === 6 || i === 142) continue;
@@ -1728,124 +1644,134 @@
             const elE = document.getElementById(`guideE${i}`);
             if (elE) {
               let valE = parseFloat(engineData[`E${i}`]) || 0;
-              elE.textContent = Math.round(valE).toLocaleString("en-US");
+              elE.textContent =
+                valE !== 0 ? Math.round(valE).toLocaleString("en-US") : "0";
             }
           }
-
-          // ============================================================
-          // STEP 19: Export Schemes - Auto-fill based on PSEB status
-          // ============================================================
-          var psebStatus = engineData["D6"] || "No";
-          var exportSales = parseFloat(engineData["C5"]) || 0;
-
-          console.log("📌 PSEB Status (D6):", psebStatus);
-          console.log("📌 Export Sales (C5):", exportSales);
-
-          var el64060290 = document.getElementById("guide64060290");
-          var el64060285 = document.getElementById("guide64060285");
 
           function formatNumber(num) {
             if (num === null || num === undefined || isNaN(num)) return "0";
             return Math.round(num).toLocaleString("en-US");
           }
 
-          if (psebStatus === "Yes") {
-            if (el64060290) {
-              el64060290.textContent = formatNumber(exportSales);
-              el64060290.style.color = "#38a169";
-              el64060290.style.fontWeight = "bold";
-            }
-            if (el64060285) {
-              el64060285.textContent = "0";
-              el64060285.style.color = "#999";
-              el64060285.style.fontWeight = "normal";
-            }
-            console.log(
-              "✅ PSEB = Yes: 64060290 filled with",
-              formatNumber(exportSales),
-            );
-          } else {
-            if (el64060285) {
-              el64060285.textContent = formatNumber(exportSales);
-              el64060285.style.color = "#38a169";
-              el64060285.style.fontWeight = "bold";
-            }
-            if (el64060290) {
-              el64060290.textContent = "0";
-              el64060290.style.color = "#999";
-              el64060290.style.fontWeight = "normal";
-            }
-            console.log(
-              "✅ PSEB = No: 64060285 filled with",
-              formatNumber(exportSales),
-            );
-          }
+          var startupStatus = engineData["C142"] || "No"; 
+          var psebStatus = engineData["D6"] || "No";
+          var accountingProfit = parseFloat(engineData["C66"]) || 0;
+          var domesticSales = parseFloat(engineData["C4"]) || 0;
 
           // ============================================================
-          // STEP 16: Tax Credit - Auto-fill 931901 based on Startup status
+          // STEP 12: Tax Credit - Base Income logic for Startup status
+          // ⚠️ FBR QUIRK FIX: FBR uses Total Gross Revenue as denominator for Sec 65F
           // ============================================================
-          var startupStatus = engineData["C142"] || "No";
-          var taxChargeable = parseFloat(engineData["E128"]) || 0;
-
-          console.log("📌 Startup Status (C142):", startupStatus);
-          console.log("📌 Tax Chargeable (E128):", taxChargeable);
-
-          var el931901 = document.getElementById("guide931901");
-
-          if (el931901) {
+          var eligibleAmountForCredit = parseFloat(engineData["C3"]) || 0; 
+          
+          var el931904 = document.getElementById("guide931904");
+          if (el931904) {
             if (startupStatus === "Yes") {
-              el931901.textContent = formatNumber(taxChargeable);
-              el931901.style.color = "#38a169";
-              el931901.style.fontWeight = "bold";
-              console.log(
-                "✅ Startup = Yes: 931901 filled with",
-                formatNumber(taxChargeable),
-              );
+              el931904.textContent = formatNumber(eligibleAmountForCredit);
+              el931904.style.color = "#38a169";
+              el931904.style.fontWeight = "bold";
             } else {
-              el931901.textContent = "0";
-              el931901.style.color = "#999";
-              el931901.style.fontWeight = "normal";
-              console.log("✅ Startup = No: 931901 = 0");
+              el931904.textContent = "0";
+              el931904.style.color = "#999";
+              el931904.style.fontWeight = "normal";
             }
           }
 
           // ============================================================
-          // STEP 17: Tax Computation - Auto-fill 64060290 and 64060285
+          // STEP 13 & 14 SMART ROUTING LOGIC
           // ============================================================
-          var elTax64060290 = document.getElementById("guideTax64060290");
-          var elTax64060285 = document.getElementById("guideTax64060285");
+          var origExportSales = parseFloat(engineData["C5"]) || 0;
+          var exportWHT = parseFloat(engineData["E147"]) || 0; // Bank Deduction
+          var domesticWHT = parseFloat(engineData["E148"]) || 0; // Local Client Deduction
 
-          if (elTax64060290) {
+          var el64060290 = document.getElementById("guide64060290");
+          var el64060285 = document.getElementById("guide64060285");
+          var whtInput1 = document.getElementById("guideWHT1"); 
+          var whtInput2 = document.getElementById("guideWHT2"); 
+          var adjustableTaxElement = document.getElementById("guideAdjustableTax");
+          var adjustableReceiptsElement = document.getElementById("guideAdjustableReceipts"); // Naya element
+
+          if (startupStatus === "Yes") {
+            // 🚀 STARTUP MODE: Move ALL WHT (Export + Domestic) to Adjustable Tax
+            if (el64060290) { el64060290.textContent = "0"; el64060290.style.color = "#999"; el64060290.style.fontWeight = "normal"; }
+            if (el64060285) { el64060285.textContent = "0"; el64060285.style.color = "#999"; el64060285.style.fontWeight = "normal"; }
+            if (whtInput1) whtInput1.textContent = "0";
+            if (whtInput2) whtInput2.textContent = "0";
+
+            if (adjustableTaxElement) {
+              adjustableTaxElement.textContent = formatNumber(exportWHT + domesticWHT);
+              adjustableTaxElement.style.fontWeight = "bold";
+            }
+            // Startup mein kyunke saara tax idhar aaya hai, tou Receipts mein Total Revenue jayega
+            if (adjustableReceiptsElement) {
+              adjustableReceiptsElement.textContent = formatNumber(domesticSales + origExportSales);
+            }
+          } else {
+            // 🏢 NORMAL COMPANY MODE: Split properly into Step 13 and Step 14
             if (psebStatus === "Yes") {
-              var taxAt025 = exportSales * 0.0025;
-              elTax64060290.textContent = formatNumber(taxAt025);
-              elTax64060290.style.color = "#cf1322";
-              elTax64060290.style.fontWeight = "bold";
+              if (el64060290) {
+                el64060290.textContent = formatNumber(origExportSales);
+                el64060290.style.color = (origExportSales === 0) ? "#999" : "#38a169";
+                el64060290.style.fontWeight = (origExportSales === 0) ? "normal" : "bold";
+              }
+              if (whtInput1) whtInput1.textContent = formatNumber(exportWHT);
+              
+              if (el64060285) { el64060285.textContent = "0"; el64060285.style.color = "#999"; el64060285.style.fontWeight = "normal"; }
+              if (whtInput2) whtInput2.textContent = "0";
             } else {
-              elTax64060290.textContent = "0";
-              elTax64060290.style.color = "#999";
-              elTax64060290.style.fontWeight = "normal";
+              if (el64060285) {
+                el64060285.textContent = formatNumber(origExportSales);
+                el64060285.style.color = (origExportSales === 0) ? "#999" : "#38a169";
+                el64060285.style.fontWeight = (origExportSales === 0) ? "normal" : "bold";
+              }
+              if (whtInput2) whtInput2.textContent = formatNumber(exportWHT);
+              
+              if (el64060290) { el64060290.textContent = "0"; el64060290.style.color = "#999"; el64060290.style.fontWeight = "normal"; }
+              if (whtInput1) whtInput1.textContent = "0";
+            }
+
+            if (adjustableTaxElement) {
+              adjustableTaxElement.textContent = formatNumber(domesticWHT);
+              adjustableTaxElement.style.fontWeight = "bold";
+            }
+            // Normal mode mein sirf Domestic Receipts (C4) show hongi
+            if (adjustableReceiptsElement) {
+              adjustableReceiptsElement.textContent = formatNumber(domesticSales);
             }
           }
-
-          if (elTax64060285) {
-            if (psebStatus === "No") {
-              var taxAt1 = exportSales * 0.01;
-              elTax64060285.textContent = formatNumber(taxAt1);
-              elTax64060285.style.color = "#cf1322";
-              elTax64060285.style.fontWeight = "bold";
-            } else {
-              elTax64060285.textContent = "0";
-              elTax64060285.style.color = "#999";
-              elTax64060285.style.fontWeight = "normal";
-            }
-          }
-
-          console.log(
-            "✅ Guide structural translation layers populated instantly.",
-          );
 
           // ============================================================
+          // STEP 15 FIX: ACT Base and Turnover Base Calculations
+          // ============================================================
+          var actBaseElement = document.getElementById("guideACTBase");
+          if (actBaseElement) {
+            if (startupStatus === "Yes") {
+              actBaseElement.textContent = "0";
+              actBaseElement.style.color = "#999";
+              actBaseElement.style.fontWeight = "normal";
+            } else {
+              var actBase = accountingProfit - origExportSales; 
+              if (actBase < 0) actBase = 0;
+              actBaseElement.textContent = formatNumber(actBase);
+              actBaseElement.style.color = "#cf1322";
+              actBaseElement.style.fontWeight = "bold";
+            }
+          }
+
+          var turnoverBaseElement = document.getElementById("guideTurnoverBase");
+          if (turnoverBaseElement) {
+            if (startupStatus === "Yes") {
+              turnoverBaseElement.textContent = "0";
+              turnoverBaseElement.style.color = "#999";
+              turnoverBaseElement.style.fontWeight = "normal";
+            } else {
+              turnoverBaseElement.textContent = formatNumber(domesticSales);
+              turnoverBaseElement.style.color = "#cf1322";
+              turnoverBaseElement.style.fontWeight = "bold";
+            }
+          }
+          
         }
       });
     </script>
